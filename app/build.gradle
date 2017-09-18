@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+// 아래에 다음 코드를 추가해준다.
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 26
