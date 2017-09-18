@@ -8,9 +8,17 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="SplashTheme" parent="AppTheme">
+    <style name="NoTitleNoActionBar" parent="AppTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="MainTheme" parent="NoTitleNoActionBar">
+
+
+    </style>
+
+    <style name="SplashTheme" parent="NoTitleNoActionBar">
         <item name="android:windowBackground">@drawable/splash</item>
     </style>
 
