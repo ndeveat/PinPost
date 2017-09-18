@@ -1,9 +1,8 @@
-package com.ndeveat.pinpost
+package com.ndeveat.pinpost.Activity
 
 import android.app.Activity
-import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.ndeveat.pinpost.R
 import org.jetbrains.anko.intentFor
 
 /*

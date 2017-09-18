@@ -1,4 +1,4 @@
-package com.ndeveat.pinpost
+package com.ndeveat.pinpost.Activity
 
 import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.Snackbar
@@ -10,13 +10,11 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
 import android.os.Bundle
 import android.support.design.widget.TabLayout
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TableLayout
+import com.ndeveat.pinpost.Fragment.CategoriesFragment
+import com.ndeveat.pinpost.Fragment.PostListFragment
+import com.ndeveat.pinpost.R
 
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -29,7 +27,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // set toolbar title
+        toolbar.title = "핀 포스트"
         setSupportActionBar(toolbar)
+
+        // set tabLayout
         mTabLayout = tablayout
         mTabLayout?.addTab(tablayout.newTab().setIcon(R.drawable.icon_menu2))
         mTabLayout?.addTab(tablayout.newTab().setIcon(R.drawable.icon_human2))
@@ -47,6 +50,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        // set pager
         mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
         mViewPager = container
         mViewPager!!.adapter = mSectionsPagerAdapter
@@ -64,10 +68,10 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        val fab = findViewById(R.id.fab) as FloatingActionButton
+        // set fab button
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+            // Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+            //         .setAction("Action", null).show()
         }
     }
 
@@ -75,6 +79,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         // menuInflater.inflate(R.menu.menu_main2, menu)
+
         return true
     }
 
@@ -98,7 +103,7 @@ class MainActivity : AppCompatActivity() {
             return if (position == 0)
                 PostListFragment.newInstance()
             else
-                PostListFragment.newInstance()
+                CategoriesFragment.newInstance()
         }
 
         override fun getCount(): Int = 2

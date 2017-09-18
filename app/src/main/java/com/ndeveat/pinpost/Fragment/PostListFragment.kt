@@ -1,10 +1,11 @@
-package com.ndeveat.pinpost
+package com.ndeveat.pinpost.Fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.ndeveat.pinpost.R
 
 /**
  * Created by ndeveat on 2017. 9. 18..
