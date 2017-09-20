@@ -1,9 +1,7 @@
 package com.ndeveat.pinpost.Post.Preview
 
-import android.content.Context
 import android.graphics.Rect
 import android.support.v7.widget.RecyclerView
-import android.view.ContextMenu
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +11,7 @@ import com.ndeveat.pinpost.R
  * Created by ndeveat on 2017. 9. 20..
  */
 
-class PostPreviewController : RecyclerView.Adapter<PostPreviewView>() {
+class PostPreviewAdapter : RecyclerView.Adapter<PostPreviewHolder>() {
     class PostPreviewDecoration : RecyclerView.ItemDecoration {
         constructor() : super() {
 
@@ -34,13 +32,13 @@ class PostPreviewController : RecyclerView.Adapter<PostPreviewView>() {
 
     override fun getItemCount(): Int = mPosts.size
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): PostPreviewView {
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): PostPreviewHolder {
         val view = LayoutInflater.from(parent!!.context).inflate(R.layout.post_preview, parent, false)
-        val holder = PostPreviewView(view)
+        val holder = PostPreviewHolder(view)
         return holder
     }
 
-    override fun onBindViewHolder(holder: PostPreviewView?, position: Int) {
+    override fun onBindViewHolder(holder: PostPreviewHolder?, position: Int) {
         val post = mPosts[position]
     }
 }

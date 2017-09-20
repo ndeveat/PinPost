@@ -15,6 +15,8 @@ import com.ndeveat.pinpost.R
 class CategoriesFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater!!.inflate(R.layout.fragment_categories, container, false)
+
+
         return rootView
     }
 

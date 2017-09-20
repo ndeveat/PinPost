@@ -7,7 +7,7 @@ import android.view.View
  * Created by ndeveat on 2017. 9. 20..
  */
 
-class PostPreviewView : RecyclerView.ViewHolder {
+class PostPreviewHolder : RecyclerView.ViewHolder {
     constructor(view: View) : super(view) {
 
     }
