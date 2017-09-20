@@ -2,6 +2,7 @@ package com.ndeveat.pinpost.Fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -28,13 +29,26 @@ class CategoriesFragment : Fragment() {
 
         mCategoriesAdapter = CategoriesAdapter()
         mRecyclerView = rootView.categories_list
-        mLayoutManager = GridLayoutManager(context, 2)
+        mLayoutManager = GridLayoutManager(context, 3)
         mRecyclerView!!.layoutManager = mLayoutManager
         mRecyclerView!!.adapter = mCategoriesAdapter
-        mRecyclerView!!.addItemDecoration(CategoriesAdapter.CategoriesDecoration(2, 50))
+        mRecyclerView!!.addItemDecoration(CategoriesAdapter.CategoriesDecoration(3, 50))
 
-        for (i in 0..4)
-            mCategoriesAdapter!!.mCategories.add(CategoriesModel("ASD", 5))
+        mCategoriesAdapter!!.mCategories.add(
+                CategoriesModel(
+                        "Facebook",
+                        ContextCompat.getDrawable(context, R.drawable.facebook00001),
+                        ContextCompat.getColor(context, R.color.snsFacebook)))
+        mCategoriesAdapter!!.mCategories.add(
+                CategoriesModel(
+                        "Tstory",
+                        ContextCompat.getDrawable(context, R.drawable.tstory00001),
+                        ContextCompat.getColor(context, R.color.snsTstory)))
+        mCategoriesAdapter!!.mCategories.add(
+                CategoriesModel(
+                        "Twitter",
+                        ContextCompat.getDrawable(context, R.drawable.twitter00001),
+                        ContextCompat.getColor(context, R.color.snsTwitter)))
 
         return rootView
     }

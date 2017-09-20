@@ -3,4 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="snsFacebook">#1e61f1</color>
+    <color name="snsTstory">#ff8c00</color>
+    <color name="snsTwitter">#00d4ff</color>
 </resources>

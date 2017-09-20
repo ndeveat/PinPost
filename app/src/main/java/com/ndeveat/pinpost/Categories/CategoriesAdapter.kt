@@ -1,5 +1,6 @@
 package com.ndeveat.pinpost.Categories
 
+import android.graphics.PorterDuff
 import android.graphics.Rect
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -52,7 +53,10 @@ class CategoriesAdapter : RecyclerView.Adapter<CategoriesHolder>() {
     override fun getItemCount(): Int = mCategories.size
 
     override fun onBindViewHolder(holder: CategoriesHolder?, position: Int) {
-        val categorie = mCategories[position]
+        val category = mCategories[position]
+        holder!!.mBackground.background.setColorFilter(category.color, PorterDuff.Mode.MULTIPLY)
+        holder.mIcon.setImageDrawable(category.drawable)
+        holder.mCount.text = (0).toString()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): CategoriesHolder {
