@@ -1,7 +1,5 @@
 package com.ndeveat.pinpost.Activity
 
-import android.support.design.widget.FloatingActionButton
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 
 import android.support.v4.app.Fragment
@@ -13,7 +11,7 @@ import android.support.design.widget.TabLayout
 import android.view.Menu
 import android.view.MenuItem
 import com.ndeveat.pinpost.Fragment.CategoriesFragment
-import com.ndeveat.pinpost.Fragment.PostListFragment
+import com.ndeveat.pinpost.Fragment.PostPreviewFragment
 import com.ndeveat.pinpost.R
 
 import kotlinx.android.synthetic.main.activity_main.*
@@ -101,7 +99,7 @@ class MainActivity : AppCompatActivity() {
     inner class SectionsPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
         override fun getItem(position: Int): Fragment {
             return if (position == 0)
-                PostListFragment.newInstance()
+                PostPreviewFragment.newInstance()
             else
                 CategoriesFragment.newInstance()
         }
