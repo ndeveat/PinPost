@@ -18,24 +18,44 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="@android:color/holo_blue_light"
+            android:background="@android:color/white"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="5dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="5dp"
-                android:gravity="right|center_vertical"
-                android:orientation="horizontal">
+                android:layout_height="match_parent">
 
-                <com.ndeveat.pinpost.Base.TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="다른 옵션을 추가하세요" />
-            </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="right|center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.ndeveat.pinpost.Base.TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="다른 옵션을 추가하세요"
+                        android:textColor="@android:color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.ndeveat.pinpost.Base.TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="Pin Post"
+                        android:textColor="@android:color/black"
+                        android:textSize="20dp"
+                        android:textStyle="italic" />
+                </LinearLayout>
+            </RelativeLayout>
         </android.support.v7.widget.Toolbar>
 
         <android.support.design.widget.TabLayout
@@ -43,7 +63,12 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="@android:color/white"
-            app:tabIndicatorColor="@android:color/holo_blue_light">
+            app:paddingStart="10dp"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@android:color/holo_blue_light"
+            app:tabIndicatorHeight="2dp"
+            app:tabMaxWidth="0dp"
+            app:tabMode="fixed">
 
         </android.support.design.widget.TabLayout>
 
@@ -61,6 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        app:backgroundTint="@android:color/holo_blue_light"
+        app:srcCompat="@drawable/icon_pencil" />
 
 </android.support.design.widget.CoordinatorLayout>

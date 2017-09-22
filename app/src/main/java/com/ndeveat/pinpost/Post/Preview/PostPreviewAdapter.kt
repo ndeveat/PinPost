@@ -12,11 +12,7 @@ import com.ndeveat.pinpost.R
  */
 
 class PostPreviewAdapter : RecyclerView.Adapter<PostPreviewHolder>() {
-    class PostPreviewDecoration : RecyclerView.ItemDecoration {
-        constructor() : super() {
-
-        }
-
+    class PostPreviewDecoration : RecyclerView.ItemDecoration() {
         override fun getItemOffsets(outRect: Rect?, view: View?, parent: RecyclerView?, state: RecyclerView.State?) {
             super.getItemOffsets(outRect, view, parent, state)
 

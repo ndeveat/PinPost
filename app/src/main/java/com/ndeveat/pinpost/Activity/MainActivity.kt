@@ -1,5 +1,6 @@
 package com.ndeveat.pinpost.Activity
 
+import android.graphics.PorterDuff
 import android.support.v7.app.AppCompatActivity
 
 import android.support.v4.app.Fragment
@@ -8,6 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
 import android.os.Bundle
 import android.support.design.widget.TabLayout
+import android.support.v4.content.ContextCompat
 import android.view.Menu
 import android.view.MenuItem
 import com.ndeveat.pinpost.Fragment.CategoriesFragment
@@ -40,11 +42,12 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
-
+                tab!!.icon!!.setColorFilter(ContextCompat.getColor(this@MainActivity, android.R.color.darker_gray), PorterDuff.Mode.SRC_IN)
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 mViewPager!!.currentItem = tablayout.selectedTabPosition
+                tab!!.icon!!.setColorFilter(ContextCompat.getColor(this@MainActivity, android.R.color.holo_blue_light), PorterDuff.Mode.SRC_IN)
             }
         })
 
