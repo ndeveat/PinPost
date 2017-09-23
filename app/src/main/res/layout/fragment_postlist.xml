@@ -2,59 +2,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingTop="@dimen/activity_vertical_margin">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/post_preview_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:background="#00ffffff"
+        android:overScrollMode="always"
+        android:scrollbars="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <com.ndeveat.pinpost.Base.TextView
-                android:id="@+id/section_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:text="태그"
-                android:textSize="16dp" />
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-
-            </FrameLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <com.ndeveat.pinpost.Base.TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:text="작성 글"
-                android:textSize="16dp" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/post_preview_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#ffffff"
-                android:scrollbars="vertical">
-
-            </android.support.v7.widget.RecyclerView>
-        </LinearLayout>
-    </LinearLayout>
+    </android.support.v7.widget.RecyclerView>
 </RelativeLayout>

@@ -35,7 +35,9 @@ class MainActivity : AppCompatActivity() {
         // set tabLayout
         mTabLayout = tablayout
         mTabLayout?.addTab(tablayout.newTab().setIcon(R.drawable.icon_menu2))
+        mTabLayout?.getTabAt(0)!!.icon!!.setColorFilter(ContextCompat.getColor(this@MainActivity, android.R.color.holo_blue_light), PorterDuff.Mode.SRC_IN)
         mTabLayout?.addTab(tablayout.newTab().setIcon(R.drawable.icon_human2))
+        mTabLayout?.getTabAt(1)!!.icon!!.setColorFilter(ContextCompat.getColor(this@MainActivity, android.R.color.darker_gray), PorterDuff.Mode.SRC_IN)
         mTabLayout?.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {
 

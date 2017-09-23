@@ -21,6 +21,7 @@ class PostPreviewAdapter : RecyclerView.Adapter<PostPreviewHolder>() {
     }
 
     var mPosts: ArrayList<PostPreviewModel>
+    var mHolderCount = 0
 
     init {
         mPosts = ArrayList<PostPreviewModel>()
@@ -29,8 +30,13 @@ class PostPreviewAdapter : RecyclerView.Adapter<PostPreviewHolder>() {
     override fun getItemCount(): Int = mPosts.size
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): PostPreviewHolder {
-        val view = LayoutInflater.from(parent!!.context).inflate(R.layout.post_preview, parent, false)
-        val holder = PostPreviewHolder(view)
+        val view = if (mHolderCount == 0)
+            LayoutInflater.from(parent!!.context).inflate(R.layout.post_preview_top, parent, false)
+        else
+            LayoutInflater.from(parent!!.context).inflate(R.layout.post_preview, parent, false)
+
+        val holder = PostPreviewHolder(view, mHolderCount)
+        mHolderCount += 1
         return holder
     }
 

@@ -8,7 +8,7 @@ import android.view.View
  */
 
 class PostPreviewHolder : RecyclerView.ViewHolder {
-    constructor(view: View) : super(view) {
+    constructor(view: View, count: Int) : super(view) {
 
     }
 }

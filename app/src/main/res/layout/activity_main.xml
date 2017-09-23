@@ -17,7 +17,7 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="48dp"
             android:background="@android:color/white"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay">
@@ -38,13 +38,14 @@
                     <com.ndeveat.pinpost.Base.TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="다른 옵션을 추가하세요"
+                        android:text="옵션"
                         android:textColor="@android:color/black" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:gravity="center">
 
                     <com.ndeveat.pinpost.Base.TextView
                         android:layout_width="wrap_content"
@@ -61,7 +62,7 @@
         <android.support.design.widget.TabLayout
             android:id="@+id/tablayout"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="48dp"
             android:background="@android:color/white"
             app:paddingStart="10dp"
             app:tabGravity="fill"
