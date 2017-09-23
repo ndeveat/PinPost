@@ -10,13 +10,16 @@ import android.support.v4.view.ViewPager
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.content.ContextCompat
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.ndeveat.pinpost.Fragment.CategoriesFragment
 import com.ndeveat.pinpost.Fragment.PostPreviewFragment
 import com.ndeveat.pinpost.R
 
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.tablayout_thumb.view.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,12 +35,18 @@ class MainActivity : AppCompatActivity() {
         toolbar.title = "핀 포스트"
         setSupportActionBar(toolbar)
 
+        var view: View
+
         // set tabLayout
         mTabLayout = tablayout
-        mTabLayout?.addTab(tablayout.newTab().setIcon(R.drawable.icon_menu2))
-        mTabLayout?.getTabAt(0)!!.icon!!.setColorFilter(ContextCompat.getColor(this@MainActivity, android.R.color.holo_blue_light), PorterDuff.Mode.SRC_IN)
-        mTabLayout?.addTab(tablayout.newTab().setIcon(R.drawable.icon_human2))
-        mTabLayout?.getTabAt(1)!!.icon!!.setColorFilter(ContextCompat.getColor(this@MainActivity, android.R.color.darker_gray), PorterDuff.Mode.SRC_IN)
+        view = LayoutInflater.from(this@MainActivity).inflate(R.layout.tablayout_thumb, null)
+        view.thumb.setBackgroundResource(R.drawable.icon_menu2)
+        mTabLayout?.addTab(tablayout.newTab().setCustomView(view))
+        //  mTabLayout?.getTabAt(0)!!.icon!!.setColorFilter(ContextCompat.getColor(this@MainActivity, android.R.color.holo_blue_light), PorterDuff.Mode.SRC_IN)
+        view = LayoutInflater.from(this@MainActivity).inflate(R.layout.tablayout_thumb, null)
+        view.thumb.setBackgroundResource(R.drawable.icon_human2)
+        mTabLayout?.addTab(tablayout.newTab().setCustomView(view))
+        //  mTabLayout?.getTabAt(1)!!.icon!!.setColorFilter(ContextCompat.getColor(this@MainActivity, android.R.color.darker_gray), PorterDuff.Mode.SRC_IN)
         mTabLayout?.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {
 

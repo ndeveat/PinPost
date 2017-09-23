@@ -2,18 +2,19 @@ package com.ndeveat.pinpost.Categories
 
 import android.graphics.PorterDuff
 import android.graphics.Rect
+import android.os.Handler
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.ndeveat.pinpost.DataCenter
 import com.ndeveat.pinpost.R
-import kotlinx.android.synthetic.main.fragment_categories.*
 
 /**
  * Created by ndeveat on 2017. 9. 20..
  */
 
-class CategoriesAdapter : RecyclerView.Adapter<CategoriesHolder>() {
+class CategoryAdapter : RecyclerView.Adapter<CategoryHolder>() {
     class CategoriesDecoration(spanCount: Int, spacing: Int) : RecyclerView.ItemDecoration() {
         val spanCount: Int
         val spacing: Int
@@ -35,33 +36,40 @@ class CategoriesAdapter : RecyclerView.Adapter<CategoriesHolder>() {
                 outRect.top = spacing;
             }
             outRect.bottom = spacing; // item bottom
-
-            //outRect!!.left = column * spacing / spanCount; // column * ((1f / spanCount) * spacing)
-            //outRect.right = spacing - (column + 1) * spacing / spanCount; // spacing - (column + 1) * ((1f /    spanCount) * spacing)
-            //if (position >= spanCount) {
-            //    outRect.top = spacing; // item top
-            //}
         }
     }
 
-    var mCategories: ArrayList<CategoriesModel>
+    var mCategories: ArrayList<CategoryModel>
 
     init {
-        mCategories = ArrayList<CategoriesModel>()
+        mCategories = ArrayList<CategoryModel>()
+
+        // update
+        updateCategoryCount()
     }
 
     override fun getItemCount(): Int = mCategories.size
 
-    override fun onBindViewHolder(holder: CategoriesHolder?, position: Int) {
+    override fun onBindViewHolder(holder: CategoryHolder?, position: Int) {
         val category = mCategories[position]
-        holder!!.mBackground.background.setColorFilter(category.color, PorterDuff.Mode.MULTIPLY)
-        holder.mIcon.setImageDrawable(category.drawable)
-        holder.mCount.text = (0).toString()
+        val dataCenter = DataCenter.instance
+
+        holder!!.setCategoryBackground(category.background)
+        holder.setCategoryIcon(category.drawable)
+        if (dataCenter.SocialNetworkServices.containsKey(category.snsType))
+            holder.setCategoryCount(dataCenter.SocialNetworkServices.get(category.snsType)!!)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): CategoriesHolder {
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): CategoryHolder {
         val view = LayoutInflater.from(parent!!.context).inflate(R.layout.categories_view, parent, false)
-        val holder = CategoriesHolder(view)
+        val holder = CategoryHolder(view)
         return holder
+    }
+
+    fun updateCategoryCount() {
+        Handler().postDelayed({
+            notifyDataSetChanged()
+            updateCategoryCount()
+        }, 1500)
     }
 }
