@@ -5,8 +5,11 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <ImageView
+    <TextView
         android:id="@+id/thumb"
-        android:layout_width="28dp"
-        android:layout_height="28dp" />
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:gravity="center"
+        android:text="Option"
+        android:textColor="@android:color/black" />
 </LinearLayout>

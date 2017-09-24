@@ -10,6 +10,8 @@ import android.support.v4.view.ViewPager
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.content.ContextCompat
+import android.support.v4.widget.DrawerLayout
+import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.Menu
@@ -20,6 +22,7 @@ import com.ndeveat.pinpost.Fragment.PostPreviewFragment
 import com.ndeveat.pinpost.R
 
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.main_container.view.*
 import kotlinx.android.synthetic.main.tablayout_thumb.view.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.toolbar.view.*
@@ -30,45 +33,49 @@ class MainActivity : AppCompatActivity() {
     private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
     private var mViewPager: ViewPager? = null
     private var mTabLayout: TabLayout? = null
+    private var mDrawerLayout: DrawerLayout? = null
+    private var mDrawerToggle: ActionBarDrawerToggle? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val supportToolbar = toolbar
-        supportToolbar.pinpost_title.text = "Pin Post"
+        val supportToolbar = contents.toolbar
         setSupportActionBar(supportToolbar.pinpost_toolbar)
 
         var view: View
 
         // set tabLayout
-        mTabLayout = tablayout
+        mTabLayout = supportToolbar.pinpost_tablayout
+
         view = LayoutInflater.from(this@MainActivity).inflate(R.layout.tablayout_thumb, null)
-        view.thumb.setBackgroundResource(R.drawable.icon_menu2)
-        mTabLayout?.addTab(tablayout.newTab().setCustomView(view))
-        mTabLayout?.getTabAt(0)!!.customView!!.thumb.background.setColorFilter(ContextCompat.getColor(this@MainActivity, android.R.color.holo_blue_light), PorterDuff.Mode.SRC_IN)
+        mTabLayout?.addTab(mTabLayout!!.newTab().setCustomView(view))
+        mTabLayout?.getTabAt(0)?.customView?.thumb?.text = "MY"
+        //mTabLayout?.getTabAt(0)?.customView?.thumb?.setTextColor(android.R.color.holo_blue_light)
+
         view = LayoutInflater.from(this@MainActivity).inflate(R.layout.tablayout_thumb, null)
-        view.thumb.setBackgroundResource(R.drawable.icon_human2)
-        mTabLayout?.addTab(tablayout.newTab().setCustomView(view))
-        mTabLayout?.getTabAt(1)!!.customView!!.thumb.background.setColorFilter(ContextCompat.getColor(this@MainActivity, android.R.color.darker_gray), PorterDuff.Mode.SRC_IN)
+        mTabLayout?.addTab(mTabLayout!!.newTab().setCustomView(view))
+        mTabLayout?.getTabAt(1)?.customView?.thumb?.text = "카테고리"
+        //mTabLayout?.getTabAt(1)?.customView?.thumb?.setTextColor(android.R.color.darker_gray)
+
         mTabLayout?.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {
 
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
-                tab!!.customView!!.thumb!!.background.setColorFilter(ContextCompat.getColor(this@MainActivity, android.R.color.darker_gray), PorterDuff.Mode.SRC_IN)
+                //tab!!.customView!!.thumb!!.setTextColor(android.R.color.darker_gray)
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                mViewPager!!.currentItem = tablayout.selectedTabPosition
-                tab!!.customView!!.thumb!!.background.setColorFilter(ContextCompat.getColor(this@MainActivity, android.R.color.holo_blue_light), PorterDuff.Mode.SRC_IN)
+                mViewPager!!.currentItem = mTabLayout!!.selectedTabPosition
+                //tab!!.customView!!.thumb!!.setTextColor(android.R.color.holo_blue_light)
             }
         })
 
         // set pager
         mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
-        mViewPager = container
+        mViewPager = contents.container
         mViewPager!!.adapter = mSectionsPagerAdapter
         mViewPager!!.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
@@ -80,18 +87,27 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onPageSelected(position: Int) {
-                mTabLayout!!.getTabAt(position)?.select()
+                mTabLayout?.getTabAt(position)?.select()
             }
         })
 
         // set fab button
-        fab.setOnClickListener { view ->
+        contents.fab.setOnClickListener { view ->
             // Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
             //         .setAction("Action", null).show()
 
             val intent = intentFor<EditorActivity>()
             startActivity(intent)
         }
+
+        // set drawer
+        mDrawerLayout = drawer_layout
+        mDrawerToggle =
+                ActionBarDrawerToggle(this@MainActivity, mDrawerLayout, supportToolbar.pinpost_toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeButtonEnabled(true)
+
+        mDrawerToggle?.syncState()
     }
 
 

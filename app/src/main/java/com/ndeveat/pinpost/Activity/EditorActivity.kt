@@ -18,9 +18,6 @@ class EditorActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editor)
 
-        val supportToolbar = toolbar
-        supportToolbar.pinpost_title.text = "에디터"
-        setSupportActionBar(supportToolbar.pinpost_toolbar)
 
         supportActionBar?.setDisplayShowTitleEnabled(false);
         supportActionBar?.setHomeButtonEnabled(true);

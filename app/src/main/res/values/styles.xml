@@ -13,8 +13,12 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="MainTheme" parent="NoTitleNoActionBar">
-        <item name="colorPrimaryDark">@android:color/black</item>
+    <style name="MainThemeColor" parent="NoTitleNoActionBar">
+        <item name="colorPrimaryDark">@android:color/darker_gray</item>
+    </style>
+
+    <style name="MainTheme" parent="MainThemeColor">
+
     </style>
 
     <style name="SplashTheme" parent="NoTitleNoActionBar">
@@ -30,10 +34,10 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="PinPostToolbar" parent="@android:style/Widget.PopupMenu">
-        <item name="android:colorBackground">@android:color/black</item>
-        <item name="android:textColorSecondary">@android:color/black</item>
-        <item name="android:textColor">@android:color/black</item>
+    <style name="PinPostToolbar" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="actionMenuTextColor">@android:color/black</item>
+        <item name="colorControlNormal">@android:color/black</item>
+        <item name="android:actionMenuTextColor">@android:color/black</item>
     </style>
 
 </resources>

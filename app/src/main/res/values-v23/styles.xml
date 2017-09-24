@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="MainTheme" parent="NoTitleNoActionBar">
+    <style name="MainTheme" parent="MainThemeColor">
         <item name="android:windowLightStatusBar">true</item>
-        <item name="android:statusBarColor">@android:color/white</item>
+        <item name="android:statusBarColor">@android:color/darker_gray</item>
+        <item name="actionMenuTextColor">@android:color/black</item>
+        <item name="colorControlNormal">@android:color/black</item>
+        <item name="android:actionMenuTextColor">@android:color/black</item>
     </style>
 </resources>

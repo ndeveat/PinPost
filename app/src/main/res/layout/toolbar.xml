@@ -8,17 +8,20 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/pinpost_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="?attr/actionBarSize"
         android:background="@android:color/white"
-        app:popupTheme="@style/PinPostToolbar"
-        app:theme="@style/PinPostToolbar" />/>
+        app:theme="@style/PinPostToolbar">
 
-    <com.ndeveat.pinpost.Base.TextView
-        android:id="@+id/pinpost_title"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:gravity="center"
-        android:text="Pin Post"
-        android:textColor="@android:color/black"
-        android:textSize="20dp" />
+        <android.support.design.widget.TabLayout
+            android:id="@+id/pinpost_tablayout"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/white"
+            app:paddingStart="10dp"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@android:color/holo_blue_light"
+            app:tabIndicatorHeight="2dp"
+            app:tabMaxWidth="0dp"
+            app:tabMode="fixed" />
+    </android.support.v7.widget.Toolbar>
 </RelativeLayout>
