@@ -1,6 +1,5 @@
-package com.ndeveat.pinpost.Categories
+package com.ndeveat.pinpost.Categories.Category
 
-import android.graphics.PorterDuff
 import android.graphics.Rect
 import android.os.Handler
 import android.support.v7.widget.RecyclerView
@@ -42,7 +41,7 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryHolder>() {
     var mCategories: ArrayList<CategoryModel>
 
     init {
-        mCategories = ArrayList<CategoryModel>()
+        mCategories = DataCenter.instance.Categories
 
         // update
         updateCategoryCount()
@@ -61,7 +60,7 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): CategoryHolder {
-        val view = LayoutInflater.from(parent!!.context).inflate(R.layout.categories_view, parent, false)
+        val view = LayoutInflater.from(parent!!.context).inflate(R.layout.category_view, parent, false)
         val holder = CategoryHolder(view)
         return holder
     }

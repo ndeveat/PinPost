@@ -2,14 +2,14 @@ package com.ndeveat.pinpost.Base
 
 import android.content.Context
 import android.graphics.Typeface
+import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.widget.TextView
 
 /**
- * Created by ndeveat on 2017. 9. 18..
+ * Created by ndeveat on 2017. 9. 24..
  */
-
-open class TextView : TextView {
+open class Button : TextView {
     constructor(context: Context) : super(context) {
         init()
     }

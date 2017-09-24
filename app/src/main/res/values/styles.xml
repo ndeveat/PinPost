@@ -40,4 +40,8 @@
         <item name="android:actionMenuTextColor">@android:color/black</item>
     </style>
 
+    <style name="PushButtonStyle" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@android:color/holo_blue_light</item>
+    </style>
+
 </resources>

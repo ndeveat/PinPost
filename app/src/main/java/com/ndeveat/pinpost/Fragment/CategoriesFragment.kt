@@ -8,8 +8,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ndeveat.pinpost.Categories.CategoryAdapter
-import com.ndeveat.pinpost.Categories.CategoryModel
+import com.ndeveat.pinpost.Categories.Category.CategoryAdapter
+import com.ndeveat.pinpost.Categories.Category.CategoryModel
 import com.ndeveat.pinpost.R
 import com.ndeveat.pinpost.SocialNetworkType
 import kotlinx.android.synthetic.main.fragment_categories.view.*
@@ -34,27 +34,7 @@ class CategoriesFragment : Fragment() {
         mRecyclerView!!.adapter = mCategoryAdapter
         mRecyclerView!!.addItemDecoration(CategoryAdapter.CategoriesDecoration(3, 50))
 
-        addSocialNetworkCount()
-
         return rootView
-    }
-
-    fun addSocialNetworkCount() {
-        mCategoryAdapter!!.mCategories.add(
-                CategoryModel(
-                        SocialNetworkType.Facebook,
-                        ContextCompat.getDrawable(context, R.drawable.facebook00001),
-                        ContextCompat.getColor(context, R.color.snsFacebook)))
-        mCategoryAdapter!!.mCategories.add(
-                CategoryModel(
-                        SocialNetworkType.Tstory,
-                        ContextCompat.getDrawable(context, R.drawable.tstory00001),
-                        ContextCompat.getColor(context, R.color.snsTstory)))
-        mCategoryAdapter!!.mCategories.add(
-                CategoryModel(
-                        SocialNetworkType.Twitter,
-                        ContextCompat.getDrawable(context, R.drawable.twitter00001),
-                        ContextCompat.getColor(context, R.color.snsTwitter)))
     }
 
 

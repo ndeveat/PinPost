@@ -24,7 +24,9 @@
         <activity
             android:name=".Activity.EditorActivity"
             android:theme="@style/MainTheme" />
-        <activity android:name=".Activity.PushActivity"></activity>
+        <activity
+            android:name=".Activity.PushActivity"
+            android:theme="@style/MainTheme"/>
     </application>
 
 </manifest>

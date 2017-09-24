@@ -1,4 +1,4 @@
-package com.ndeveat.pinpost.Categories
+package com.ndeveat.pinpost.Categories.Category
 
 import android.graphics.drawable.Drawable
 import com.ndeveat.pinpost.SocialNetworkType
