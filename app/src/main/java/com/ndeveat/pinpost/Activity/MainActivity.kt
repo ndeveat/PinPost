@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.content.ContextCompat
+import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -20,6 +21,9 @@ import com.ndeveat.pinpost.R
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.tablayout_thumb.view.*
+import kotlinx.android.synthetic.main.toolbar.*
+import kotlinx.android.synthetic.main.toolbar.view.*
+import org.jetbrains.anko.intentFor
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,9 +35,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // set toolbar title
-        toolbar.title = "핀 포스트"
-        setSupportActionBar(toolbar)
+        val supportToolbar = toolbar
+        supportToolbar.pinpost_title.text = "Pin Post"
+        setSupportActionBar(supportToolbar.pinpost_toolbar)
 
         var view: View
 
@@ -42,23 +46,23 @@ class MainActivity : AppCompatActivity() {
         view = LayoutInflater.from(this@MainActivity).inflate(R.layout.tablayout_thumb, null)
         view.thumb.setBackgroundResource(R.drawable.icon_menu2)
         mTabLayout?.addTab(tablayout.newTab().setCustomView(view))
-        //  mTabLayout?.getTabAt(0)!!.icon!!.setColorFilter(ContextCompat.getColor(this@MainActivity, android.R.color.holo_blue_light), PorterDuff.Mode.SRC_IN)
+        mTabLayout?.getTabAt(0)!!.customView!!.thumb.background.setColorFilter(ContextCompat.getColor(this@MainActivity, android.R.color.holo_blue_light), PorterDuff.Mode.SRC_IN)
         view = LayoutInflater.from(this@MainActivity).inflate(R.layout.tablayout_thumb, null)
         view.thumb.setBackgroundResource(R.drawable.icon_human2)
         mTabLayout?.addTab(tablayout.newTab().setCustomView(view))
-        //  mTabLayout?.getTabAt(1)!!.icon!!.setColorFilter(ContextCompat.getColor(this@MainActivity, android.R.color.darker_gray), PorterDuff.Mode.SRC_IN)
+        mTabLayout?.getTabAt(1)!!.customView!!.thumb.background.setColorFilter(ContextCompat.getColor(this@MainActivity, android.R.color.darker_gray), PorterDuff.Mode.SRC_IN)
         mTabLayout?.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {
 
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
-                tab!!.icon!!.setColorFilter(ContextCompat.getColor(this@MainActivity, android.R.color.darker_gray), PorterDuff.Mode.SRC_IN)
+                tab!!.customView!!.thumb!!.background.setColorFilter(ContextCompat.getColor(this@MainActivity, android.R.color.darker_gray), PorterDuff.Mode.SRC_IN)
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 mViewPager!!.currentItem = tablayout.selectedTabPosition
-                tab!!.icon!!.setColorFilter(ContextCompat.getColor(this@MainActivity, android.R.color.holo_blue_light), PorterDuff.Mode.SRC_IN)
+                tab!!.customView!!.thumb!!.background.setColorFilter(ContextCompat.getColor(this@MainActivity, android.R.color.holo_blue_light), PorterDuff.Mode.SRC_IN)
             }
         })
 
@@ -84,6 +88,9 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener { view ->
             // Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
             //         .setAction("Action", null).show()
+
+            val intent = intentFor<EditorActivity>()
+            startActivity(intent)
         }
     }
 

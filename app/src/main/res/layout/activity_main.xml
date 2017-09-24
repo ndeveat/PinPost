@@ -14,50 +14,9 @@
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-        <android.support.v7.widget.Toolbar
+        <include
             android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@android:color/white"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/AppTheme.PopupOverlay">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="5dp"
-                    android:gravity="right|center_vertical"
-                    android:orientation="horizontal">
-
-                    <com.ndeveat.pinpost.Base.TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="옵션"
-                        android:textColor="@android:color/black" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center">
-
-                    <com.ndeveat.pinpost.Base.TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:text="Pin Post"
-                        android:textColor="@android:color/black"
-                        android:textSize="20dp"
-                        android:textStyle="italic" />
-                </LinearLayout>
-            </RelativeLayout>
-        </android.support.v7.widget.Toolbar>
+            layout="@layout/toolbar" />
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tablayout"
