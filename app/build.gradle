@@ -32,5 +32,7 @@ dependencies {
     compile 'org.jetbrains.anko:anko:0.10.1'
     compile 'com.android.support:design:26.0.0-alpha1'
     compile 'com.android.support:support-v4:26.+'
+    compile 'gun0912.ted:tedbottompicker:1.0.12'
+    compile 'gun0912.ted:tedpermission:2.0.0'
     testCompile 'junit:junit:4.12'
 }
