@@ -29,5 +29,5 @@
         android:layout_gravity="end|bottom"
         android:layout_margin="@dimen/fab_margin"
         app:backgroundTint="@android:color/holo_blue_light"
-        app:srcCompat="@drawable/icon_pencil" />
+        app:srcCompat="@drawable/icon_pencil_00001" />
 </android.support.design.widget.CoordinatorLayout>
