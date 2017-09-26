@@ -23,6 +23,9 @@ class PushActivity : AppCompatActivity() {
     var mRecyclerView: RecyclerView? = null
     var mCategoryAdapter: PushCateogryAdapter? = null
 
+    var mTitle = ""
+    var mContents = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_push)
@@ -40,6 +43,11 @@ class PushActivity : AppCompatActivity() {
         mRecyclerView!!.layoutManager = mLayoutManager
         mRecyclerView!!.adapter = mCategoryAdapter
         mRecyclerView!!.addItemDecoration(CategoryAdapter.CategoriesDecoration(3, 50))
+
+
+        mTitle = intent.getStringExtra("Title")
+        mContents = intent.getStringExtra("Contents")
+
 
         push_button.setOnClickListener {
             val intent = intentFor<MainActivity>()

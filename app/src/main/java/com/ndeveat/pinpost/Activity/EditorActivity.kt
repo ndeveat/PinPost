@@ -1,7 +1,9 @@
 package com.ndeveat.pinpost.Activity
 
 import android.Manifest
+import android.content.Context
 import android.graphics.PorterDuff
+import android.hardware.input.InputManager
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -11,6 +13,7 @@ import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ScrollView
 import android.widget.TextView
 
@@ -37,9 +40,13 @@ class EditorActivity : AppCompatActivity() {
 
     var bottomSheetDialogFragment: TedBottomPicker? = null
 
+    var inputManager: InputMethodManager? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editor)
+
+        inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
         // Set home button
         val supportToolbar = toolbar
@@ -57,7 +64,9 @@ class EditorActivity : AppCompatActivity() {
         mEditorTitle = editor_title
         mEditorEmptyView = editor_empty_view
         mEditorEmptyView?.setOnClickListener {
-            mEditorContents!!.requestFocus()
+            // mEditorContents!!.requestFocus()
+            // When user click the emptyView call this function
+            inputManager!!.showSoftInput(mEditorContents, InputMethodManager.SHOW_FORCED)
         }
         // 권한 체크하기
         val permissionlistener = object : PermissionListener {

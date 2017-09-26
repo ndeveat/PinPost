@@ -18,10 +18,51 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true">
 
-        <com.ndeveat.pinpost.Base.TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="시발" />
-    </android.support.design.widget.NavigationView>
+            android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <com.ndeveat.pinpost.Base.TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Pin Post"
+                    android:textSize="18dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="right|center">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/icon_plus_00001" />
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/icon_plus_00001" />
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/icon_plus_00001" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <include layout="@layout/division_line" />
+        </LinearLayout>
+    </android.support.design.widget.NavigationView>
 </android.support.v4.widget.DrawerLayout>
