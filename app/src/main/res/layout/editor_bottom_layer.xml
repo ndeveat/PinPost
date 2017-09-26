@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
+
+    <ImageView
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginRight="16dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/icon_camera_00005" />
+
+    <ImageView
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginRight="16dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/icon_pin_00005" />
 
 </LinearLayout>
