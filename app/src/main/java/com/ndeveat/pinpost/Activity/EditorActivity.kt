@@ -64,9 +64,10 @@ class EditorActivity : AppCompatActivity() {
         mEditorTitle = editor_title
         mEditorEmptyView = editor_empty_view
         mEditorEmptyView?.setOnClickListener {
-            // mEditorContents!!.requestFocus()
+            Log.d("EditorEmptyView", "Click")
+            mEditorContents!!.requestFocus()
             // When user click the emptyView call this function
-            inputManager!!.showSoftInput(mEditorContents, InputMethodManager.SHOW_FORCED)
+            inputManager!!.toggleSoftInput(0, InputMethodManager.SHOW_IMPLICIT)
         }
         // 권한 체크하기
         val permissionlistener = object : PermissionListener {
