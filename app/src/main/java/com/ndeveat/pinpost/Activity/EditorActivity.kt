@@ -14,6 +14,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
 
@@ -29,7 +30,9 @@ import java.util.ArrayList
 import android.widget.Toast
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
+import com.ndeveat.pinpost.Base.ImageContents
 import kotlinx.android.synthetic.main.editor_bottom_layer.*
+import kotlinx.android.synthetic.main.image_contents.view.*
 
 
 class EditorActivity : AppCompatActivity() {
@@ -37,10 +40,10 @@ class EditorActivity : AppCompatActivity() {
     var mEditorTitle: TextView? = null
     var mEditorEmptyView: View? = null
     var mEditorContents: TextView? = null
-    var mEditorContainer: ScrollView? = null
+    var mEditorImageContents: LinearLayout? = null
+    val mImages = ArrayList<Uri>()
 
     var bottomSheetDialogFragment: TedBottomPicker? = null
-
     var inputManager: InputMethodManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,11 +60,11 @@ class EditorActivity : AppCompatActivity() {
         supportActionBar?.setHomeButtonEnabled(true);
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
 
-        mEditorContainer = editor_scrollview
         mEditorContents = editor_contents_text
         mEditorContents?.isFocusableInTouchMode = true
 
         // Set Editor variable
+        mEditorImageContents = editor_contents_images
         mEditorTitle = editor_title
         mEditorEmptyView = editor_empty_view
         mEditorEmptyView?.setOnClickListener {
@@ -78,7 +81,7 @@ class EditorActivity : AppCompatActivity() {
                 bottomSheetDialogFragment = TedBottomPicker.Builder(this@EditorActivity)
                         .setOnMultiImageSelectedListener(object : TedBottomPicker.OnMultiImageSelectedListener {
                             override fun onImagesSelected(uriList: ArrayList<Uri>?) {
-
+                                addImages(uriList!!)
                             }
                         })
                         .setPeekHeight(800)
@@ -100,12 +103,14 @@ class EditorActivity : AppCompatActivity() {
                 .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
                 .check()
 
+        // Update Post
         // Set push button
         editor_push_button.setOnClickListener {
             Log.d("push", "push")
             val intent = intentFor<PushActivity>()
             intent.putExtra("Title", mEditorTitle!!.text)
             intent.putExtra("Contents", mEditorContents!!.text)
+            intent.putExtra("Images", mImages)
             startActivity(intent)
         }
 
@@ -127,5 +132,32 @@ class EditorActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    fun addImages(uris: ArrayList<Uri>) {
+        removeImages()
+
+        mImages.clear()
+
+        for (uri in uris) {
+            val image = ImageContents(this)
+            image.image!!.setImageURI(uri)
+            image.delete!!.setOnClickListener {
+                removeImage(image)
+            }
+            image.tag = uri
+            mImages.add(uri)
+            mEditorImageContents!!.addView(image)
+        }
+    }
+
+    fun removeImages() {
+        mEditorImageContents!!.removeAllViews()
+    }
+
+    fun removeImage(view: View) {
+        mEditorImageContents!!.removeView(view)
+        if (mImages.contains(view.tag))
+            mImages.remove(view.tag)
     }
 }

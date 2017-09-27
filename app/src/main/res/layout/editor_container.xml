@@ -21,12 +21,17 @@
 
         <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@null"
+            android:scrollbars="none">
 
             <LinearLayout
                 android:id="@+id/editor_contents_images"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
+                android:background="@null"
                 android:orientation="horizontal">
 
             </LinearLayout>
