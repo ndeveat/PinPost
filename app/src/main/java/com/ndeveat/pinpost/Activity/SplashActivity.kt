@@ -40,17 +40,17 @@ class SplashActivity : Activity() {
         DataCenter.instance.Categories.add(
                 CategoryModel(
                         SocialNetworkType.Facebook,
-                        ContextCompat.getDrawable(this@SplashActivity, R.drawable.facebook00001),
+                        ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_facebook_00001),
                         ContextCompat.getColor(this@SplashActivity, R.color.snsFacebook)))
         DataCenter.instance.Categories.add(
                 CategoryModel(
                         SocialNetworkType.Tstory,
-                        ContextCompat.getDrawable(this@SplashActivity, R.drawable.tstory00001),
+                        ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_tstory_00001),
                         ContextCompat.getColor(this@SplashActivity, R.color.snsTstory)))
         DataCenter.instance.Categories.add(
                 CategoryModel(
                         SocialNetworkType.Twitter,
-                        ContextCompat.getDrawable(this@SplashActivity, R.drawable.twitter00001),
+                        ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_twitter_00001),
                         ContextCompat.getColor(this@SplashActivity, R.color.snsTwitter)))
     }
 }

@@ -8,6 +8,7 @@
     android:paddingRight="16dp">
 
     <ImageView
+        android:id="@+id/editor_add_component_image"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_marginRight="16dp"
@@ -15,6 +16,7 @@
         android:src="@drawable/icon_camera_00005" />
 
     <ImageView
+        android:id="@+id/editor_add_component_location"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_marginRight="16dp"

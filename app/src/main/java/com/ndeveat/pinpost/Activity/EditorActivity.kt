@@ -29,6 +29,7 @@ import java.util.ArrayList
 import android.widget.Toast
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
+import kotlinx.android.synthetic.main.editor_bottom_layer.*
 
 
 class EditorActivity : AppCompatActivity() {
@@ -85,6 +86,7 @@ class EditorActivity : AppCompatActivity() {
                         .setCompleteButtonText("Done")
                         .setEmptySelectionText("No Select")
                         .create()
+
             }
 
             override fun onPermissionDenied(deniedPermissions: ArrayList<String>) {
@@ -105,6 +107,16 @@ class EditorActivity : AppCompatActivity() {
             intent.putExtra("Title", mEditorTitle!!.text)
             intent.putExtra("Contents", mEditorContents!!.text)
             startActivity(intent)
+        }
+
+        // ---------------
+        // Set Editor Component
+
+        editor_add_component_image.setOnClickListener {
+            bottomSheetDialogFragment?.show(supportFragmentManager)
+        }
+        editor_add_component_location.setOnClickListener {
+
         }
     }
 
