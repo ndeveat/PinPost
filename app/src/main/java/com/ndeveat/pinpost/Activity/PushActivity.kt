@@ -15,7 +15,11 @@ import com.ndeveat.pinpost.R
 import kotlinx.android.synthetic.main.activity_push.*
 import kotlinx.android.synthetic.main.toolbar.view.*
 import android.content.Intent
+import android.net.Uri
+import com.koushikdutta.ion.Ion
+import com.ndeveat.pinpost.RealPathUtil
 import org.jetbrains.anko.intentFor
+import java.io.File
 
 
 class PushActivity : AppCompatActivity() {
@@ -25,6 +29,7 @@ class PushActivity : AppCompatActivity() {
 
     var mTitle = ""
     var mContents = ""
+    var mImages: ArrayList<Uri>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,14 +50,34 @@ class PushActivity : AppCompatActivity() {
         mRecyclerView!!.addItemDecoration(CategoryAdapter.CategoriesDecoration(3, 50))
 
 
-        mTitle = intent.getStringExtra("Title")
-        mContents = intent.getStringExtra("Contents")
+        mTitle = intent.extras.getString("Title")
+        mContents = intent.extras.getString("Contents")
+        mImages = intent.extras.getParcelableArrayList("Images")
 
+        Log.d("Title", mTitle)
+        Log.d("Contents", mContents)
+        Log.d("Images", mImages?.size.toString())
 
         push_button.setOnClickListener {
-            val intent = intentFor<MainActivity>()
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
+            // Ion을 이용해서 파일 전송 테스트
+            val ion = Ion.with(this@PushActivity).load("http://192.168.0.16:3000/post/posting").setTimeout(1000 * 6)
+            ion.setMultipartParameter("title", mTitle)
+            ion.setMultipartParameter("contents", mContents)
+
+            mImages!!.forEachIndexed { index, uri ->
+                val imagePath = RealPathUtil.getRealPath(this@PushActivity, uri)
+                val file = File(imagePath)
+                Log.d("File", file.path)
+                ion.setMultipartFile("image{$index}", file)
+            }
+
+            ion.asJsonObject().setCallback { e, result ->
+                if (result != null) {
+                    Log.d("Result", result.toString())
+                } else {
+                    e.printStackTrace()
+                }
+            }
         }
     }
 

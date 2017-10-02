@@ -11,6 +11,7 @@ import com.ndeveat.pinpost.Post.Preview.PostPreviewAdapter
 import com.ndeveat.pinpost.Post.Preview.PostPreviewModel
 import com.ndeveat.pinpost.R
 import kotlinx.android.synthetic.main.fragment_postlist.view.*
+import kotlin.concurrent.thread
 
 /**
  * Created by ndeveat on 2017. 9. 18..
@@ -33,6 +34,7 @@ class PostPreviewFragment : Fragment() {
 
         for (i in 0..9)
             mPostViewAdapter!!.mPosts.add(PostPreviewModel("yeah"))
+
 
         return rootView
     }

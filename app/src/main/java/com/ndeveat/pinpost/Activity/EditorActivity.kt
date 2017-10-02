@@ -108,8 +108,8 @@ class EditorActivity : AppCompatActivity() {
         editor_push_button.setOnClickListener {
             Log.d("push", "push")
             val intent = intentFor<PushActivity>()
-            intent.putExtra("Title", mEditorTitle!!.text)
-            intent.putExtra("Contents", mEditorContents!!.text)
+            intent.putExtra("Title", mEditorTitle!!.text.toString())
+            intent.putExtra("Contents", mEditorContents!!.text.toString())
             intent.putExtra("Images", mImages)
             startActivity(intent)
         }
