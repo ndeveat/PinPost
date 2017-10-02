@@ -1,14 +1,13 @@
 package com.ndeveat.pinpost
 
-import com.ndeveat.pinpost.Categories.Category.CategoryModel
+import com.ndeveat.pinpost.Categories.SNSModel
 
 /**
  * Created by ndeveat on 2017. 9. 23..
  */
 
 class DataCenter private constructor() {
-    val SocialNetworkServices = HashMap<SocialNetworkType, Int>()
-    val Categories = ArrayList<CategoryModel>()
+    val SNSList = ArrayList<SNSModel>()
 
     private object Holder {
         val instance = DataCenter()

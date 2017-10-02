@@ -3,12 +3,11 @@ package com.ndeveat.pinpost.Activity
 import android.app.Activity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
-import com.ndeveat.pinpost.Categories.Category.CategoryModel
+import com.ndeveat.pinpost.Categories.SNSModel
 import com.ndeveat.pinpost.DataCenter
 import com.ndeveat.pinpost.R
 import com.ndeveat.pinpost.SocialNetworkType
 import org.jetbrains.anko.intentFor
-import kotlin.concurrent.thread
 
 /*
 * 기초 처리하는 부분
@@ -23,14 +22,9 @@ class SplashActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        // add social network
-        DataCenter.instance.SocialNetworkServices.put(SocialNetworkType.Facebook, 1)
-        DataCenter.instance.SocialNetworkServices.put(SocialNetworkType.Tstory, 5)
-        DataCenter.instance.SocialNetworkServices.put(SocialNetworkType.Twitter, 5)
-
         // add category
-        addSocialNetworkCount()
-
+        addSocialNetworkData()
+        updateSocialNetworkData()
 
         // TODO
         // 회원 가입 및 로그인 추가
@@ -41,21 +35,41 @@ class SplashActivity : Activity() {
         finish()
     }
 
-    fun addSocialNetworkCount() {
-        DataCenter.instance.Categories.add(
-                CategoryModel(
+    fun addSocialNetworkData() {
+        DataCenter.instance.SNSList.add(
+                SNSModel(
                         SocialNetworkType.Facebook,
                         ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_facebook_00001),
-                        ContextCompat.getColor(this@SplashActivity, R.color.snsFacebook)))
-        DataCenter.instance.Categories.add(
-                CategoryModel(
+                        ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_facebook_00007),
+                        ContextCompat.getColor(this@SplashActivity, R.color.snsFacebook),
+                        false,
+                        "ndeveat@gmail.com",
+                        5))
+
+        DataCenter.instance.SNSList.add(
+                SNSModel(
                         SocialNetworkType.Tstory,
                         ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_tstory_00001),
-                        ContextCompat.getColor(this@SplashActivity, R.color.snsTstory)))
-        DataCenter.instance.Categories.add(
-                CategoryModel(
+                        ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_tstory_00007),
+                        ContextCompat.getColor(this@SplashActivity, R.color.snsTstory),
+                        false,
+                        "ndeveat@gmail.com",
+                        2))
+
+        DataCenter.instance.SNSList.add(
+                SNSModel(
                         SocialNetworkType.Twitter,
                         ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_twitter_00001),
-                        ContextCompat.getColor(this@SplashActivity, R.color.snsTwitter)))
+                        ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_instagram_00013),
+                        ContextCompat.getColor(this@SplashActivity, R.color.snsTwitter),
+                        false,
+                        "ndeveat@gmail.com",
+                        2))
+    }
+
+    fun updateSocialNetworkData() {
+        for (data in DataCenter.instance.SNSList) {
+
+        }
     }
 }

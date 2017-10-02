@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.ndeveat.pinpost.Categories.SNSModel
 import com.ndeveat.pinpost.DataCenter
 import com.ndeveat.pinpost.R
 
@@ -38,25 +39,24 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryHolder>() {
         }
     }
 
-    var mCategories: ArrayList<CategoryModel>
+    var mSNS: ArrayList<SNSModel>
 
     init {
-        mCategories = DataCenter.instance.Categories
+        mSNS = DataCenter.instance.SNSList
 
         // update
         updateCategoryCount()
     }
 
-    override fun getItemCount(): Int = mCategories.size
+    override fun getItemCount(): Int = mSNS.size
 
     override fun onBindViewHolder(holder: CategoryHolder?, position: Int) {
-        val category = mCategories[position]
+        val category = mSNS[position]
         val dataCenter = DataCenter.instance
 
-        holder!!.setCategoryBackground(category.background)
-        holder.setCategoryIcon(category.drawable)
-        if (dataCenter.SocialNetworkServices.containsKey(category.snsType))
-            holder.setCategoryCount(dataCenter.SocialNetworkServices.get(category.snsType)!!)
+        holder!!.setCategoryBackground(category.snsMainColor)
+        holder.setCategoryIcon(category.snsMainImage)
+        holder.setCategoryCount(dataCenter.SNSList.filter { it.snsType == category.snsType }[0].count)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): CategoryHolder {

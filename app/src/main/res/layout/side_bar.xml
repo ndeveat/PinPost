@@ -13,7 +13,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@android:color/holo_blue_light"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="16dp"
@@ -37,6 +36,15 @@
             </LinearLayout>
         </LinearLayout>
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <include layout="@layout/division_line" />
+        </FrameLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,6 +65,7 @@
                     android:backgroundTint="@android:color/darker_gray">
 
                     <ImageView
+                        android:id="@+id/sidebar_user_image"
                         android:layout_width="38dp"
                         android:layout_height="38dp"
                         android:layout_gravity="center"
@@ -73,12 +82,12 @@
                 <include layout="@layout/division_line" />
             </FrameLayout>
 
-            <LinearLayout
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/sidebar_snslist"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="16dp" />
         </LinearLayout>
     </LinearLayout>
 </android.support.design.widget.NavigationView>

@@ -1,4 +1,4 @@
-package com.ndeveat.pinpost.Categories.PushCategory
+package com.ndeveat.pinpost.Categories.Push
 
 import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable

@@ -10,16 +10,19 @@ import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import com.ndeveat.pinpost.Categories.Sidebar.SidebarCategoryAdapter
 import com.ndeveat.pinpost.Fragment.CategoriesFragment
 import com.ndeveat.pinpost.Fragment.PostviewFragment
 import com.ndeveat.pinpost.R
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.main_container.view.*
+import kotlinx.android.synthetic.main.side_bar.*
 import kotlinx.android.synthetic.main.tablayout_thumb.view.*
 import kotlinx.android.synthetic.main.toolbar.view.*
 import org.jetbrains.anko.intentFor
@@ -31,6 +34,9 @@ class MainActivity : AppCompatActivity() {
     private var mTabLayout: TabLayout? = null
     private var mDrawerLayout: DrawerLayout? = null
     private var mDrawerToggle: ActionBarDrawerToggle? = null
+
+    private var mSidebarLayoutManager: LinearLayoutManager? = null
+    private var mSidebarSnsAdapter: SidebarCategoryAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -104,6 +110,13 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setHomeButtonEnabled(true)
 
         mDrawerToggle?.syncState()
+
+        // set Sidebar
+
+        mSidebarLayoutManager = LinearLayoutManager(this@MainActivity)
+        mSidebarSnsAdapter = SidebarCategoryAdapter()
+        sidebar_snslist.adapter = mSidebarSnsAdapter
+        sidebar_snslist.layoutManager = mSidebarLayoutManager
     }
 
 
