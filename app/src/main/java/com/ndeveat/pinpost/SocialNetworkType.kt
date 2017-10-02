@@ -7,5 +7,7 @@ package com.ndeveat.pinpost
 enum class SocialNetworkType {
     Facebook,
     Twitter,
-    Tstory
+    Tstory,
+    Tumblr,
+    NaverBlog
 }

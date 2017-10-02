@@ -19,7 +19,7 @@
             android:background="@android:color/white"
             app:paddingStart="10dp"
             app:tabGravity="fill"
-            app:tabIndicatorColor="@android:color/holo_blue_light"
+            app:tabIndicatorColor="@color/pinpost"
             app:tabIndicatorHeight="2dp"
             app:tabMaxWidth="0dp"
             app:tabMode="fixed" />

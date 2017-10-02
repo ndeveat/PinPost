@@ -34,7 +34,7 @@ class PushCateogryAdapter : RecyclerView.Adapter<PushCategoryHolder>() {
                 mPushSocialServices.remove(category)
             }
         }
-        holder.setCategoryIcon(category.snsMainImage)
+        holder.setCategoryIcon(category.snsPlusImage)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): PushCategoryHolder {

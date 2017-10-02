@@ -55,7 +55,7 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryHolder>() {
         val dataCenter = DataCenter.instance
 
         holder!!.setCategoryBackground(category.snsMainColor)
-        holder.setCategoryIcon(category.snsMainImage)
+        holder.setCategoryIcon(category.snsPlusImage)
         holder.setCategoryCount(dataCenter.SNSList.filter { it.snsType == category.snsType }[0].count)
     }
 

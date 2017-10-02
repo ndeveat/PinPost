@@ -7,21 +7,19 @@
         android:id="@+id/push_category_icon_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/circle"
-        android:backgroundTint="@android:color/holo_blue_light">
+        android:background="@drawable/circle_outline">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:orientation="vertical"
-            android:paddingTop="16dp">
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/push_category_icon"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginBottom="8dp" />
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:src="@drawable/sns_facebook_00007" />
         </LinearLayout>
     </FrameLayout>
 

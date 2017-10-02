@@ -25,7 +25,7 @@ class CategoryHolder : RecyclerView.ViewHolder {
     }
 
     fun setCategoryBackground(color: Int) {
-        mIconLayer.background.setColorFilter(color, PorterDuff.Mode.MULTIPLY)
+        //mIconLayer.background.setColorFilter(color, PorterDuff.Mode.MULTIPLY)
     }
 
     fun setCategoryIcon(drawable: Drawable) {

@@ -36,6 +36,9 @@ class SplashActivity : Activity() {
     }
 
     fun addSocialNetworkData() {
+        if (DataCenter.instance.SNSList.size > 0)
+            return
+
         DataCenter.instance.SNSList.add(
                 SNSModel(
                         SocialNetworkType.Facebook,
@@ -60,7 +63,27 @@ class SplashActivity : Activity() {
                 SNSModel(
                         SocialNetworkType.Twitter,
                         ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_twitter_00001),
-                        ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_instagram_00013),
+                        ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_twitter_00007),
+                        ContextCompat.getColor(this@SplashActivity, R.color.snsTwitter),
+                        false,
+                        "ndeveat@gmail.com",
+                        2))
+
+        DataCenter.instance.SNSList.add(
+                SNSModel(
+                        SocialNetworkType.Tumblr,
+                        ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_tumblr_00001),
+                        ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_tumblr_00008),
+                        ContextCompat.getColor(this@SplashActivity, R.color.snsTwitter),
+                        false,
+                        "ndeveat@gmail.com",
+                        2))
+
+        DataCenter.instance.SNSList.add(
+                SNSModel(
+                        SocialNetworkType.NaverBlog,
+                        ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_naverblog_00001),
+                        ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_naverblog_00007),
                         ContextCompat.getColor(this@SplashActivity, R.color.snsTwitter),
                         false,
                         "ndeveat@gmail.com",

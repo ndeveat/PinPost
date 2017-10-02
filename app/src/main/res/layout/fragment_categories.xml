@@ -4,31 +4,11 @@
     android:layout_height="match_parent"
     android:paddingTop="@dimen/activity_vertical_margin">
 
-    <ScrollView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/categories_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <com.ndeveat.pinpost.Ui.TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:padding="8dp"
-                android:text="SNS 목록"
-                android:textSize="16dp" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/categories_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center">
-
-            </android.support.v7.widget.RecyclerView>
-        </LinearLayout>
-
-    </ScrollView>
+    </android.support.v7.widget.RecyclerView>
 </android.support.design.widget.CoordinatorLayout>
