@@ -2,27 +2,19 @@ package com.ndeveat.pinpost.Activity
 
 import android.Manifest
 import android.content.Context
-import android.graphics.PorterDuff
-import android.hardware.input.InputManager
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.LinearLayout
-import android.widget.ScrollView
 import android.widget.TextView
 
 import com.ndeveat.pinpost.R
 import kotlinx.android.synthetic.main.activity_editor.*
 import kotlinx.android.synthetic.main.editor_container.*
-import kotlinx.android.synthetic.main.editor_container.view.*
-import kotlinx.android.synthetic.main.main_container.view.*
 import kotlinx.android.synthetic.main.toolbar.view.*
 import org.jetbrains.anko.intentFor
 import gun0912.tedbottompicker.TedBottomPicker
@@ -30,9 +22,8 @@ import java.util.ArrayList
 import android.widget.Toast
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
-import com.ndeveat.pinpost.Base.ImageContents
+import com.ndeveat.pinpost.Ui.ImageContents
 import kotlinx.android.synthetic.main.editor_bottom_layer.*
-import kotlinx.android.synthetic.main.image_contents.view.*
 
 
 class EditorActivity : AppCompatActivity() {

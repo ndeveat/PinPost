@@ -27,7 +27,7 @@
                     android:id="@+id/toolbar"
                     layout="@layout/toolbar" />
 
-                <com.ndeveat.pinpost.Base.TextView
+                <com.ndeveat.pinpost.Ui.TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -40,7 +40,7 @@
                     android:layout_height="match_parent"
                     android:gravity="right">
 
-                    <com.ndeveat.pinpost.Base.TextView
+                    <com.ndeveat.pinpost.Ui.TextView
                         android:id="@+id/editor_push_button"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -75,7 +75,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <com.ndeveat.pinpost.Base.EditText
+                    <com.ndeveat.pinpost.Ui.EditText
                         android:id="@+id/editor_title"
                         android:layout_width="match_parent"
                         android:layout_height="?attr/actionBarSize"

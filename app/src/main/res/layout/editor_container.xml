@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.ndeveat.pinpost.Base.EditText
+        <com.ndeveat.pinpost.Ui.EditText
             android:id="@+id/editor_contents_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

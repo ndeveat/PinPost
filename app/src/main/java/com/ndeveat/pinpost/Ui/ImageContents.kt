@@ -1,14 +1,12 @@
-package com.ndeveat.pinpost.Base
+package com.ndeveat.pinpost.Ui
 
 import android.content.Context
-import android.graphics.Typeface
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import android.widget.ImageView
-import android.widget.LinearLayout
 import com.ndeveat.pinpost.R
-import kotlinx.android.synthetic.main.image_contents.view.*
+import kotlinx.android.synthetic.main.ui_image_contents.view.*
 
 /**
  * Created by ndeveat on 2017. 9. 27..
@@ -32,7 +30,7 @@ class ImageContents : FrameLayout {
 
     fun init() {
         val inflate = LayoutInflater.from(context)
-        val view = inflate.inflate(R.layout.image_contents, null)
+        val view = inflate.inflate(R.layout.ui_image_contents, null)
         addView(view)
 
         image = view.image

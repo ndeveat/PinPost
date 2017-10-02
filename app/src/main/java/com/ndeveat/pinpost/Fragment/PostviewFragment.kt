@@ -11,13 +11,12 @@ import com.ndeveat.pinpost.Post.Preview.PostPreviewAdapter
 import com.ndeveat.pinpost.Post.Preview.PostPreviewModel
 import com.ndeveat.pinpost.R
 import kotlinx.android.synthetic.main.fragment_postlist.view.*
-import kotlin.concurrent.thread
 
 /**
  * Created by ndeveat on 2017. 9. 18..
  */
 
-class PostPreviewFragment : Fragment() {
+class PostviewFragment : Fragment() {
     var mLayoutManager: LinearLayoutManager? = null
     var mRecyclerView: RecyclerView? = null
     var mPostViewAdapter: PostPreviewAdapter? = null
@@ -40,8 +39,8 @@ class PostPreviewFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(): PostPreviewFragment {
-            val fragment = PostPreviewFragment()
+        fun newInstance(): PostviewFragment {
+            val fragment = PostviewFragment()
             return fragment
         }
     }

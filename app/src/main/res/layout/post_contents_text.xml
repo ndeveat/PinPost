@@ -6,7 +6,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp">
 
-    <com.ndeveat.pinpost.Base.TextView
+    <com.ndeveat.pinpost.Ui.TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="텍스트뷰 테스트입니다." />

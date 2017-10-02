@@ -1,15 +1,15 @@
-package com.ndeveat.pinpost.Base
+package com.ndeveat.pinpost.Ui
 
 import android.content.Context
 import android.graphics.Typeface
 import android.util.AttributeSet
-import android.widget.TextView
+import android.widget.EditText
 
 /**
- * Created by ndeveat on 2017. 9. 18..
+ * Created by ndeveat on 2017. 9. 25..
  */
 
-open class TextView : TextView {
+open class EditText : EditText {
     constructor(context: Context) : super(context) {
         init()
     }

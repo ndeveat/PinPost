@@ -1,6 +1,5 @@
 package com.ndeveat.pinpost.Activity
 
-import android.graphics.PorterDuff
 import android.support.v7.app.AppCompatActivity
 
 import android.support.v4.app.Fragment
@@ -9,22 +8,19 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
 import android.os.Bundle
 import android.support.design.widget.TabLayout
-import android.support.v4.content.ContextCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.ndeveat.pinpost.Fragment.CategoriesFragment
-import com.ndeveat.pinpost.Fragment.PostPreviewFragment
+import com.ndeveat.pinpost.Fragment.PostviewFragment
 import com.ndeveat.pinpost.R
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.main_container.view.*
 import kotlinx.android.synthetic.main.tablayout_thumb.view.*
-import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.toolbar.view.*
 import org.jetbrains.anko.intentFor
 
@@ -136,7 +132,7 @@ class MainActivity : AppCompatActivity() {
     inner class SectionsPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
         override fun getItem(position: Int): Fragment {
             return if (position == 0)
-                PostPreviewFragment.newInstance()
+                PostviewFragment.newInstance()
             else
                 CategoriesFragment.newInstance()
         }
