@@ -31,6 +31,11 @@ class SplashActivity : Activity() {
         // add category
         addSocialNetworkCount()
 
+
+        // TODO
+        // 회원 가입 및 로그인 추가
+        // 회원가입이 되어있다면 넘어간다.
+        // 앱의 로컬 데이터 베이스에 정보들을 저장한다.
         startActivity(intentFor<MainActivity>())
 
         finish()

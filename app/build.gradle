@@ -4,12 +4,15 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 25
     buildToolsVersion "26.0.1"
+    repositories {
+        mavenCentral()
+    }
     defaultConfig {
         applicationId "com.ndeveat.pinpost"
         minSdkVersion 17
-        targetSdkVersion 26
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -27,13 +30,13 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
+    compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'org.jetbrains.anko:anko:0.10.1'
-    compile 'com.android.support:design:26.0.0-alpha1'
-    compile 'com.android.support:support-v4:26.+'
+    compile 'com.android.support:design:25.3.1'
     compile 'gun0912.ted:tedbottompicker:1.0.12'
     compile 'gun0912.ted:tedpermission:2.0.0'
-    compile 'com.koushikdutta.ion:ion:2.+'
+    compile 'com.koushikdutta.ion:ion:2.2.1'
     testCompile 'junit:junit:4.12'
+    compile 'com.facebook.android:facebook-android-sdk:4.27.0'
 }
