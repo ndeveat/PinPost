@@ -36,14 +36,12 @@
                         android:gravity="right|center"
                         android:orientation="horizontal">
 
-                        <com.ndeveat.pinpost.Base.TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginRight="8dp"
-                            android:gravity="center_vertical"
-                            android:text="..."
-                            android:textSize="24dp" />
+
+                        <FrameLayout
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:background="@drawable/icon_option_00001"
+                            android:backgroundTint="@android:color/darker_gray" />
 
                     </LinearLayout>
 
@@ -83,11 +81,23 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent">
 
-            <com.ndeveat.pinpost.Base.TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="하단 옵션입니다" />
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:src="@drawable/sns_facebook_00007" />
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:src="@drawable/sns_tstory_00007" />
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:src="@drawable/sns_instagram_00013" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

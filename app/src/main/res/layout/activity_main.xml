@@ -18,46 +18,7 @@
             android:id="@+id/contents"
             layout="@layout/main_container" />
 
-        <!-- Navigation View -->
-        <android.support.design.widget.NavigationView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:fitsSystemWindows="true">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/title" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="right|center">
-
-                        <FrameLayout
-                            android:layout_width="28dp"
-                            android:layout_height="28dp"
-                            android:background="@drawable/icon_notice_00001"
-                            android:backgroundTint="@android:color/black" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <include layout="@layout/division_line" />
-            </LinearLayout>
-        </android.support.design.widget.NavigationView>
+        <include
+            layout="@layout/side_bar"/>
     </android.support.v4.widget.DrawerLayout>
 </RelativeLayout>
