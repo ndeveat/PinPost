@@ -22,7 +22,7 @@
     </style>
 
     <style name="SplashTheme" parent="NoTitleNoActionBar">
-        <item name="colorPrimaryDark">@android:color/holo_blue_bright</item>
+        <item name="colorPrimaryDark">@color/pinpost</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -41,7 +41,7 @@
     </style>
 
     <style name="PushButtonStyle" parent="Widget.AppCompat.Button.Colored">
-        <item name="colorButtonNormal">@android:color/holo_blue_light</item>
+        <item name="colorButtonNormal">@color/pinpost</item>
     </style>
 
 </resources>
