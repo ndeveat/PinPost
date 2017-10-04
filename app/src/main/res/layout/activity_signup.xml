@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/pinpost"
     android:gravity="center"
     android:orientation="vertical"
     tools:context="com.ndeveat.pinpost.Activity.SignupActivity">
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="168dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="128dp"
         android:scaleType="fitCenter"
-        android:scaleX="0.7f"
-        android:scaleY="0.7f"
         android:src="@drawable/title" />
 
     <LinearLayout

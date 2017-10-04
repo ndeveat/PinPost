@@ -1,4 +1,4 @@
-package com.ndeveat.pinpost.Ui
+package com.ndeveat.pinpost.Ui.View
 
 import android.content.Context
 import android.graphics.Typeface
@@ -6,9 +6,10 @@ import android.util.AttributeSet
 import android.widget.TextView
 
 /**
- * Created by ndeveat on 2017. 9. 24..
+ * Created by ndeveat on 2017. 9. 18..
  */
-open class Button : TextView {
+
+open class TextView : TextView {
     constructor(context: Context) : super(context) {
         init()
     }

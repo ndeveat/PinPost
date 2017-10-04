@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ndeveat.pinpost.Categories.Category.CategoryAdapter
+import com.ndeveat.pinpost.Ui.Categories.Category.CategoryAdapter
 import com.ndeveat.pinpost.R
 import kotlinx.android.synthetic.main.fragment_categories.view.*
 

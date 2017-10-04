@@ -1,4 +1,4 @@
-package com.ndeveat.pinpost.Post.Preview
+package com.ndeveat.pinpost.Ui.Post
 
 import android.graphics.Rect
 import android.support.v7.widget.RecyclerView
@@ -6,10 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ndeveat.pinpost.R
-
-/**
- * Created by ndeveat on 2017. 9. 20..
- */
 
 class PostPreviewAdapter : RecyclerView.Adapter<PostPreviewHolder>() {
     class PostPreviewDecoration : RecyclerView.ItemDecoration() {
@@ -35,12 +31,14 @@ class PostPreviewAdapter : RecyclerView.Adapter<PostPreviewHolder>() {
         else
             LayoutInflater.from(parent!!.context).inflate(R.layout.post_preview, parent, false)
 
-        val holder = PostPreviewHolder(view, mHolderCount)
+        val holder = PostPreviewHolder(view)
         mHolderCount += 1
         return holder
     }
 
     override fun onBindViewHolder(holder: PostPreviewHolder?, position: Int) {
         val post = mPosts[position]
+        holder!!.setText(post.text)
+        holder.setPushSns(post.pushSns)
     }
 }

@@ -1,6 +1,5 @@
-package com.ndeveat.pinpost.Categories.Push
+package com.ndeveat.pinpost.Ui.Categories.Push
 
-import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.support.v7.widget.RecyclerView
 import android.view.View

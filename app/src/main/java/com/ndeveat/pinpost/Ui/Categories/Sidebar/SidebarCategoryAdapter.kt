@@ -1,10 +1,10 @@
-package com.ndeveat.pinpost.Categories.Sidebar
+package com.ndeveat.pinpost.Ui.Categories.Sidebar
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.ndeveat.pinpost.Categories.SNSModel
-import com.ndeveat.pinpost.DataCenter
+import com.ndeveat.pinpost.Ui.Categories.SocialNetworkModel
+import com.ndeveat.pinpost.Manager
 import com.ndeveat.pinpost.R
 
 /**
@@ -12,16 +12,16 @@ import com.ndeveat.pinpost.R
  */
 
 class SidebarCategoryAdapter : RecyclerView.Adapter<SidebarCategoryHolder>() {
-    val mSNS: ArrayList<SNSModel>
+    val mSocialNetwork: ArrayList<SocialNetworkModel>
 
     init {
-        mSNS = DataCenter.instance.SNSList
+        mSocialNetwork = Manager.instance.SNSList
     }
 
-    override fun getItemCount(): Int = mSNS.size
+    override fun getItemCount(): Int = mSocialNetwork.size
 
     override fun onBindViewHolder(holder: SidebarCategoryHolder?, position: Int) {
-        val sns = mSNS[position]
+        val sns = mSocialNetwork[position]
         holder!!.setEmail(sns.email)
         holder.setSnsIcon(sns.snsPlusImage)
     }

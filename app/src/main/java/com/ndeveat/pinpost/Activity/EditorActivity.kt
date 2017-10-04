@@ -22,7 +22,7 @@ import java.util.ArrayList
 import android.widget.Toast
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
-import com.ndeveat.pinpost.Ui.ImageContents
+import com.ndeveat.pinpost.Ui.View.ImageContents
 import kotlinx.android.synthetic.main.editor_bottom_layer.*
 
 

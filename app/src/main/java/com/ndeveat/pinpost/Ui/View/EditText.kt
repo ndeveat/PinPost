@@ -1,4 +1,4 @@
-package com.ndeveat.pinpost.Ui
+package com.ndeveat.pinpost.Ui.View
 
 import android.content.Context
 import android.graphics.Typeface

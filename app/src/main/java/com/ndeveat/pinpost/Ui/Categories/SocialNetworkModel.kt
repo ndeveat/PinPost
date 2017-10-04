@@ -1,4 +1,4 @@
-package com.ndeveat.pinpost.Categories
+package com.ndeveat.pinpost.Ui.Categories
 
 import android.graphics.drawable.Drawable
 import com.ndeveat.pinpost.SocialNetworkType
@@ -7,7 +7,7 @@ import com.ndeveat.pinpost.SocialNetworkType
  * Created by ndeveat on 2017. 9. 20..
  */
 
-data class SNSModel(
+data class SocialNetworkModel(
         var snsType: SocialNetworkType,
         var snsMainImage: Drawable,
         var snsPlusImage: Drawable,

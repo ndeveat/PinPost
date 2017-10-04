@@ -6,14 +6,14 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.MenuItem
-import com.ndeveat.pinpost.Categories.Category.CategoryAdapter
-import com.ndeveat.pinpost.Categories.Push.PushCateogryAdapter
+import com.ndeveat.pinpost.Ui.Categories.Category.CategoryAdapter
+import com.ndeveat.pinpost.Ui.Categories.Push.PushCateogryAdapter
 import com.ndeveat.pinpost.R
 import kotlinx.android.synthetic.main.activity_push.*
 import kotlinx.android.synthetic.main.toolbar.view.*
 import android.net.Uri
 import com.koushikdutta.ion.Ion
-import com.ndeveat.pinpost.RealPathUtil
+import com.ndeveat.pinpost.Utils.RealPathUtil
 import java.io.File
 
 

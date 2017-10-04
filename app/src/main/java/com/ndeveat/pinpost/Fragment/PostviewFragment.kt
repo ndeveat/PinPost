@@ -7,9 +7,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ndeveat.pinpost.Post.Preview.PostPreviewAdapter
-import com.ndeveat.pinpost.Post.Preview.PostPreviewModel
+import com.ndeveat.pinpost.Ui.Post.PostPreviewAdapter
+import com.ndeveat.pinpost.Ui.Post.PostPreviewModel
 import com.ndeveat.pinpost.R
+import com.ndeveat.pinpost.SocialNetworkType
 import kotlinx.android.synthetic.main.fragment_postlist.view.*
 
 /**
@@ -31,9 +32,15 @@ class PostviewFragment : Fragment() {
         mRecyclerView!!.adapter = mPostViewAdapter
         mRecyclerView!!.addItemDecoration(PostPreviewAdapter.PostPreviewDecoration())
 
-        for (i in 0..9)
-            mPostViewAdapter!!.mPosts.add(PostPreviewModel("yeah"))
 
+        var pushSocialDatas = arrayListOf<SocialNetworkType>(SocialNetworkType.Facebook, SocialNetworkType.Tstory, SocialNetworkType.Tumblr)
+        mPostViewAdapter!!.mPosts.add(PostPreviewModel("yeah", pushSocialDatas))
+        pushSocialDatas = arrayListOf<SocialNetworkType>(SocialNetworkType.Twitter, SocialNetworkType.NaverBlog, SocialNetworkType.Tumblr)
+        mPostViewAdapter!!.mPosts.add(PostPreviewModel("yeah", pushSocialDatas))
+        pushSocialDatas = arrayListOf<SocialNetworkType>(SocialNetworkType.NaverBlog, SocialNetworkType.Tstory, SocialNetworkType.Facebook)
+        mPostViewAdapter!!.mPosts.add(PostPreviewModel("yeah", pushSocialDatas))
+        pushSocialDatas = arrayListOf<SocialNetworkType>(SocialNetworkType.Tumblr, SocialNetworkType.Tstory, SocialNetworkType.Twitter)
+        mPostViewAdapter!!.mPosts.add(PostPreviewModel("yeah", pushSocialDatas))
 
         return rootView
     }

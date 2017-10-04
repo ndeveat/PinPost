@@ -1,10 +1,10 @@
-package com.ndeveat.pinpost.Categories.Push
+package com.ndeveat.pinpost.Ui.Categories.Push
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.ndeveat.pinpost.Categories.SNSModel
-import com.ndeveat.pinpost.DataCenter
+import com.ndeveat.pinpost.Ui.Categories.SocialNetworkModel
+import com.ndeveat.pinpost.Manager
 import com.ndeveat.pinpost.R
 
 /**
@@ -12,19 +12,19 @@ import com.ndeveat.pinpost.R
  */
 
 class PushCateogryAdapter : RecyclerView.Adapter<PushCategoryHolder>() {
-    val mSNS: ArrayList<SNSModel>
-    val mPushSocialServices: ArrayList<SNSModel>
+    val mSocialNetwork: ArrayList<SocialNetworkModel>
+    val mPushSocialServices: ArrayList<SocialNetworkModel>
 
     init {
-        mSNS = DataCenter.instance.SNSList
-        mPushSocialServices = ArrayList<SNSModel>()
+        mSocialNetwork = Manager.instance.SNSList
+        mPushSocialServices = ArrayList<SocialNetworkModel>()
     }
 
-    override fun getItemCount(): Int = mSNS.size
+    override fun getItemCount(): Int = mSocialNetwork.size
 
     override fun onBindViewHolder(holder: PushCategoryHolder?, position: Int) {
-        val category = mSNS[position]
-        val dataCenter = DataCenter.instance
+        val category = mSocialNetwork[position]
+        val dataCenter = Manager.instance
 
         holder!!.setCategoryBackground(category.snsMainColor)
         holder.mIconLayer?.setOnClickListener {

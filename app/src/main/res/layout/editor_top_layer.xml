@@ -9,7 +9,7 @@
         android:layout_height="?attr/actionBarSize"
         android:orientation="vertical">
 
-        <com.ndeveat.pinpost.Ui.TextView
+        <com.ndeveat.pinpost.Ui.View.TextView
             android:id="@+id/editor_title_layout_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -3,8 +3,8 @@ package com.ndeveat.pinpost.Activity
 import android.app.Activity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
-import com.ndeveat.pinpost.Categories.SNSModel
-import com.ndeveat.pinpost.DataCenter
+import com.ndeveat.pinpost.Ui.Categories.SocialNetworkModel
+import com.ndeveat.pinpost.Manager
 import com.ndeveat.pinpost.R
 import com.ndeveat.pinpost.SocialNetworkType
 import org.jetbrains.anko.intentFor
@@ -36,11 +36,11 @@ class SplashActivity : Activity() {
     }
 
     fun addSocialNetworkData() {
-        if (DataCenter.instance.SNSList.size > 0)
+        if (Manager.instance.SNSList.size > 0)
             return
 
-        DataCenter.instance.SNSList.add(
-                SNSModel(
+        Manager.instance.SNSList.add(
+                SocialNetworkModel(
                         SocialNetworkType.Facebook,
                         ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_facebook_00001),
                         ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_facebook_00007),
@@ -49,8 +49,8 @@ class SplashActivity : Activity() {
                         "ndeveat@gmail.com",
                         5))
 
-        DataCenter.instance.SNSList.add(
-                SNSModel(
+        Manager.instance.SNSList.add(
+                SocialNetworkModel(
                         SocialNetworkType.Tstory,
                         ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_tstory_00001),
                         ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_tstory_00007),
@@ -59,8 +59,8 @@ class SplashActivity : Activity() {
                         "ndeveat@gmail.com",
                         2))
 
-        DataCenter.instance.SNSList.add(
-                SNSModel(
+        Manager.instance.SNSList.add(
+                SocialNetworkModel(
                         SocialNetworkType.Twitter,
                         ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_twitter_00001),
                         ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_twitter_00007),
@@ -69,8 +69,8 @@ class SplashActivity : Activity() {
                         "ndeveat@gmail.com",
                         2))
 
-        DataCenter.instance.SNSList.add(
-                SNSModel(
+        Manager.instance.SNSList.add(
+                SocialNetworkModel(
                         SocialNetworkType.Tumblr,
                         ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_tumblr_00001),
                         ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_tumblr_00008),
@@ -79,8 +79,8 @@ class SplashActivity : Activity() {
                         "ndeveat@gmail.com",
                         2))
 
-        DataCenter.instance.SNSList.add(
-                SNSModel(
+        Manager.instance.SNSList.add(
+                SocialNetworkModel(
                         SocialNetworkType.NaverBlog,
                         ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_naverblog_00001),
                         ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_naverblog_00007),
@@ -91,7 +91,7 @@ class SplashActivity : Activity() {
     }
 
     fun updateSocialNetworkData() {
-        for (data in DataCenter.instance.SNSList) {
+        for (data in Manager.instance.SNSList) {
 
         }
     }

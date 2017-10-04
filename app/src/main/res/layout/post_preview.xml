@@ -45,7 +45,7 @@
 
                     </LinearLayout>
 
-                    <com.ndeveat.pinpost.Ui.TextView
+                    <com.ndeveat.pinpost.Ui.View.TextView
                         android:id="@+id/post_preview_date"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -70,6 +70,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/post_preview_push_sns_container"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:layout_gravity="bottom"

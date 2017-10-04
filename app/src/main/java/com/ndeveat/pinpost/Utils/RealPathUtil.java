@@ -1,4 +1,4 @@
-package com.ndeveat.pinpost;
+package com.ndeveat.pinpost.Utils;
 
 /**
  * Created by ndeveat on 2017. 9. 27..

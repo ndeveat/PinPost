@@ -21,7 +21,7 @@
                 android:id="@+id/toolbar"
                 layout="@layout/toolbar" />
 
-            <com.ndeveat.pinpost.Ui.TextView
+            <com.ndeveat.pinpost.Ui.View.TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -31,7 +31,7 @@
         </RelativeLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <com.ndeveat.pinpost.Ui.Button
+    <com.ndeveat.pinpost.Ui.View.Button
         android:id="@+id/push_button"
         android:layout_width="0dp"
         android:layout_height="38dp"

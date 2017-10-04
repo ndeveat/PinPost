@@ -1,13 +1,11 @@
-package com.ndeveat.pinpost.Categories.Sidebar
+package com.ndeveat.pinpost.Ui.Categories.Sidebar
 
-import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
-import com.ndeveat.pinpost.Ui.TextView
-import kotlinx.android.synthetic.main.push_category_view.view.*
+import com.ndeveat.pinpost.Ui.View.TextView
 import kotlinx.android.synthetic.main.ui_socialnetwork_bar.view.*
 
 /**

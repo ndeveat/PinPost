@@ -72,7 +72,7 @@
                         android:src="@drawable/icon_human_00003" />
                 </FrameLayout>
 
-                <com.ndeveat.pinpost.Ui.TextView
+                <com.ndeveat.pinpost.Ui.View.TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="16dp"

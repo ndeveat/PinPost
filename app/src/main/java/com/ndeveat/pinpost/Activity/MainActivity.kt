@@ -15,7 +15,7 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import com.ndeveat.pinpost.Categories.Sidebar.SidebarCategoryAdapter
+import com.ndeveat.pinpost.Ui.Categories.Sidebar.SidebarCategoryAdapter
 import com.ndeveat.pinpost.Fragment.CategoriesFragment
 import com.ndeveat.pinpost.Fragment.PostviewFragment
 import com.ndeveat.pinpost.R
