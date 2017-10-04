@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
+    android:gravity="center"
     android:orientation="vertical"
     tools:context="com.ndeveat.pinpost.Activity.SignupActivity">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginBottom="128dp"
         android:scaleType="fitCenter"
         android:scaleX="0.7f"
         android:scaleY="0.7f"
@@ -20,7 +20,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="193dp"
+        android:layout_marginTop="32dp"
         android:orientation="vertical">
 
         <com.facebook.login.widget.LoginButton
