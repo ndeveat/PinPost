@@ -36,11 +36,14 @@ class PostPreviewHolder : RecyclerView.ViewHolder {
     }
 
     fun setPushSns(snsList: ArrayList<SocialNetworkType>) {
-        pushSnsContainer!!.removeAllViews()
-        for (sns in snsList) {
-            val drawable = Manager.instance.SNSList.filter { it.snsType == sns }[0].snsPlusImage
-            val view = LayoutInflater.from(this.context).inflate(R.layout.push_sns_icon, pushSnsContainer, true)
-            view.push_sns_icon.setImageDrawable(drawable)
+        if (pushSnsContainer != null) {
+            for (sns in snsList) {
+                val drawable = Manager.instance.SNSList.filter { it.snsType == sns }[0].snsPlusImage
+                val view = LayoutInflater.from(this.context).inflate(R.layout.push_sns_icon, pushSnsContainer, false)
+                view.push_sns_icon.setImageDrawable(drawable)
+
+                pushSnsContainer!!.addView(view)
+            }
         }
     }
 }

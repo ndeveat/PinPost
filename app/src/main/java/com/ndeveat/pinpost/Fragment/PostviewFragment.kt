@@ -34,13 +34,13 @@ class PostviewFragment : Fragment() {
 
 
         var pushSocialDatas = arrayListOf<SocialNetworkType>(SocialNetworkType.Facebook, SocialNetworkType.Tstory, SocialNetworkType.Tumblr)
-        mPostViewAdapter!!.mPosts.add(PostPreviewModel("yeah", pushSocialDatas))
+        mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트 입니다1", pushSocialDatas))
         pushSocialDatas = arrayListOf<SocialNetworkType>(SocialNetworkType.Twitter, SocialNetworkType.NaverBlog, SocialNetworkType.Tumblr)
-        mPostViewAdapter!!.mPosts.add(PostPreviewModel("yeah", pushSocialDatas))
+        mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트 입니다2", pushSocialDatas))
         pushSocialDatas = arrayListOf<SocialNetworkType>(SocialNetworkType.NaverBlog, SocialNetworkType.Tstory, SocialNetworkType.Facebook)
-        mPostViewAdapter!!.mPosts.add(PostPreviewModel("yeah", pushSocialDatas))
+        mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트 입니다3", pushSocialDatas))
         pushSocialDatas = arrayListOf<SocialNetworkType>(SocialNetworkType.Tumblr, SocialNetworkType.Tstory, SocialNetworkType.Twitter)
-        mPostViewAdapter!!.mPosts.add(PostPreviewModel("yeah", pushSocialDatas))
+        mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트 입니다4", pushSocialDatas))
 
         return rootView
     }

@@ -2,6 +2,7 @@ package com.ndeveat.pinpost.Ui.Post
 
 import android.graphics.Rect
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,13 +27,13 @@ class PostPreviewAdapter : RecyclerView.Adapter<PostPreviewHolder>() {
     override fun getItemCount(): Int = mPosts.size
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): PostPreviewHolder {
-        val view = if (mHolderCount == 0)
-            LayoutInflater.from(parent!!.context).inflate(R.layout.post_preview_top, parent, false)
-        else
-            LayoutInflater.from(parent!!.context).inflate(R.layout.post_preview, parent, false)
+        //val view = if (mHolderCount == 0)
+        //    LayoutInflater.from(parent!!.context).inflate(R.layout.post_preview_top, parent, false)
+        //else
+        //    LayoutInflater.from(parent!!.context).inflate(R.layout.post_preview, parent, false)
 
+        val view = LayoutInflater.from(parent!!.context).inflate(R.layout.post_preview, parent, false)
         val holder = PostPreviewHolder(view)
-        mHolderCount += 1
         return holder
     }
 
