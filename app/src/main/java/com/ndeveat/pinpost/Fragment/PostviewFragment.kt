@@ -34,13 +34,22 @@ class PostviewFragment : Fragment() {
 
 
         var pushSocialDatas = arrayListOf<SocialNetworkType>(SocialNetworkType.Facebook, SocialNetworkType.Tstory, SocialNetworkType.Tumblr)
-        mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트 입니다1", pushSocialDatas))
+        var images = arrayListOf<String>("http://junsueg5737.dothome.co.kr/images/01.jpg", "http://junsueg5737.dothome.co.kr/images/02.jpg")
+        mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트 입니다1", images, pushSocialDatas))
+
+
         pushSocialDatas = arrayListOf<SocialNetworkType>(SocialNetworkType.Twitter, SocialNetworkType.NaverBlog, SocialNetworkType.Tumblr)
-        mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트 입니다2", pushSocialDatas))
+        images = arrayListOf<String>("http://junsueg5737.dothome.co.kr/images/03.jpg", "http://junsueg5737.dothome.co.kr/images/04.jpg", "http://junsueg5737.dothome.co.kr/images/09.jpg", "http://junsueg5737.dothome.co.kr/images/013.jpg")
+        mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트 입니다2", images, pushSocialDatas))
+
+
         pushSocialDatas = arrayListOf<SocialNetworkType>(SocialNetworkType.NaverBlog, SocialNetworkType.Tstory, SocialNetworkType.Facebook)
-        mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트 입니다3", pushSocialDatas))
+        images = arrayListOf<String>("http://junsueg5737.dothome.co.kr/images/05.jpg", "http://junsueg5737.dothome.co.kr/images/06.jpg")
+        mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트 입니다3", images, pushSocialDatas))
+
         pushSocialDatas = arrayListOf<SocialNetworkType>(SocialNetworkType.Tumblr, SocialNetworkType.Tstory, SocialNetworkType.Twitter)
-        mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트 입니다4", pushSocialDatas))
+        images = arrayListOf<String>("http://junsueg5737.dothome.co.kr/images/07.jpg", "http://junsueg5737.dothome.co.kr/images/08.jpg", "http://junsueg5737.dothome.co.kr/images/015.jpg", "http://junsueg5737.dothome.co.kr/images/017.jpg")
+        mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트 입니다4", images, pushSocialDatas))
 
         return rootView
     }
