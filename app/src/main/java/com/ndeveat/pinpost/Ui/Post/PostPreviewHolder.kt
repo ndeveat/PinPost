@@ -15,7 +15,6 @@ import com.ndeveat.pinpost.Ui.View.PostImageViewer
 import com.ndeveat.pinpost.Ui.View.TextView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.post_contents_image.view.*
-import kotlinx.android.synthetic.main.post_contents_text.view.*
 import kotlinx.android.synthetic.main.post_preview.view.*
 import kotlinx.android.synthetic.main.push_sns_icon.view.*
 
@@ -24,6 +23,7 @@ import kotlinx.android.synthetic.main.push_sns_icon.view.*
  */
 
 class PostPreviewHolder : RecyclerView.ViewHolder {
+    var title: TextView? = null
     var text: TextView? = null
     var pushSnsContainer: LinearLayout? = null
 
@@ -31,6 +31,7 @@ class PostPreviewHolder : RecyclerView.ViewHolder {
     var imageContent: PostImageViewer? = null
 
     constructor(view: View) : super(view) {
+        title = view.post_title
         text = view.post_preview_text
         pushSnsContainer = view.post_preview_push_sns_container
         imageContent = view.post_contents_image
@@ -38,12 +39,31 @@ class PostPreviewHolder : RecyclerView.ViewHolder {
         this.context = view.context
     }
 
-    fun setText(text: String) {
-        this.text?.text = text
+    fun setTitle(title: String?) {
+        if (title != null) {
+            this.title!!.text = title
+            this.title!!.visibility = View.VISIBLE
+        } else {
+            this.title!!.visibility = View.GONE
+        }
     }
 
-    fun setPushSns(snsList: ArrayList<SocialNetworkType>) {
-        if (pushSnsContainer != null) {
+    fun setText(text: String?) {
+        if (text != null)
+            this.text!!.text = text
+        else {
+            if (title != null) {
+                this.text!!.visibility = View.GONE
+            } else {
+                this.text!!.text = ""
+                this.text!!.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    fun setPushSns(snsList: ArrayList<SocialNetworkType>?) {
+        pushSnsContainer!!.removeAllViews()
+        if (pushSnsContainer != null && snsList != null) {
             for (sns in snsList) {
                 val drawable = Manager.instance.SNSList.filter { it.snsType == sns }[0].snsPlusImage
                 val view = LayoutInflater.from(this.context).inflate(R.layout.push_sns_icon, pushSnsContainer, false)
@@ -54,7 +74,11 @@ class PostPreviewHolder : RecyclerView.ViewHolder {
         }
     }
 
-    fun setImages(imageList: ArrayList<String>) {
-        imageContent!!.addImage(imageList)
+    fun setImages(imageList: ArrayList<String>?) {
+        if (imageList != null) {
+            imageContent!!.addImage(imageList)
+            imageContent!!.visibility = View.VISIBLE
+        } else
+            imageContent!!.visibility = View.GONE
     }
 }

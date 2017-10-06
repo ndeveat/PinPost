@@ -36,7 +36,6 @@
                         android:gravity="right|center"
                         android:orientation="horizontal">
 
-
                         <FrameLayout
                             android:layout_width="16dp"
                             android:layout_height="16dp"
@@ -65,12 +64,32 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <com.ndeveat.pinpost.Ui.View.TextView
+                android:id="@+id/post_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:textColor="@android:color/black"
+                android:textSize="18dp"
+                android:visibility="gone" />
+
             <com.ndeveat.pinpost.Ui.View.PostImageViewer
                 android:id="@+id/post_contents_image"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></com.ndeveat.pinpost.Ui.View.PostImageViewer>
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:visibility="gone" />
 
-            <include layout="@layout/post_contents_text" />
+            <com.ndeveat.pinpost.Ui.View.TextView
+                android:id="@+id/post_preview_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="텍스트뷰 테스트입니다."
+                android:textSize="16dp" />
 
         </LinearLayout>
 

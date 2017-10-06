@@ -40,7 +40,9 @@ class PostPreviewAdapter : RecyclerView.Adapter<PostPreviewHolder>() {
     override fun onBindViewHolder(holder: PostPreviewHolder?, position: Int) {
         val post = mPosts[position]
 
-        holder!!.setText(post.text)
+        // PostView Setting
+        holder!!.setTitle(post.title)
+        holder.setText(post.text)
         holder.setPushSns(post.pushSns)
         holder.setImages(post.images)
     }

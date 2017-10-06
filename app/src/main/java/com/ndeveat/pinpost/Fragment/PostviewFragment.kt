@@ -12,6 +12,7 @@ import com.ndeveat.pinpost.Ui.Post.PostPreviewModel
 import com.ndeveat.pinpost.R
 import com.ndeveat.pinpost.SocialNetworkType
 import kotlinx.android.synthetic.main.fragment_postlist.view.*
+import kotlinx.android.synthetic.main.ui_image_preview_contents.*
 
 /**
  * Created by ndeveat on 2017. 9. 18..
@@ -34,22 +35,29 @@ class PostviewFragment : Fragment() {
 
 
         var pushSocialDatas = arrayListOf<SocialNetworkType>(SocialNetworkType.Facebook, SocialNetworkType.Tstory, SocialNetworkType.Tumblr)
-        var images = arrayListOf<String>("http://junsueg5737.dothome.co.kr/images/01.jpg", "http://junsueg5737.dothome.co.kr/images/02.jpg")
-        mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트 입니다1", images, pushSocialDatas))
+        var images = arrayListOf<String>("http://junsueg5737.dothome.co.kr/images/013.jpg", "http://junsueg5737.dothome.co.kr/images/02.jpg")
 
+        mPostViewAdapter!!.mPosts.add(PostPreviewModel(null, null, null, null))
+        mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트1", null, null, null))
+        mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트2", "테스트2 내용", null, null))
+        mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트3", "테스트3 내용", images, null))
+        mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트4", "테스트4 내용", null, pushSocialDatas))
+        mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트5", "테스트5 내용", images, pushSocialDatas))
+        mPostViewAdapter!!.mPosts.add(PostPreviewModel(null, "테스트6 내용", images, pushSocialDatas))
+        mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트7", null, images, pushSocialDatas))
+        mPostViewAdapter!!.mPosts.add(PostPreviewModel(null, null, images, pushSocialDatas))
 
-        pushSocialDatas = arrayListOf<SocialNetworkType>(SocialNetworkType.Twitter, SocialNetworkType.NaverBlog, SocialNetworkType.Tumblr)
-        images = arrayListOf<String>("http://junsueg5737.dothome.co.kr/images/03.jpg", "http://junsueg5737.dothome.co.kr/images/04.jpg", "http://junsueg5737.dothome.co.kr/images/09.jpg", "http://junsueg5737.dothome.co.kr/images/013.jpg")
-        mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트 입니다2", images, pushSocialDatas))
+        pushSocialDatas = arrayListOf<SocialNetworkType>(SocialNetworkType.Facebook, SocialNetworkType.Tstory, SocialNetworkType.Tumblr)
+        images = arrayListOf<String>("http://junsueg5737.dothome.co.kr/images/013.jpg", "http://junsueg5737.dothome.co.kr/images/02.jpg")
+        mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트8", "테스트8 내용", images, pushSocialDatas))
 
+        pushSocialDatas = arrayListOf<SocialNetworkType>(SocialNetworkType.Tstory, SocialNetworkType.Twitter, SocialNetworkType.NaverBlog)
+        images = arrayListOf<String>("http://junsueg5737.dothome.co.kr/images/010.jpg", "http://junsueg5737.dothome.co.kr/images/08.jpg")
+        mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트9", "테스트9 내용", images, pushSocialDatas))
 
-        pushSocialDatas = arrayListOf<SocialNetworkType>(SocialNetworkType.NaverBlog, SocialNetworkType.Tstory, SocialNetworkType.Facebook)
-        images = arrayListOf<String>("http://junsueg5737.dothome.co.kr/images/05.jpg", "http://junsueg5737.dothome.co.kr/images/06.jpg")
-        mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트 입니다3", images, pushSocialDatas))
-
-        pushSocialDatas = arrayListOf<SocialNetworkType>(SocialNetworkType.Tumblr, SocialNetworkType.Tstory, SocialNetworkType.Twitter)
-        images = arrayListOf<String>("http://junsueg5737.dothome.co.kr/images/07.jpg", "http://junsueg5737.dothome.co.kr/images/08.jpg", "http://junsueg5737.dothome.co.kr/images/015.jpg", "http://junsueg5737.dothome.co.kr/images/017.jpg")
-        mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트 입니다4", images, pushSocialDatas))
+        pushSocialDatas = arrayListOf<SocialNetworkType>(SocialNetworkType.NaverBlog, SocialNetworkType.Tumblr, SocialNetworkType.Twitter)
+        images = arrayListOf<String>("http://junsueg5737.dothome.co.kr/images/016.jpg", "http://junsueg5737.dothome.co.kr/images/07.jpg")
+        mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트10", "테스트10 내용", images, pushSocialDatas))
 
         return rootView
     }
