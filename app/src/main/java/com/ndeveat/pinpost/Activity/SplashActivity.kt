@@ -6,7 +6,7 @@ import android.support.v4.content.ContextCompat
 import com.ndeveat.pinpost.Ui.Categories.SocialNetworkModel
 import com.ndeveat.pinpost.Manager
 import com.ndeveat.pinpost.R
-import com.ndeveat.pinpost.SocialNetworkType
+import com.ndeveat.pinpost.Ui.Categories.SocialNetworkType
 import org.jetbrains.anko.intentFor
 
 /*

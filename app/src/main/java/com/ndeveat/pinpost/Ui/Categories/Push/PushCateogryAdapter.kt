@@ -12,12 +12,16 @@ import com.ndeveat.pinpost.R
  */
 
 class PushCateogryAdapter : RecyclerView.Adapter<PushCategoryHolder>() {
+    interface PushCategoryEvent {
+        fun add(snsName: String)
+        fun remove(snsName: String)
+    }
+
     val mSocialNetwork: ArrayList<SocialNetworkModel>
-    val mPushSocialServices: ArrayList<SocialNetworkModel>
+    var mPushCategoryEvent: PushCategoryEvent? = null
 
     init {
         mSocialNetwork = Manager.instance.SNSList
-        mPushSocialServices = ArrayList<SocialNetworkModel>()
     }
 
     override fun getItemCount(): Int = mSocialNetwork.size
@@ -29,9 +33,9 @@ class PushCateogryAdapter : RecyclerView.Adapter<PushCategoryHolder>() {
         holder!!.setCategoryBackground(category.snsMainColor)
         holder.mIconLayer?.setOnClickListener {
             if (holder.check()) {
-                mPushSocialServices.add(category)
+                mPushCategoryEvent?.add(category.snsType.toString())
             } else {
-                mPushSocialServices.remove(category)
+                mPushCategoryEvent?.remove(category.snsType.toString())
             }
         }
         holder.setCategoryIcon(category.snsPlusImage)

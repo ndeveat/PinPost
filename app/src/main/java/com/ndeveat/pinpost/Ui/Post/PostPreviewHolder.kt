@@ -2,19 +2,14 @@ package com.ndeveat.pinpost.Ui.Post
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
-import com.bumptech.glide.Glide
-import com.koushikdutta.ion.Ion
 import com.ndeveat.pinpost.Manager
 import com.ndeveat.pinpost.R
-import com.ndeveat.pinpost.SocialNetworkType
+import com.ndeveat.pinpost.Ui.Categories.SocialNetworkType
 import com.ndeveat.pinpost.Ui.View.PostImageViewer
 import com.ndeveat.pinpost.Ui.View.TextView
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.post_contents_image.view.*
 import kotlinx.android.synthetic.main.post_preview.view.*
 import kotlinx.android.synthetic.main.push_sns_icon.view.*
 

@@ -12,8 +12,11 @@ import com.ndeveat.pinpost.R
 import kotlinx.android.synthetic.main.activity_push.*
 import kotlinx.android.synthetic.main.toolbar.view.*
 import android.net.Uri
+import android.view.View
 import com.koushikdutta.ion.Ion
 import com.ndeveat.pinpost.Utils.RealPathUtil
+import org.jetbrains.anko.intentFor
+import org.json.JSONObject
 import java.io.File
 
 
@@ -25,6 +28,7 @@ class PushActivity : AppCompatActivity() {
     var mTitle = ""
     var mContents = ""
     var mImages: ArrayList<Uri>? = null
+    var mSns = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +48,16 @@ class PushActivity : AppCompatActivity() {
         mRecyclerView!!.adapter = mCategoryAdapter
         mRecyclerView!!.addItemDecoration(CategoryAdapter.CategoriesDecoration(3, 50))
 
+        // Add Push Category Event
+        mCategoryAdapter!!.mPushCategoryEvent = object : PushCateogryAdapter.PushCategoryEvent {
+            override fun add(snsName: String) {
+                mSns.add(snsName)
+            }
+
+            override fun remove(snsName: String) {
+                mSns.remove(snsName)
+            }
+        }
 
         mTitle = intent.extras.getString("Title")
         mContents = intent.extras.getString("Contents")
@@ -55,19 +69,35 @@ class PushActivity : AppCompatActivity() {
 
         push_button.setOnClickListener {
             // Ion을 이용해서 파일 전송 테스트
-            val ion = Ion.with(this@PushActivity).load("http://192.168.0.16:3000/post/posting").setTimeout(1000 * 6)
+            val ion = Ion.with(this@PushActivity).load("http://192.168.0.17:3000/post/posting").setTimeout(1000 * 6)
+            // Title
             ion.setMultipartParameter("title", mTitle)
+            // Contents
             ion.setMultipartParameter("contents", mContents)
+            // SNS Data
+            val snsData = JSONObject()
+            var snsString = ""
+            mSns.forEach { snsString += it + "," }
+            snsString.dropLast(1)
+            snsData.put("sns", snsString)
+            ion.setMultipartParameter("sns", snsData.toString())
 
             mImages!!.forEachIndexed { index, uri ->
                 val imagePath = RealPathUtil.getRealPath(this@PushActivity, uri)
                 val file = File(imagePath)
-                Log.d("File", file.path)
                 ion.setMultipartFile("image{$index}", file)
             }
 
             ion.asJsonObject().setCallback { e, result ->
                 if (result != null) {
+                    val success = result["success"].asBoolean
+                    if (success) {
+                        // 글을 작성합니다.
+                        // var intent = intentFor<MainActivity>()
+                        // startActivity(intent)
+                    } else {
+                        // 임시 저장소로 이동합니다
+                    }
                     Log.d("Result", result.toString())
                 } else {
                     e.printStackTrace()

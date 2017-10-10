@@ -1,6 +1,6 @@
 package com.ndeveat.pinpost.Ui.Post
 
-import com.ndeveat.pinpost.SocialNetworkType
+import com.ndeveat.pinpost.Ui.Categories.SocialNetworkType
 
 /**
  * Created by ndeveat on 2017. 9. 20..

@@ -1,4 +1,4 @@
-package com.ndeveat.pinpost
+package com.ndeveat.pinpost.Ui.Categories
 
 /**
  * Created by ndeveat on 2017. 9. 23..

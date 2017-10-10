@@ -10,9 +10,8 @@ import android.view.ViewGroup
 import com.ndeveat.pinpost.Ui.Post.PostPreviewAdapter
 import com.ndeveat.pinpost.Ui.Post.PostPreviewModel
 import com.ndeveat.pinpost.R
-import com.ndeveat.pinpost.SocialNetworkType
+import com.ndeveat.pinpost.Ui.Categories.SocialNetworkType
 import kotlinx.android.synthetic.main.fragment_postlist.view.*
-import kotlinx.android.synthetic.main.ui_image_preview_contents.*
 
 /**
  * Created by ndeveat on 2017. 9. 18..
