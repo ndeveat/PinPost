@@ -7,20 +7,51 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp">
 
-    <ImageView
+    <com.ndeveat.pinpost.Ui.View.TextView
         android:id="@+id/editor_add_component_image"
-        android:layout_width="36dp"
+        android:layout_width="wrap_content"
         android:layout_height="36dp"
         android:layout_marginRight="16dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/icon_camera_00005" />
+        android:gravity="center"
+        android:text="이미지"
+        android:textSize="18dp" />
 
-    <ImageView
+    <com.ndeveat.pinpost.Ui.View.TextView
         android:id="@+id/editor_add_component_location"
-        android:layout_width="36dp"
+        android:layout_width="wrap_content"
         android:layout_height="36dp"
         android:layout_marginRight="16dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/icon_pin_00005" />
+        android:gravity="center"
+        android:text="텍스트"
+        android:textSize="18dp" />
 
+    <com.ndeveat.pinpost.Ui.View.TextView
+        android:id="@+id/editor_add_component_align"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_marginRight="16dp"
+        android:gravity="center"
+        android:text="정렬"
+        android:textSize="18dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="right|center">
+
+        <FrameLayout
+            android:layout_width="64dp"
+            android:layout_height="36dp"
+            android:background="@color/pinpost">
+
+            <com.ndeveat.pinpost.Ui.View.TextView
+                android:id="@+id/editor_push_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="올리기"
+                android:textColor="@android:color/white"
+                android:textSize="19dp" />
+        </FrameLayout>
+    </LinearLayout>
 </LinearLayout>

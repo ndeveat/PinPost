@@ -77,7 +77,7 @@ class EditorActivity : AppCompatActivity() {
                         })
                         .setPeekHeight(800)
                         .showTitle(false)
-                        .setCompleteButtonText("Done")
+                        .setCompleteButtonText("확인")
                         .setEmptySelectionText("No Select")
                         .create()
 
