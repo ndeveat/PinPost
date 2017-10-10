@@ -14,7 +14,7 @@
         android:layout_marginRight="16dp"
         android:gravity="center"
         android:text="이미지"
-        android:textSize="18dp" />
+        android:textSize="16dp" />
 
     <com.ndeveat.pinpost.Ui.View.TextView
         android:id="@+id/editor_add_component_location"
@@ -23,7 +23,7 @@
         android:layout_marginRight="16dp"
         android:gravity="center"
         android:text="텍스트"
-        android:textSize="18dp" />
+        android:textSize="16dp" />
 
     <com.ndeveat.pinpost.Ui.View.TextView
         android:id="@+id/editor_add_component_align"
@@ -32,7 +32,7 @@
         android:layout_marginRight="16dp"
         android:gravity="center"
         android:text="정렬"
-        android:textSize="18dp" />
+        android:textSize="16dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,9 +40,10 @@
         android:gravity="right|center">
 
         <FrameLayout
-            android:layout_width="64dp"
+            android:layout_width="84dp"
             android:layout_height="36dp"
-            android:background="@color/pinpost">
+            android:background="@drawable/corner_outline"
+            android:backgroundTint="@color/pinpost">
 
             <com.ndeveat.pinpost.Ui.View.TextView
                 android:id="@+id/editor_push_button"

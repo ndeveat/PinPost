@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/editor_outline"
     android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/editor_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/stroke_outline"
         android:orientation="vertical">
 
         <com.ndeveat.pinpost.Ui.View.EditText
@@ -21,28 +21,29 @@
             android:paddingRight="16dp"
             android:paddingTop="16dp" />
 
-        <HorizontalScrollView
+        <View
+            android:id="@+id/editor_empty_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@null"
-            android:scrollbars="none">
+            android:layout_height="100dp"
+            android:clickable="true" />
 
-            <LinearLayout
-                android:id="@+id/editor_contents_images"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:animateLayoutChanges="true"
-                android:background="@null"
-                android:orientation="horizontal">
-
-            </LinearLayout>
-        </HorizontalScrollView>
     </LinearLayout>
 
-    <View
-        android:id="@+id/editor_empty_view"
+    <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:clickable="true" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@null"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/editor_contents_images"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:background="@null"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+    </HorizontalScrollView>
 </LinearLayout>

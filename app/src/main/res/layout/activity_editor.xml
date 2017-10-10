@@ -69,7 +69,7 @@
                             android:id="@+id/editor_title"
                             android:layout_width="match_parent"
                             android:layout_height="?attr/actionBarSize"
-                            android:background="@drawable/editor_outline"
+                            android:background="@drawable/stroke_outline"
                             android:gravity="center_vertical"
                             android:hint="제목"
                             android:inputType="text"
