@@ -1,6 +1,8 @@
 package com.ndeveat.pinpost.Fragment
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -12,6 +14,7 @@ import com.ndeveat.pinpost.Ui.Post.PostPreviewModel
 import com.ndeveat.pinpost.R
 import com.ndeveat.pinpost.Ui.Categories.SocialNetworkType
 import kotlinx.android.synthetic.main.fragment_postlist.view.*
+import kotlin.concurrent.thread
 
 /**
  * Created by ndeveat on 2017. 9. 18..
@@ -57,6 +60,7 @@ class PostviewFragment : Fragment() {
         pushSocialDatas = arrayListOf<SocialNetworkType>(SocialNetworkType.NaverBlog, SocialNetworkType.Tumblr, SocialNetworkType.Twitter)
         images = arrayListOf<String>("http://junsueg5737.dothome.co.kr/images/016.jpg", "http://junsueg5737.dothome.co.kr/images/07.jpg")
         mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트10", "테스트10 내용", images, pushSocialDatas))
+
 
         return rootView
     }

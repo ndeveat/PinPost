@@ -25,13 +25,12 @@ class PostPreviewHolder : RecyclerView.ViewHolder {
     var context: Context? = null
     var imageContent: PostImageViewer? = null
 
-    constructor(view: View) : super(view) {
+    constructor(view: View, context: Context) : super(view) {
         title = view.post_title
         text = view.post_preview_text
         pushSnsContainer = view.post_preview_push_sns_container
         imageContent = view.post_contents_image
-
-        this.context = view.context
+        this.context = context
     }
 
     fun setTitle(title: String?) {
