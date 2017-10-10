@@ -5,10 +5,14 @@ import android.content.Context
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
 
@@ -20,10 +24,14 @@ import org.jetbrains.anko.intentFor
 import gun0912.tedbottompicker.TedBottomPicker
 import java.util.ArrayList
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
-import com.ndeveat.pinpost.Ui.View.ImageContents
+import com.ndeveat.pinpost.Ui.View.PickImageContents
+import com.ndeveat.pinpost.Utils.RealPathUtil
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.editor_bottom_layer.*
+import java.io.File
 
 
 class EditorActivity : AppCompatActivity() {
@@ -102,6 +110,7 @@ class EditorActivity : AppCompatActivity() {
             intent.putExtra("Title", mEditorTitle!!.text.toString())
             intent.putExtra("Contents", mEditorContents!!.text.toString())
             intent.putExtra("Images", mImages)
+
             startActivity(intent)
         }
 
@@ -131,14 +140,21 @@ class EditorActivity : AppCompatActivity() {
         mImages.clear()
 
         for (uri in uris) {
-            val image = ImageContents(this)
-            image.image!!.setImageURI(uri)
-            image.delete!!.setOnClickListener {
-                removeImage(image)
+            val view = LayoutInflater.from(this@EditorActivity).inflate(R.layout.ui_image_preview_contents, null)
+            val image = PickImageContents(view)
+            val px = resources.getDimension(R.dimen.pick_image).toInt()
+            image.image?.layoutParams = FrameLayout.LayoutParams(px, px)
+            // image.image?.setImageURI(uri)
+            Glide.with(this)
+                    .load(uri)
+                    .centerCrop()
+                    .into(image.image)
+            image.delete?.setOnClickListener {
+                removeImage(view)
             }
-            image.tag = uri
+            view.tag = uri
             mImages.add(uri)
-            mEditorImageContents!!.addView(image)
+            mEditorImageContents!!.addView(view)
         }
     }
 

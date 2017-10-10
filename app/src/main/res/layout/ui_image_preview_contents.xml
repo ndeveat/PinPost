@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_width="@dimen/pick_image"
+    android:layout_height="@dimen/pick_image">
 
     <ImageView
         android:id="@+id/image"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:scaleType="fitXY" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
 
     <FrameLayout
         android:id="@+id/clear"
@@ -20,4 +18,5 @@
         android:background="@drawable/ic_clear"
         android:backgroundTint="@android:color/holo_blue_light"
         android:clickable="true" />
+
 </FrameLayout>
