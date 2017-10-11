@@ -5,12 +5,10 @@ import android.content.Context
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.FrameLayout
 import android.widget.LinearLayout
@@ -28,10 +26,7 @@ import com.bumptech.glide.Glide
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import com.ndeveat.pinpost.Ui.View.PickImageContents
-import com.ndeveat.pinpost.Utils.RealPathUtil
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.editor_bottom_layer.*
-import java.io.File
 
 
 class EditorActivity : AppCompatActivity() {
@@ -140,7 +135,7 @@ class EditorActivity : AppCompatActivity() {
         mImages.clear()
 
         for (uri in uris) {
-            val view = LayoutInflater.from(this@EditorActivity).inflate(R.layout.ui_image_preview_contents, null)
+            val view = LayoutInflater.from(this@EditorActivity).inflate(R.layout.editor_image_contents, null)
             val image = PickImageContents(view)
             val px = resources.getDimension(R.dimen.pick_image).toInt()
             image.image?.layoutParams = FrameLayout.LayoutParams(px, px)

@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import com.ndeveat.pinpost.R
-import kotlinx.android.synthetic.main.ui_image_preview_contents.view.*
+import kotlinx.android.synthetic.main.editor_image_contents.view.*
 
 /**
  * Created by ndeveat on 2017. 9. 27..

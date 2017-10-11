@@ -69,7 +69,7 @@
                         android:layout_width="38dp"
                         android:layout_height="38dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/icon_human_00003" />
+                        android:src="@drawable/icon_human_00004" />
                 </FrameLayout>
 
                 <com.ndeveat.pinpost.Ui.View.TextView

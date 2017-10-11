@@ -110,7 +110,6 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setHomeButtonEnabled(true)
 
         mDrawerToggle?.syncState()
-
         // set Sidebar
 
         mSidebarLayoutManager = LinearLayoutManager(this@MainActivity)

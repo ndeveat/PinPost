@@ -22,20 +22,23 @@ class SplashActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        // add category
-        addSocialNetworkData()
-        updateSocialNetworkData()
+        // load SNS
+        loadSocialNetworkData()
+        // login SNS
+        loginSocialNetworkData()
 
         // TODO
         // 회원 가입 및 로그인 추가
         // 회원가입이 되어있다면 넘어간다.
         // 앱의 로컬 데이터 베이스에 정보들을 저장한다.
         startActivity(intentFor<MainActivity>())
-
         finish()
     }
 
-    fun addSocialNetworkData() {
+    /*
+    * 기존의 SNS데이터를 수집함
+    * */
+    fun loadSocialNetworkData() {
         if (Manager.instance.SNSList.size > 0)
             return
 
@@ -90,9 +93,12 @@ class SplashActivity : Activity() {
                         2))
     }
 
-    fun updateSocialNetworkData() {
-        for (data in Manager.instance.SNSList) {
-
-        }
+    /*
+    * 로그인된 SNS를 등록함
+    * */
+    fun loginSocialNetworkData() {
+        // 서버에서 로그인된 데이터를 가져옴
+        Manager.instance.SNSList.find { it.snsType == SocialNetworkType.Facebook }?.isLogin = true
+        Manager.instance.SNSList.find { it.snsType == SocialNetworkType.Tstory }?.isLogin = true
     }
 }

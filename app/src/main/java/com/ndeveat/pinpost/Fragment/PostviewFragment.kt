@@ -61,7 +61,6 @@ class PostviewFragment : Fragment() {
         images = arrayListOf<String>("http://junsueg5737.dothome.co.kr/images/016.jpg", "http://junsueg5737.dothome.co.kr/images/07.jpg")
         mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트10", "테스트10 내용", images, pushSocialDatas))
 
-
         return rootView
     }
 

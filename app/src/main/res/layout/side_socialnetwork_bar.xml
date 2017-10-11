@@ -30,16 +30,25 @@
 
         <FrameLayout
             android:id="@+id/login"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:background="@drawable/circle"
-            android:backgroundTint="@android:color/darker_gray">
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:clickable="true">
 
-            <ImageView
-                android:layout_width="14dp"
-                android:layout_height="14dp"
-                android:layout_gravity="center"
-                android:src="@drawable/icon_plus_00001" />
+            <FrameLayout
+                android:id="@+id/login_outline"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/circle"
+                android:backgroundTint="@android:color/darker_gray">
+
+                <FrameLayout
+                    android:id="@+id/login_icon"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/icon_plus"
+                    android:backgroundTint="@android:color/white" />
+            </FrameLayout>
         </FrameLayout>
     </LinearLayout>
 </LinearLayout>

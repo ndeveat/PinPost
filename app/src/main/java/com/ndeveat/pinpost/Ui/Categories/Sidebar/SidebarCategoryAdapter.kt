@@ -20,14 +20,15 @@ class SidebarCategoryAdapter : RecyclerView.Adapter<SidebarCategoryHolder>() {
 
     override fun getItemCount(): Int = mSocialNetwork.size
 
-    override fun onBindViewHolder(holder: SidebarCategoryHolder?, position: Int) {
+    override fun onBindViewHolder(holder: SidebarCategoryHolder, position: Int) {
         val sns = mSocialNetwork[position]
-        holder!!.setEmail(sns.email)
+
+        holder.setEmail(if (sns.isLogin) sns.email else null)
         holder.setSnsIcon(sns.snsPlusImage)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): SidebarCategoryHolder {
-        val view = LayoutInflater.from(parent!!.context).inflate(R.layout.ui_socialnetwork_bar, parent, false)
+        val view = LayoutInflater.from(parent!!.context).inflate(R.layout.side_socialnetwork_bar, parent, false)
         val holder = SidebarCategoryHolder(view)
         return holder
     }
