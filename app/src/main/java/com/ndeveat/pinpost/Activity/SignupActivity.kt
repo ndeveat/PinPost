@@ -1,36 +1,39 @@
 package com.ndeveat.pinpost.Activity
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.facebook.*
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 
 import com.ndeveat.pinpost.R
 import kotlinx.android.synthetic.main.activity_signup.*
 import java.util.*
+import com.facebook.ProfileTracker
+import com.facebook.AccessToken
+import com.facebook.AccessTokenTracker
+import com.ndeveat.pinpost.Login.FacebookLogin
 
 class SignupActivity : AppCompatActivity() {
+    lateinit var facebookLogin: FacebookLogin
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
 
-        val callbackManager = CallbackManager.Factory.create()
-        facebook_login.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
-            override fun onSuccess(result: LoginResult?) {
-                Log.d("Facebook Login Result", result.toString())
-            }
+        facebookLogin()
+    }
 
-            override fun onCancel() {
-                // TODO
-            }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        facebookLogin.onActivityResult(requestCode, resultCode, data)
+    }
 
-            override fun onError(error: FacebookException?) {
-                error?.printStackTrace()
-            }
-        })
-
+    fun facebookLogin() {
+        facebookLogin = FacebookLogin(this)
     }
 }

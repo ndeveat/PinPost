@@ -8,13 +8,20 @@ import android.view.ViewGroup
 import com.ndeveat.pinpost.Ui.Categories.SocialNetworkModel
 import com.ndeveat.pinpost.Manager
 import com.ndeveat.pinpost.R
+import com.ndeveat.pinpost.Ui.Categories.SocialNetworkType
 
 /**
  * Created by ndeveat on 2017. 9. 24..
  */
 
 class SidebarCategoryAdapter : RecyclerView.Adapter<SidebarCategoryHolder>() {
+    interface SidebarEvent {
+        fun login(snsType: SocialNetworkType)
+        fun logout(snsType: SocialNetworkType)
+    }
+
     val mSocialNetwork: ArrayList<SocialNetworkModel>
+    var sidebarEvent: SidebarEvent? = null
 
     init {
         mSocialNetwork = Manager.instance.SNSList
@@ -36,7 +43,9 @@ class SidebarCategoryAdapter : RecyclerView.Adapter<SidebarCategoryHolder>() {
                 // 로그아웃 처리
                 logoutAlert.setPositiveButton("예",
                         DialogInterface.OnClickListener { dialogInterface, i ->
-
+                            sidebarEvent?.logout(sns.snsType)
+                            sns.isLogin = false
+                            this.notifyDataSetChanged()
                         })
                 logoutAlert.setNegativeButton("아니요",
                         DialogInterface.OnClickListener { dialogInterface, i ->
@@ -49,7 +58,9 @@ class SidebarCategoryAdapter : RecyclerView.Adapter<SidebarCategoryHolder>() {
                 // 로그인 처리
                 loginAlert.setPositiveButton("예",
                         DialogInterface.OnClickListener { dialogInterface, i ->
-
+                            sidebarEvent?.login(sns.snsType)
+                            sns.isLogin = true
+                            this.notifyDataSetChanged()
                         })
                 loginAlert.setNegativeButton("아니요",
                         DialogInterface.OnClickListener { dialogInterface, i ->

@@ -8,6 +8,17 @@ import com.ndeveat.pinpost.Manager
 import com.ndeveat.pinpost.R
 import com.ndeveat.pinpost.Ui.Categories.SocialNetworkType
 import org.jetbrains.anko.intentFor
+import android.content.pm.PackageManager
+import android.provider.SyncStateContract.Helpers.update
+import android.content.pm.PackageInfo
+import android.hardware.camera2.params.Face
+import android.util.Base64
+import android.util.Log
+import com.ndeveat.pinpost.Login.FacebookLogin
+import com.ndeveat.pinpost.Login.LoginModule
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
+
 
 /*
 * 기초 처리하는 부분
@@ -17,10 +28,25 @@ import org.jetbrains.anko.intentFor
 * */
 
 class SplashActivity : Activity() {
+    lateinit var loginModule: LoginModule
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
+        try {
+            val info = packageManager.getPackageInfo("com.ndeveat.pinpost", PackageManager.GET_SIGNATURES)
+            Log.d("Package", info.toString())
+            for (signature in info.signatures) {
+                val md = MessageDigest.getInstance("SHA")
+                md.update(signature.toByteArray())
+                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT))
+            }
+        } catch (e: PackageManager.NameNotFoundException) {
+            Log.d("KeyHash:", "name not found")
+        } catch (e: NoSuchAlgorithmException) {
+            Log.d("KeyHash:", "no such")
+        }
 
         // load SNS
         loadSocialNetworkData()
@@ -31,7 +57,10 @@ class SplashActivity : Activity() {
         // 회원 가입 및 로그인 추가
         // 회원가입이 되어있다면 넘어간다.
         // 앱의 로컬 데이터 베이스에 정보들을 저장한다.
-        startActivity(intentFor<SignupActivity>())
+        if (!loginModule.facebookLogin.isLogin())
+            startActivity(intentFor<SignupActivity>())
+        else
+            startActivity(intentFor<MainActivity>())
         finish()
     }
 
@@ -50,7 +79,7 @@ class SplashActivity : Activity() {
                         ContextCompat.getColor(this@SplashActivity, R.color.snsFacebook),
                         false,
                         "ndeveat@gmail.com",
-                        5))
+                        0))
 
         Manager.instance.SNSList.add(
                 SocialNetworkModel(
@@ -60,7 +89,7 @@ class SplashActivity : Activity() {
                         ContextCompat.getColor(this@SplashActivity, R.color.snsTstory),
                         false,
                         "ndeveat@gmail.com",
-                        2))
+                        0))
 
         Manager.instance.SNSList.add(
                 SocialNetworkModel(
@@ -70,7 +99,7 @@ class SplashActivity : Activity() {
                         ContextCompat.getColor(this@SplashActivity, R.color.snsTwitter),
                         false,
                         "ndeveat@gmail.com",
-                        2))
+                        0))
 
         Manager.instance.SNSList.add(
                 SocialNetworkModel(
@@ -80,7 +109,7 @@ class SplashActivity : Activity() {
                         ContextCompat.getColor(this@SplashActivity, R.color.snsTwitter),
                         false,
                         "ndeveat@gmail.com",
-                        2))
+                        0))
 
         Manager.instance.SNSList.add(
                 SocialNetworkModel(
@@ -90,7 +119,7 @@ class SplashActivity : Activity() {
                         ContextCompat.getColor(this@SplashActivity, R.color.snsTwitter),
                         false,
                         "ndeveat@gmail.com",
-                        2))
+                        0))
     }
 
     /*
@@ -98,7 +127,10 @@ class SplashActivity : Activity() {
     * */
     fun loginSocialNetworkData() {
         // 서버에서 로그인된 데이터를 가져옴
-        Manager.instance.SNSList.find { it.snsType == SocialNetworkType.Facebook }?.isLogin = true
-        Manager.instance.SNSList.find { it.snsType == SocialNetworkType.Tstory }?.isLogin = true
+        loginModule = LoginModule(this)
+        if (loginModule.facebookLogin.isLogin()) {
+            Log.d("SNS Login", "facebook logined")
+            Manager.instance.SNSList.find { it.snsType == SocialNetworkType.Facebook }!!.isLogin = true
+        }
     }
 }

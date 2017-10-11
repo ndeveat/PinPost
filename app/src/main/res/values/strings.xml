@@ -1,11 +1,10 @@
 <resources>
-    <string name="app_name">Pin Post</string>
-    <string name="title_activity_main2">Main2Activity</string>
+    <string name="app_name">핀 포스트</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="facebook_app_id">1665831813441392</string>
-    <string name="fb_login_protocol_scheme">fb1665831813441392</string>
+    <string name="facebook_app_id">501475223548882</string>
+    <string name="fb_login_protocol_scheme">fb501475223548882</string>
 </resources>

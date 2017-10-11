@@ -18,7 +18,10 @@ import android.view.View
 import com.ndeveat.pinpost.Ui.Categories.Sidebar.SidebarCategoryAdapter
 import com.ndeveat.pinpost.Fragment.CategoriesFragment
 import com.ndeveat.pinpost.Fragment.PostviewFragment
+import com.ndeveat.pinpost.Login.LoginModule
 import com.ndeveat.pinpost.R
+import com.ndeveat.pinpost.Ui.Categories.SocialNetworkType
+import com.ndeveat.pinpost.Ui.Categories.SocialNetworkType.*
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.main_container.view.*
@@ -37,6 +40,8 @@ class MainActivity : AppCompatActivity() {
 
     private var mSidebarLayoutManager: LinearLayoutManager? = null
     private var mSidebarSnsAdapter: SidebarCategoryAdapter? = null
+
+    lateinit var loginModule: LoginModule
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -116,6 +121,34 @@ class MainActivity : AppCompatActivity() {
         mSidebarSnsAdapter = SidebarCategoryAdapter()
         sidebar_snslist.adapter = mSidebarSnsAdapter
         sidebar_snslist.layoutManager = mSidebarLayoutManager
+
+        loginModule = LoginModule(this)
+
+        mSidebarSnsAdapter!!.sidebarEvent = object : SidebarCategoryAdapter.SidebarEvent {
+            override fun login(snsType: SocialNetworkType) {
+                when (snsType) {
+                    Facebook -> {
+                        loginModule.facebookLogin.login()
+                    }
+                    Twitter -> TODO()
+                    Tstory -> TODO()
+                    Tumblr -> TODO()
+                    NaverBlog -> TODO()
+                }
+            }
+
+            override fun logout(snsType: SocialNetworkType) {
+                when (snsType) {
+                    Facebook -> {
+                        loginModule.facebookLogin.logout()
+                    }
+                    Twitter -> TODO()
+                    Tstory -> TODO()
+                    Tumblr -> TODO()
+                    NaverBlog -> TODO()
+                }
+            }
+        }
     }
 
 
