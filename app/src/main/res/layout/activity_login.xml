@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pinpost"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="com.ndeveat.pinpost.Activity.LoginActivity">
+
+    <ImageView
+        android:layout_width="168dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="128dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/title" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp">
+
+        <com.ndeveat.pinpost.Ui.View.Button
+            android:id="@+id/login_signin"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:background="@drawable/push_button"
+            android:backgroundTint="@android:color/white"
+            android:gravity="center"
+            android:text="로그인"
+            android:textSize="18dp" />
+
+        <com.ndeveat.pinpost.Ui.View.TextView
+            android:id="@+id/login_signup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="회원가입" />
+    </LinearLayout>
+
+</LinearLayout>

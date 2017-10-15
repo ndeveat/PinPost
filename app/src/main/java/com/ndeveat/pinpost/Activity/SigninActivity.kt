@@ -37,7 +37,7 @@ import android.Manifest.permission.READ_CONTACTS
 /**
  * A login screen that offers login via email/password.
  */
-class SignupActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
+class SigninActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -51,7 +51,7 @@ class SignupActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signup)
+        setContentView(R.layout.activity_signin)
         // Set up the login form.
         mEmailView = findViewById(R.id.email) as AutoCompleteTextView
         populateAutoComplete()
@@ -89,7 +89,7 @@ class SignupActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         }
         if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
             Snackbar.make(mEmailView!!, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
-                    .setAction(android.R.string.ok) { requestPermissions(arrayOf(READ_CONTACTS), REQUEST_READ_CONTACTS) }
+                    .setAction(android.R.string.ok, OnClickListener { requestPermissions(arrayOf(READ_CONTACTS), REQUEST_READ_CONTACTS) })
         } else {
             requestPermissions(arrayOf(READ_CONTACTS), REQUEST_READ_CONTACTS)
         }
@@ -247,7 +247,7 @@ class SignupActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
 
     private fun addEmailsToAutoComplete(emailAddressCollection: List<String>) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
-        val adapter = ArrayAdapter(this@SignupActivity,
+        val adapter = ArrayAdapter(this@SigninActivity,
                 android.R.layout.simple_dropdown_item_1line, emailAddressCollection)
 
         mEmailView!!.setAdapter(adapter)
