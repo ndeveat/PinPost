@@ -49,11 +49,13 @@
             android:name=".Activity.LoginActivity"
             android:theme="@style/MainTheme" />
         <activity
-            android:name=".SigninActivity"
-            android:label="@string/title_activity_signin" />
+            android:name=".Activity.SigninActivity"
+            android:label="@string/title_activity_signin"
+            android:theme="@style/MainTheme" />
         <activity
-            android:name=".SignupActivity"
-            android:label="@string/title_activity_signup"></activity>
+            android:name=".Activity.SignupActivity"
+            android:label="@string/title_activity_signup"
+            android:theme="@style/MainTheme"></activity>
     </application>
 
 </manifest>
