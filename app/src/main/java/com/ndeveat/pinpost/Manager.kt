@@ -17,5 +17,11 @@ class Manager private constructor() {
     companion object {
         val instance: Manager by lazy { Holder.instance }
         val baseUrl = "http://192.168.0.9:3000"
+
+        var user_id = ""
+
+        val getUser = "/post/user"
+        val postlist = "/post/postlist"
+        val posting = "/post/posting"
     }
 }

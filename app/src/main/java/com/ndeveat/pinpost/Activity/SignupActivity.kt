@@ -3,6 +3,7 @@ package com.ndeveat.pinpost.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Debug
 import android.util.Log
 import com.facebook.*
 import com.facebook.login.LoginManager
@@ -16,7 +17,9 @@ import java.util.*
 import com.facebook.ProfileTracker
 import com.facebook.AccessToken
 import com.facebook.AccessTokenTracker
+import com.koushikdutta.ion.Ion
 import com.ndeveat.pinpost.Login.FacebookLogin
+import com.ndeveat.pinpost.Manager
 
 class SignupActivity : AppCompatActivity() {
     lateinit var facebookLogin: FacebookLogin
@@ -26,6 +29,8 @@ class SignupActivity : AppCompatActivity() {
         setContentView(R.layout.activity_signup)
 
         facebookLogin()
+        twitterLogin()
+        googleLogin()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -35,5 +40,19 @@ class SignupActivity : AppCompatActivity() {
 
     fun facebookLogin() {
         facebookLogin = FacebookLogin(this)
+    }
+
+    fun twitterLogin() {
+
+    }
+
+    fun googleLogin() {
+
+    }
+
+    fun getUserData() {
+        facebookLogin.getData {
+            Log.d("User Data", it.toString())
+        }
     }
 }

@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.toolbar.view.*
 import android.net.Uri
 import android.view.View
 import com.koushikdutta.ion.Ion
+import com.ndeveat.pinpost.Manager
 import com.ndeveat.pinpost.Utils.RealPathUtil
 import org.jetbrains.anko.intentFor
 import org.json.JSONObject
@@ -69,7 +70,7 @@ class PushActivity : AppCompatActivity() {
 
         push_button.setOnClickListener {
             // Ion을 이용해서 파일 전송 테스트
-            val ion = Ion.with(this@PushActivity).load("http://192.168.0.17:3000/post/posting").setTimeout(1000 * 6)
+            val ion = Ion.with(this@PushActivity).load(Manager.baseUrl + Manager.posting).setTimeout(1000 * 6)
             // Title
             ion.setMultipartParameter("title", mTitle)
             // Contents

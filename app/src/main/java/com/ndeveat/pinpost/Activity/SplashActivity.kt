@@ -14,6 +14,7 @@ import android.content.pm.PackageInfo
 import android.hardware.camera2.params.Face
 import android.util.Base64
 import android.util.Log
+import com.koushikdutta.ion.Ion
 import com.ndeveat.pinpost.Login.FacebookLogin
 import com.ndeveat.pinpost.Login.LoginModule
 import java.security.MessageDigest
@@ -34,24 +35,27 @@ class SplashActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        try {
-            val info = packageManager.getPackageInfo("com.ndeveat.pinpost", PackageManager.GET_SIGNATURES)
-            Log.d("Package", info.toString())
-            for (signature in info.signatures) {
-                val md = MessageDigest.getInstance("SHA")
-                md.update(signature.toByteArray())
-                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT))
-            }
-        } catch (e: PackageManager.NameNotFoundException) {
-            Log.d("KeyHash:", "name not found")
-        } catch (e: NoSuchAlgorithmException) {
-            Log.d("KeyHash:", "no such")
-        }
-
         // load SNS
         loadSocialNetworkData()
         // login SNS
         loginSocialNetworkData()
+
+
+        // 로그인된 회원정보 가져오기
+        if (loginModule.facebookLogin.isLogin()) {
+            loginModule.facebookLogin.getData {
+                if (it != null) {
+                    Ion.with(this@SplashActivity)
+                            .load(Manager.baseUrl + Manager.getUser)
+                            .setBodyParameter("email", it.userEmail)
+                            .setBodyParameter("sns", it.snsName)
+                            .asJsonObject()
+                            .setCallback { e, result ->
+                                Log.d("User ", result.toString())
+                            }
+                }
+            }
+        }
 
         // TODO
         // 회원 가입 및 로그인 추가
@@ -61,6 +65,7 @@ class SplashActivity : Activity() {
             startActivity(intentFor<SignupActivity>())
         else
             startActivity(intentFor<MainActivity>())
+
         finish()
     }
 

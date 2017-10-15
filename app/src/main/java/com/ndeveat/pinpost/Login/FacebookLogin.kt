@@ -48,6 +48,7 @@ class FacebookLogin(activity: Activity) : LoginBase {
                 val name = `object`.getString("name")
                 val email = `object`.getString("email")
                 val loginData = LoginData("Facebook", name, email)
+
                 callback.invoke(loginData)
             }
             val parameters = Bundle()
@@ -78,6 +79,7 @@ class FacebookLogin(activity: Activity) : LoginBase {
                                     if (result == null)
                                         e.printStackTrace()
                                     else {
+                                        Log.d("User Result", result.toString())
                                         Log.d("Facebook Login callback", result.toString())
                                         // result : boolean
                                         // signup : boolean
