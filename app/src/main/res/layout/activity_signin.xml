@@ -17,7 +17,7 @@
 
         <!-- Login progress -->
         <ProgressBar
-            android:id="@+id/login_progress"
+            android:id="@+id/signin_process"
             style="?android:attr/progressBarStyleLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -25,12 +25,11 @@
             android:visibility="gone" />
 
         <ScrollView
-            android:id="@+id/login_form"
+            android:id="@+id/signin_form"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:id="@+id/email_login_form"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -40,7 +39,7 @@
                     android:layout_height="wrap_content">
 
                     <com.ndeveat.pinpost.Ui.View.EditText
-                        android:id="@+id/email"
+                        android:id="@+id/signin_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="이메일"
@@ -53,17 +52,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <EditText
-                        android:id="@+id/password"
+                    <com.ndeveat.pinpost.Ui.View.EditText
+                        android:id="@+id/signin_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="패스워드"
-                        android:imeActionId="@+id/login"
-                        android:imeActionLabel="@string/action_sign_in_short"
+                        android:imeActionLabel="패스워드"
                         android:imeOptions="actionUnspecified"
                         android:inputType="textPassword"
-                        android:maxLines="1"
-                        android:singleLine="true" />
+                        android:maxLines="1" />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -73,12 +70,12 @@
                     android:layout_height="48dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/push_button"
+                    android:clickable="true"
                     android:gravity="center"
                     android:text="로그인"
                     android:textColor="@android:color/white"
                     android:textSize="14dp"
                     android:textStyle="bold" />
-
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

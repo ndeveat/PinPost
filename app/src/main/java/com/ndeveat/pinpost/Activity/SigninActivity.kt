@@ -33,6 +33,10 @@ import java.util.ArrayList
 import com.ndeveat.pinpost.R
 
 import android.Manifest.permission.READ_CONTACTS
+import android.util.Log
+import android.util.Patterns
+import com.koushikdutta.ion.Ion
+import com.ndeveat.pinpost.Manager
 import kotlinx.android.synthetic.main.activity_signin.*
 
 /**
@@ -43,6 +47,36 @@ class SigninActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signin)
 
+        signin_button.setOnClickListener {
+            signin_process.visibility = View.GONE
+            signin_form.visibility = View.VISIBLE
+
+            val email = signin_email.text.toString()
+            val password = signin_password.text.toString()
+
+            if (isEmailValidation()) {
+                Ion.with(this@SigninActivity)
+                        .load(Manager.baseUrl + Manager.signin)
+                        .setBodyParameter("email", email)
+                        .setBodyParameter("password", password)
+                        .asJsonObject()
+                        .setCallback { e, result ->
+                            if (result != null) {
+                                Log.d("Signin Result", result.toString())
+                            } else {
+                                e.printStackTrace()
+                            }
+
+                            signin_form.visibility = View.VISIBLE
+                            signin_process.visibility = View.GONE
+                        }
+            }
+        }
+    }
+
+    // Email validation check
+    fun isEmailValidation(): Boolean {
+        return Patterns.EMAIL_ADDRESS.matcher(signin_email.text).matches()
     }
 }
 

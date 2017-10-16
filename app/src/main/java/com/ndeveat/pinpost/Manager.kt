@@ -20,7 +20,8 @@ class Manager private constructor() {
 
         var user_id = ""
 
-        val getUser = "/post/user"
+        val signup = "/post/signup"
+        val signin = "/post/signin"
         val postlist = "/post/postlist"
         val posting = "/post/posting"
     }

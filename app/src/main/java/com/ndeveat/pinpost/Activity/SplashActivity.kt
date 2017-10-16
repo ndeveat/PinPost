@@ -40,23 +40,6 @@ class SplashActivity : Activity() {
         // login SNS
         loginSocialNetworkData()
 
-
-        // 로그인된 회원정보 가져오기
-        if (loginModule.facebookLogin.isLogin()) {
-            loginModule.facebookLogin.getData {
-                if (it != null) {
-                    Ion.with(this@SplashActivity)
-                            .load(Manager.baseUrl + Manager.getUser)
-                            .setBodyParameter("email", it.userEmail)
-                            .setBodyParameter("sns", it.snsName)
-                            .asJsonObject()
-                            .setCallback { e, result ->
-                                Log.d("User ", result.toString())
-                            }
-                }
-            }
-        }
-
         // TODO
         // 회원 가입 및 로그인 추가
         // 회원가입이 되어있다면 넘어간다.
