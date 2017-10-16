@@ -33,11 +33,6 @@ class LoginActivity : AppCompatActivity() {
         login_signin.setOnClickListener {
             startActivity(intentFor<SigninActivity>())
         }
-
-        // 회원가입
-        login_signup.setOnClickListener {
-            startActivity(intentFor<SignupActivity>())
-        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

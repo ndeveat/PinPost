@@ -38,6 +38,7 @@ import android.util.Patterns
 import com.koushikdutta.ion.Ion
 import com.ndeveat.pinpost.Manager
 import kotlinx.android.synthetic.main.activity_signin.*
+import org.jetbrains.anko.intentFor
 
 /**
  * A login screen that offers login via email/password.
@@ -46,6 +47,11 @@ class SigninActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signin)
+
+        // 회원가입
+        login_signup.setOnClickListener {
+            startActivity(intentFor<SignupActivity>())
+        }
 
         signin_button.setOnClickListener {
             signin_process.visibility = View.GONE

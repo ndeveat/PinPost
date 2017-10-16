@@ -13,7 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp">
+        android:layout_marginTop="32dp">
 
         <!-- Login progress -->
         <ProgressBar
@@ -34,6 +34,19 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="32dp"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="128dp"
+                        android:layout_height="wrap_content"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/title" />
+                </LinearLayout>
+
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -44,7 +57,9 @@
                         android:layout_height="wrap_content"
                         android:hint="이메일"
                         android:inputType="textEmailAddress"
-                        android:maxLines="1" />
+                        android:maxLines="1"
+                        android:textColor="@android:color/white"
+                        android:textColorHint="@android:color/white" />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -57,10 +72,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="패스워드"
-                        android:imeActionLabel="패스워드"
-                        android:imeOptions="actionUnspecified"
+                        android:imeActionLabel="Password"
                         android:inputType="textPassword"
-                        android:maxLines="1" />
+                        android:maxLines="1"
+                        android:textColor="@android:color/white"
+                        android:textColorHint="@android:color/white" />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -70,12 +86,26 @@
                     android:layout_height="48dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/push_button"
+                    android:backgroundTint="@color/pinpost"
                     android:clickable="true"
                     android:gravity="center"
                     android:text="로그인"
                     android:textColor="@android:color/white"
-                    android:textSize="14dp"
+                    android:textSize="16dp"
                     android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:gravity="center">
+
+                    <com.ndeveat.pinpost.Ui.View.TextView
+                        android:id="@+id/login_signup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="회원가입" />
+                </LinearLayout>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
