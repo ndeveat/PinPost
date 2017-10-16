@@ -24,7 +24,7 @@ class SidebarCategoryAdapter : RecyclerView.Adapter<SidebarCategoryHolder>() {
     var sidebarEvent: SidebarEvent? = null
 
     init {
-        mSocialNetwork = Manager.instance.SNSList
+        mSocialNetwork = Manager.instance.snsList
     }
 
     override fun getItemCount(): Int = mSocialNetwork.size

@@ -8,7 +8,14 @@ import com.ndeveat.pinpost.Ui.Categories.SocialNetworkModel
 
 // 로그인 관리
 class Manager private constructor() {
-    val SNSList = ArrayList<SocialNetworkModel>()
+    class User {
+        var userName = ""
+        var userId = ""
+        var userEmail = ""
+    }
+
+    val snsList = ArrayList<SocialNetworkModel>()
+    val user = User()
 
     private object Holder {
         val instance = Manager()
@@ -16,12 +23,10 @@ class Manager private constructor() {
 
     companion object {
         val instance: Manager by lazy { Holder.instance }
-        val baseUrl = "http://192.168.0.9:3000"
 
-        var user_id = ""
-
-        val signup = "/post/signup"
-        val signin = "/post/signin"
+        val baseUrl = "http://45.76.205.51:3000"
+        val signup = "/user/signup"
+        val signin = "/user/signin"
         val postlist = "/post/postlist"
         val posting = "/post/posting"
     }

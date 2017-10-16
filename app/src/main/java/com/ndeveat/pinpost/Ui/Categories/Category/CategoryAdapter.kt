@@ -42,7 +42,7 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryHolder>() {
     var mSocialNetwork: ArrayList<SocialNetworkModel>
 
     init {
-        mSocialNetwork = Manager.instance.SNSList
+        mSocialNetwork = Manager.instance.snsList
 
         // update
         updateCategoryCount()
@@ -56,7 +56,7 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryHolder>() {
 
         holder!!.setCategoryBackground(category.snsMainColor)
         holder.setCategoryIcon(category.snsPlusImage)
-        holder.setCategoryCount(dataCenter.SNSList.filter { it.snsType == category.snsType }[0].count)
+        holder.setCategoryCount(dataCenter.snsList.filter { it.snsType == category.snsType }[0].count)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): CategoryHolder {

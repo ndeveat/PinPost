@@ -21,7 +21,7 @@ class PushCateogryAdapter : RecyclerView.Adapter<PushCategoryHolder>() {
     var mPushCategoryEvent: PushCategoryEvent? = null
 
     init {
-        mSocialNetwork = Manager.instance.SNSList
+        mSocialNetwork = Manager.instance.snsList
     }
 
     override fun getItemCount(): Int = mSocialNetwork.size

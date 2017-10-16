@@ -6,9 +6,11 @@ import android.view.View
 import com.ndeveat.pinpost.R
 import android.util.Log
 import android.util.Patterns
+import android.widget.Toast
 import com.koushikdutta.ion.Ion
 import com.ndeveat.pinpost.Manager
 import kotlinx.android.synthetic.main.activity_signup.*
+import org.jetbrains.anko.intentFor
 
 class SignupActivity : AppCompatActivity() {
 
@@ -35,12 +37,19 @@ class SignupActivity : AppCompatActivity() {
                         .setCallback { e, result ->
                             if (result != null) {
                                 Log.d("Signup Result", result.toString())
+
+                                val user = result["user"].asJsonObject
+                                Manager.instance.user.userEmail = user["email"].asString
+                                Manager.instance.user.userId = user["id"].asString
+                                Manager.instance.user.userName = user["name"].asString
                             } else {
                                 e.printStackTrace()
                             }
                             signup_progress.visibility = View.GONE
                             signup_form.visibility = View.VISIBLE
                         }
+            } else {
+                Toast.makeText(this@SignupActivity, "이메일 형식을 지켜주세요", Toast.LENGTH_SHORT).show()
             }
         }
     }

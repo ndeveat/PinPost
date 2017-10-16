@@ -8,17 +8,8 @@ import com.ndeveat.pinpost.Manager
 import com.ndeveat.pinpost.R
 import com.ndeveat.pinpost.Ui.Categories.SocialNetworkType
 import org.jetbrains.anko.intentFor
-import android.content.pm.PackageManager
-import android.provider.SyncStateContract.Helpers.update
-import android.content.pm.PackageInfo
-import android.hardware.camera2.params.Face
-import android.util.Base64
 import android.util.Log
-import com.koushikdutta.ion.Ion
-import com.ndeveat.pinpost.Login.FacebookLogin
 import com.ndeveat.pinpost.Login.LoginModule
-import java.security.MessageDigest
-import java.security.NoSuchAlgorithmException
 
 
 /*
@@ -56,10 +47,10 @@ class SplashActivity : Activity() {
     * 기존의 SNS데이터를 수집함
     * */
     fun loadSocialNetworkData() {
-        if (Manager.instance.SNSList.size > 0)
+        if (Manager.instance.snsList.size > 0)
             return
 
-        Manager.instance.SNSList.add(
+        Manager.instance.snsList.add(
                 SocialNetworkModel(
                         SocialNetworkType.Facebook,
                         ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_facebook_00001),
@@ -69,7 +60,7 @@ class SplashActivity : Activity() {
                         "ndeveat@gmail.com",
                         0))
 
-        Manager.instance.SNSList.add(
+        Manager.instance.snsList.add(
                 SocialNetworkModel(
                         SocialNetworkType.Tstory,
                         ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_tstory_00001),
@@ -79,7 +70,7 @@ class SplashActivity : Activity() {
                         "ndeveat@gmail.com",
                         0))
 
-        Manager.instance.SNSList.add(
+        Manager.instance.snsList.add(
                 SocialNetworkModel(
                         SocialNetworkType.Twitter,
                         ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_twitter_00001),
@@ -89,7 +80,7 @@ class SplashActivity : Activity() {
                         "ndeveat@gmail.com",
                         0))
 
-        Manager.instance.SNSList.add(
+        Manager.instance.snsList.add(
                 SocialNetworkModel(
                         SocialNetworkType.Tumblr,
                         ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_tumblr_00001),
@@ -99,7 +90,7 @@ class SplashActivity : Activity() {
                         "ndeveat@gmail.com",
                         0))
 
-        Manager.instance.SNSList.add(
+        Manager.instance.snsList.add(
                 SocialNetworkModel(
                         SocialNetworkType.NaverBlog,
                         ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_naverblog_00001),
@@ -118,7 +109,7 @@ class SplashActivity : Activity() {
         loginModule = LoginModule(this)
         if (loginModule.facebookLogin.isLogin()) {
             Log.d("SNS Login", "facebook logined")
-            Manager.instance.SNSList.find { it.snsType == SocialNetworkType.Facebook }!!.isLogin = true
+            Manager.instance.snsList.find { it.snsType == SocialNetworkType.Facebook }!!.isLogin = true
         }
     }
 }
