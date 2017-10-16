@@ -19,8 +19,9 @@
         <ProgressBar
             android:id="@+id/signin_process"
             style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:layout_marginBottom="8dp"
             android:visibility="gone" />
 
@@ -58,8 +59,8 @@
                         android:hint="이메일"
                         android:inputType="textEmailAddress"
                         android:maxLines="1"
-                        android:textColor="@android:color/white"
-                        android:textColorHint="@android:color/white" />
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@android:color/black" />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -75,8 +76,8 @@
                         android:imeActionLabel="Password"
                         android:inputType="textPassword"
                         android:maxLines="1"
-                        android:textColor="@android:color/white"
-                        android:textColorHint="@android:color/white" />
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@android:color/black" />
 
                 </android.support.design.widget.TextInputLayout>
 
