@@ -1,5 +1,6 @@
 package com.ndeveat.pinpost.Activity
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -39,9 +40,17 @@ class SignupActivity : AppCompatActivity() {
                                 Log.d("Signup Result", result.toString())
 
                                 val user = result["user"].asJsonObject
-                                Manager.instance.user.userEmail = user["email"].asString
-                                Manager.instance.user.userId = user["id"].asString
-                                Manager.instance.user.userName = user["name"].asString
+                                val mUser = Manager.User()
+                                mUser.isLogin = true
+                                mUser.userEmail = user["email"].asString
+                                mUser.userId = user["id"].asString
+                                mUser.userName = user["name"].asString
+
+                                Manager.instance.setUserData(this@SignupActivity, mUser)
+
+                                val intent = intentFor<MainActivity>()
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                startActivity(intent)
                             } else {
                                 e.printStackTrace()
                             }

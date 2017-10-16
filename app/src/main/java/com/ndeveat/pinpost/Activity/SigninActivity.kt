@@ -33,6 +33,7 @@ import java.util.ArrayList
 import com.ndeveat.pinpost.R
 
 import android.Manifest.permission.READ_CONTACTS
+import android.content.Intent
 import android.util.Log
 import android.util.Patterns
 import com.koushikdutta.ion.Ion
@@ -69,6 +70,19 @@ class SigninActivity : AppCompatActivity() {
                         .setCallback { e, result ->
                             if (result != null) {
                                 Log.d("Signin Result", result.toString())
+
+                                val user = result["user"].asJsonObject
+                                val mUser = Manager.User()
+                                mUser.isLogin = true
+                                mUser.userEmail = user["email"].asString
+                                mUser.userId = user["id"].asString
+                                mUser.userName = user["name"].asString
+
+                                Manager.instance.setUserData(this@SigninActivity, mUser)
+
+                                val intent = intentFor<MainActivity>()
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                startActivity(intent)
                             } else {
                                 e.printStackTrace()
                             }
