@@ -19,6 +19,7 @@ import com.ndeveat.pinpost.Ui.Categories.Sidebar.SidebarCategoryAdapter
 import com.ndeveat.pinpost.Fragment.CategoriesFragment
 import com.ndeveat.pinpost.Fragment.PostviewFragment
 import com.ndeveat.pinpost.Login.LoginModule
+import com.ndeveat.pinpost.Manager
 import com.ndeveat.pinpost.R
 import com.ndeveat.pinpost.Ui.Categories.SocialNetworkType
 import com.ndeveat.pinpost.Ui.Categories.SocialNetworkType.*
@@ -121,6 +122,9 @@ class MainActivity : AppCompatActivity() {
         mSidebarSnsAdapter = SidebarCategoryAdapter()
         sidebar_snslist.adapter = mSidebarSnsAdapter
         sidebar_snslist.layoutManager = mSidebarLayoutManager
+
+        sidebar_user_email.text = Manager.instance.user.userEmail
+        sidebar_user_name.text = Manager.instance.user.userName
 
         loginModule = LoginModule(this)
 

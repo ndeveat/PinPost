@@ -72,13 +72,30 @@
                         android:src="@drawable/icon_human_00004" />
                 </FrameLayout>
 
-                <com.ndeveat.pinpost.Ui.View.TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="16dp"
-                    android:gravity="center_vertical"
-                    android:text="Youn Junseo"
-                    android:textSize="18dp" />
+                    android:orientation="vertical">
+
+                    <com.ndeveat.pinpost.Ui.View.TextView
+                        android:id="@+id/sidebar_user_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="26dp"
+                        android:layout_marginLeft="16dp"
+                        android:gravity="center_vertical"
+                        android:text="Root"
+                        android:textSize="18dp" />
+
+                    <com.ndeveat.pinpost.Ui.View.TextView
+                        android:id="@+id/sidebar_user_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="26dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"
+                        android:text="email@email.com"
+                        android:textSize="14dp" />
+                </LinearLayout>
             </LinearLayout>
 
             <FrameLayout

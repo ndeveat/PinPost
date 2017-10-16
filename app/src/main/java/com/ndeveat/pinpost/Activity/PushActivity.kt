@@ -1,5 +1,6 @@
 package com.ndeveat.pinpost.Activity
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
@@ -12,7 +13,6 @@ import com.ndeveat.pinpost.R
 import kotlinx.android.synthetic.main.activity_push.*
 import kotlinx.android.synthetic.main.toolbar.view.*
 import android.net.Uri
-import android.view.View
 import com.koushikdutta.ion.Ion
 import com.ndeveat.pinpost.Manager
 import com.ndeveat.pinpost.Utils.RealPathUtil
@@ -26,10 +26,10 @@ class PushActivity : AppCompatActivity() {
     var mRecyclerView: RecyclerView? = null
     var mCategoryAdapter: PushCateogryAdapter? = null
 
-    var mTitle = ""
-    var mContents = ""
-    var mImages: ArrayList<Uri>? = null
-    var mSns = ArrayList<String>()
+    var title = ""
+    var contents = ""
+    var image: ArrayList<Uri>? = null
+    var sns = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,38 +52,36 @@ class PushActivity : AppCompatActivity() {
         // Add Push Category Event
         mCategoryAdapter!!.mPushCategoryEvent = object : PushCateogryAdapter.PushCategoryEvent {
             override fun add(snsName: String) {
-                mSns.add(snsName)
+                sns.add(snsName)
             }
 
             override fun remove(snsName: String) {
-                mSns.remove(snsName)
+                sns.remove(snsName)
             }
         }
 
-        mTitle = intent.extras.getString("Title")
-        mContents = intent.extras.getString("Contents")
-        mImages = intent.extras.getParcelableArrayList("Images")
-
-        Log.d("Title", mTitle)
-        Log.d("Contents", mContents)
-        Log.d("Images", mImages?.size.toString())
+        title = intent.extras.getString("Title")
+        contents = intent.extras.getString("Contents")
+        image = intent.extras.getParcelableArrayList("Images")
 
         push_button.setOnClickListener {
             // Ion을 이용해서 파일 전송 테스트
             val ion = Ion.with(this@PushActivity).load(Manager.baseUrl + Manager.posting).setTimeout(1000 * 6)
             // Title
-            ion.setMultipartParameter("title", mTitle)
+            ion.setMultipartParameter("title", title)
             // Contents
-            ion.setMultipartParameter("contents", mContents)
+            ion.setMultipartParameter("contents", contents)
+            // User ID
+            ion.setMultipartParameter("user_id", Manager.instance.user.userId)
             // SNS Data
             val snsData = JSONObject()
             var snsString = ""
-            mSns.forEach { snsString += it + "," }
+            sns.forEach { snsString += it + "," }
             snsString.dropLast(1)
             snsData.put("sns", snsString)
             ion.setMultipartParameter("sns", snsData.toString())
 
-            mImages!!.forEachIndexed { index, uri ->
+            image!!.forEachIndexed { index, uri ->
                 val imagePath = RealPathUtil.getRealPath(this@PushActivity, uri)
                 val file = File(imagePath)
                 ion.setMultipartFile("image{$index}", file)
@@ -91,11 +89,12 @@ class PushActivity : AppCompatActivity() {
 
             ion.asJsonObject().setCallback { e, result ->
                 if (result != null) {
-                    val success = result["success"].asBoolean
+                    val success = result["result"].asBoolean
                     if (success) {
                         // 글을 작성합니다.
-                        // var intent = intentFor<MainActivity>()
-                        // startActivity(intent)
+                        val intent = intentFor<MainActivity>()
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        startActivity(intent)
                     } else {
                         // 임시 저장소로 이동합니다
                     }
