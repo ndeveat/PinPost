@@ -58,5 +58,6 @@ class Manager private constructor() {
         val signin = "/user/signin"
         val postlist = "/post/postlist"
         val posting = "/post/posting"
+        val media = "/media/"
     }
 }
