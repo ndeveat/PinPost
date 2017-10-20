@@ -85,9 +85,8 @@ class PostImageViewer : FrameLayout {
             subImage!!.visibility = View.VISIBLE
             plusImage!!.visibility = View.VISIBLE
         }
-
-        for (image in images) {
-            val url = Manager.baseUrl + Manager.media + image
+        images.forEachIndexed { index, s ->
+            val url = Manager.baseUrl + Manager.media + s
             Ion.with(context)
                     .load(url)
                     .asJsonObject()
@@ -95,10 +94,7 @@ class PostImageViewer : FrameLayout {
                         if (result != null) {
                             val imageData = result["media"].asJsonObject
                             val imageUrl = Manager.baseUrl + "/images/" + imageData["id"].asString + "." + imageData["type"].asString
-
-                            Log.d("Image Result", imageUrl)
-
-                            when (imageCount) {
+                            when (index) {
                                 0 -> {
                                     Picasso.with(context).load(imageUrl).transform(CompressionBitmap(1280, 720)).into(mainImage)
                                 }
@@ -109,8 +105,6 @@ class PostImageViewer : FrameLayout {
                                     Picasso.with(context).load(imageUrl).transform(CompressionBitmap(1280, 720)).into(plusImage)
                                 }
                             }
-
-                            imageCount += 1
                         } else {
                             e.printStackTrace()
                         }
