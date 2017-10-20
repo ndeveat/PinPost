@@ -6,6 +6,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.Context.MODE_PRIVATE
+import com.koushikdutta.ion.Ion
 import com.ndeveat.pinpost.Login.LoginData
 import com.ndeveat.pinpost.Ui.Categories.SocialNetworkType
 
@@ -28,6 +29,26 @@ class Manager private constructor() {
 
     private object Holder {
         val instance = Manager()
+    }
+
+    fun getPostCount(context: Context) {
+        val url = "${Manager.baseUrl}${Manager.sns}${Manager.instance.user.userId}"
+        Ion.with(context)
+                .load(url)
+                .asJsonObject()
+                .setCallback { e, result ->
+                    if (result != null) {
+                        if (result.has("sns")) {
+                            val snsArray = result["sns"].asJsonArray
+                            snsArray.forEach { sns ->
+                                val snsData = sns.asJsonObject
+                                Manager.instance.snsList.find { it.snsType == SocialNetworkType.valueOf(snsData["name"].asString) }!!.count = snsData["count"].asInt
+                            }
+                        }
+                    } else {
+                        e.printStackTrace()
+                    }
+                }
     }
 
     fun getUserData(activity: Activity) {
@@ -85,5 +106,6 @@ class Manager private constructor() {
         val postlist = "/post/postlist"
         val posting = "/post/posting"
         val media = "/media/"
+        val sns = "/sns/"
     }
 }

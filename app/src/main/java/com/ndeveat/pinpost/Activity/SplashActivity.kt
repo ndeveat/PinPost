@@ -11,6 +11,7 @@ import com.ndeveat.pinpost.R
 import com.ndeveat.pinpost.Ui.Categories.SocialNetworkType
 import org.jetbrains.anko.intentFor
 import android.util.Log
+import com.koushikdutta.ion.Ion
 import com.ndeveat.pinpost.Login.LoginData
 import com.ndeveat.pinpost.Login.LoginModule
 
@@ -29,14 +30,12 @@ class SplashActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+        // 로컬 데이터 불러오기
+        Manager.instance.getUserData(this@SplashActivity)
         // load SNS
         loadSocialNetworkData()
         // login SNS
         loginSocialNetworkData()
-
-        // 로컬 데이터 불러오기
-        Manager.instance.getUserData(this@SplashActivity)
-        Log.d("SharedTest", Manager.instance.user.isLogin.toString())
 
         Handler().postDelayed({
             // TODO
@@ -45,9 +44,9 @@ class SplashActivity : Activity() {
             // 앱의 로컬 데이터 베이스에 정보들을 저장한다.
             if (!Manager.instance.user.isLogin)
                 startActivity(intentFor<LoginActivity>())
-            else
+            else {
                 startActivity(intentFor<MainActivity>())
-
+            }
             finish()
         }, 500)
     }
@@ -58,6 +57,8 @@ class SplashActivity : Activity() {
     fun loadSocialNetworkData() {
         if (Manager.instance.snsList.size > 0)
             return
+
+        Manager.instance.getPostCount(this)
 
         Manager.instance.snsList.add(
                 SocialNetworkModel(
