@@ -54,8 +54,6 @@ class PushNotification : Service() {
         val images = intent.extras.getParcelableArrayList<Uri>("images")
         val sns = intent.extras.getStringArrayList("sns")
 
-        Log.d("테스트", "테스트")
-
         val snsData = JSONObject()
         var snsString = ""
         sns.forEach { snsString += it + "," }

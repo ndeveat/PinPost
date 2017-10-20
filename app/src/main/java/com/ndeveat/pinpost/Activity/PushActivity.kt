@@ -76,6 +76,8 @@ class PushActivity : AppCompatActivity() {
             val intent = intentFor<MainActivity>()
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
+
+            finish()
         }
     }
 
@@ -87,7 +89,6 @@ class PushActivity : AppCompatActivity() {
         intent.putExtra("sns", sns)
 
         startService(intent)
-        startActivity(intentFor<MainActivity>())
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

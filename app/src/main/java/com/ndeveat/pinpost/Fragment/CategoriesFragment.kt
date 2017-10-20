@@ -1,6 +1,7 @@
 package com.ndeveat.pinpost.Fragment
 
 import android.os.Bundle
+import android.os.Handler
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -31,9 +32,17 @@ class CategoriesFragment : Fragment() {
         mRecyclerView!!.adapter = mCategoryAdapter
         mRecyclerView!!.addItemDecoration(CategoryAdapter.CategoriesDecoration(3, 50))
 
+        getPostCount()
+
         return rootView
     }
 
+    fun getPostCount() {
+        mCategoryAdapter!!.notifyDataSetChanged()
+        Handler().postDelayed({
+            getPostCount()
+        }, 2000)
+    }
 
     companion object {
         fun newInstance(): CategoriesFragment {
