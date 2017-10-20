@@ -1,5 +1,7 @@
 package com.ndeveat.pinpost.Activity
 
+import android.app.Notification
+import android.app.PendingIntent
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -15,10 +17,14 @@ import kotlinx.android.synthetic.main.toolbar.view.*
 import android.net.Uri
 import com.koushikdutta.ion.Ion
 import com.ndeveat.pinpost.Manager
+import com.ndeveat.pinpost.Ui.PushNotification
 import com.ndeveat.pinpost.Utils.RealPathUtil
 import org.jetbrains.anko.intentFor
 import org.json.JSONObject
 import java.io.File
+import android.content.Context.NOTIFICATION_SERVICE
+import android.app.NotificationManager
+import android.content.Context
 
 
 class PushActivity : AppCompatActivity() {
@@ -28,7 +34,7 @@ class PushActivity : AppCompatActivity() {
 
     var title = ""
     var contents = ""
-    var image: ArrayList<Uri>? = null
+    var images: ArrayList<Uri>? = null
     var sns = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,48 +68,26 @@ class PushActivity : AppCompatActivity() {
 
         title = intent.extras.getString("Title")
         contents = intent.extras.getString("Contents")
-        image = intent.extras.getParcelableArrayList("Images")
+        images = intent.extras.getParcelableArrayList("Images")
 
         push_button.setOnClickListener {
-            // Ion을 이용해서 파일 전송 테스트
-            val ion = Ion.with(this@PushActivity).load(Manager.baseUrl + Manager.posting).setTimeout(1000 * 6)
-            // Title
-            ion.setMultipartParameter("title", title)
-            // Contents
-            ion.setMultipartParameter("contents", contents)
-            // User ID
-            ion.setMultipartParameter("user_id", Manager.instance.user.userId)
-            // SNS Data
-            val snsData = JSONObject()
-            var snsString = ""
-            sns.forEach { snsString += it + "," }
-            snsString.dropLast(1)
-            snsData.put("sns", snsString)
-            ion.setMultipartParameter("sns", snsData.toString())
+            postingNotification()
 
-            image!!.forEachIndexed { index, uri ->
-                val imagePath = RealPathUtil.getRealPath(this@PushActivity, uri)
-                val file = File(imagePath)
-                ion.setMultipartFile("image{$index}", file)
-            }
-
-            ion.asJsonObject().setCallback { e, result ->
-                if (result != null) {
-                    val success = result["result"].asBoolean
-                    if (success) {
-                        // 글을 작성합니다.
-                        val intent = intentFor<MainActivity>()
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                        startActivity(intent)
-                    } else {
-                        // 임시 저장소로 이동합니다
-                    }
-                    Log.d("Result", result.toString())
-                } else {
-                    e.printStackTrace()
-                }
-            }
+            val intent = intentFor<MainActivity>()
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
         }
+    }
+
+    fun postingNotification() {
+        val intent = intentFor<PushNotification>()
+        intent.putExtra("title", title)
+        intent.putExtra("contents", contents)
+        intent.putExtra("images", images)
+        intent.putExtra("sns", sns)
+
+        startService(intent)
+        startActivity(intentFor<MainActivity>())
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

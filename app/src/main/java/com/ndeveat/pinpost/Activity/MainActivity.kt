@@ -1,5 +1,6 @@
 package com.ndeveat.pinpost.Activity
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 
 import android.support.v4.app.Fragment
@@ -11,6 +12,7 @@ import android.support.design.widget.TabLayout
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -126,7 +128,7 @@ class MainActivity : AppCompatActivity() {
         sidebar_user_email.text = Manager.instance.user.userEmail
         sidebar_user_name.text = Manager.instance.user.userName
 
-        loginModule = LoginModule(this)
+        loginModule = LoginModule(this@MainActivity)
 
         mSidebarSnsAdapter!!.sidebarEvent = object : SidebarCategoryAdapter.SidebarEvent {
             override fun login(snsType: SocialNetworkType) {
@@ -155,6 +157,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        loginModule.facebookLogin.onActivityResult(requestCode, resultCode, data)
+    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.

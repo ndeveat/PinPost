@@ -1,7 +1,9 @@
 package com.ndeveat.pinpost.Activity
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.support.v4.content.ContextCompat
 import com.ndeveat.pinpost.Ui.Categories.SocialNetworkModel
 import com.ndeveat.pinpost.Manager
@@ -9,6 +11,7 @@ import com.ndeveat.pinpost.R
 import com.ndeveat.pinpost.Ui.Categories.SocialNetworkType
 import org.jetbrains.anko.intentFor
 import android.util.Log
+import com.ndeveat.pinpost.Login.LoginData
 import com.ndeveat.pinpost.Login.LoginModule
 
 
@@ -33,18 +36,20 @@ class SplashActivity : Activity() {
 
         // 로컬 데이터 불러오기
         Manager.instance.getUserData(this@SplashActivity)
-
         Log.d("SharedTest", Manager.instance.user.isLogin.toString())
-        // TODO
-        // 회원 가입 및 로그인 추가
-        // 회원가입이 되어있다면 넘어간다.
-        // 앱의 로컬 데이터 베이스에 정보들을 저장한다.
-        if (!Manager.instance.user.isLogin)
-            startActivity(intentFor<LoginActivity>())
-        else
-            startActivity(intentFor<MainActivity>())
 
-        finish()
+        Handler().postDelayed({
+            // TODO
+            // 회원 가입 및 로그인 추가
+            // 회원가입이 되어있다면 넘어간다.
+            // 앱의 로컬 데이터 베이스에 정보들을 저장한다.
+            if (!Manager.instance.user.isLogin)
+                startActivity(intentFor<LoginActivity>())
+            else
+                startActivity(intentFor<MainActivity>())
+
+            finish()
+        }, 500)
     }
 
     /*
@@ -61,7 +66,7 @@ class SplashActivity : Activity() {
                         ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_facebook_00007),
                         ContextCompat.getColor(this@SplashActivity, R.color.snsFacebook),
                         false,
-                        "ndeveat@gmail.com",
+                        "",
                         0))
 
         Manager.instance.snsList.add(
@@ -71,7 +76,7 @@ class SplashActivity : Activity() {
                         ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_tstory_00007),
                         ContextCompat.getColor(this@SplashActivity, R.color.snsTstory),
                         false,
-                        "ndeveat@gmail.com",
+                        "",
                         0))
 
         Manager.instance.snsList.add(
@@ -81,7 +86,7 @@ class SplashActivity : Activity() {
                         ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_twitter_00007),
                         ContextCompat.getColor(this@SplashActivity, R.color.snsTwitter),
                         false,
-                        "ndeveat@gmail.com",
+                        "",
                         0))
 
         Manager.instance.snsList.add(
@@ -91,7 +96,7 @@ class SplashActivity : Activity() {
                         ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_tumblr_00008),
                         ContextCompat.getColor(this@SplashActivity, R.color.snsTwitter),
                         false,
-                        "ndeveat@gmail.com",
+                        "",
                         0))
 
         Manager.instance.snsList.add(
@@ -101,7 +106,7 @@ class SplashActivity : Activity() {
                         ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_naverblog_00007),
                         ContextCompat.getColor(this@SplashActivity, R.color.snsTwitter),
                         false,
-                        "ndeveat@gmail.com",
+                        "",
                         0))
     }
 
@@ -111,9 +116,11 @@ class SplashActivity : Activity() {
     fun loginSocialNetworkData() {
         // 서버에서 로그인된 데이터를 가져옴
         loginModule = LoginModule(this)
-        if (loginModule.facebookLogin.isLogin()) {
-            Log.d("SNS Login", "facebook logined")
-            Manager.instance.snsList.find { it.snsType == SocialNetworkType.Facebook }!!.isLogin = true
-        }
+        loginModule.facebookLogin.login()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        loginModule.facebookLogin.onActivityResult(requestCode, resultCode, data)
     }
 }

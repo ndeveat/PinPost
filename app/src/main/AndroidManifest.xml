@@ -55,7 +55,11 @@
         <activity
             android:name=".Activity.SignupActivity"
             android:label="@string/title_activity_signup"
-            android:theme="@style/MainTheme"></activity>
+            android:theme="@style/MainTheme" />
+
+        <service
+            android:name=".Ui.PushNotification"
+            android:enabled="true"></service>
     </application>
 
 </manifest>

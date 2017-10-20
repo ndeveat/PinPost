@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.post_contents_image.view.*
  * Created by ndeveat on 2017. 10. 5..
  */
 
-class PostImageViewer : LinearLayout {
+class PostImageViewer : FrameLayout {
     var imageCount = 0
 
     constructor(context: Context) : super(context) {
@@ -66,6 +66,8 @@ class PostImageViewer : LinearLayout {
             container!!.weightSum = 1f
             // View visible
             subContainer!!.visibility = View.GONE
+            subImage!!.visibility = View.GONE
+            plusImage!!.visibility = View.GONE
         } else if (images.size == 2) {
             // Weight Sum
             container!!.weightSum = 2f
@@ -98,13 +100,13 @@ class PostImageViewer : LinearLayout {
 
                             when (imageCount) {
                                 0 -> {
-                                    Picasso.with(context).load(imageUrl).into(mainImage)
+                                    Picasso.with(context).load(imageUrl).transform(CompressionBitmap(1280, 720)).into(mainImage)
                                 }
                                 1 -> {
-                                    Picasso.with(context).load(imageUrl).into(subImage)
+                                    Picasso.with(context).load(imageUrl).transform(CompressionBitmap(1280, 720)).into(subImage)
                                 }
                                 2 -> {
-                                    Picasso.with(context).load(imageUrl).into(plusImage)
+                                    Picasso.with(context).load(imageUrl).transform(CompressionBitmap(1280, 720)).into(plusImage)
                                 }
                             }
 

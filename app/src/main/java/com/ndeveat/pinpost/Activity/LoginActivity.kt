@@ -32,6 +32,7 @@ class LoginActivity : AppCompatActivity() {
         // 로그인
         login_signin.setOnClickListener {
             startActivity(intentFor<SigninActivity>())
+            finish()
         }
     }
 

@@ -6,6 +6,8 @@ import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.Context.MODE_PRIVATE
+import com.ndeveat.pinpost.Login.LoginData
+import com.ndeveat.pinpost.Ui.Categories.SocialNetworkType
 
 
 /**
@@ -48,6 +50,30 @@ class Manager private constructor() {
         editor.commit()
 
         getUserData(activity)
+    }
+
+    fun setSNSData(activity: Activity, socialNetworkType: SocialNetworkType, loginData: LoginData) {
+        val sharedPref = activity.getSharedPreferences(socialNetworkType.toString(), Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.putString("email", loginData.userEmail)
+        editor.putString("name", loginData.userName)
+        editor.putBoolean("isLogin", true)
+        editor.apply()
+        editor.commit()
+
+        getSNSData(activity, socialNetworkType)
+    }
+
+    fun getSNSData(activity: Activity, socialNetworkType: SocialNetworkType): LoginData? {
+        val sharedPref = activity.getSharedPreferences(socialNetworkType.toString(), Context.MODE_PRIVATE)
+        val isLogin = sharedPref.getBoolean("isLogin", false)
+        if (isLogin) {
+            val email = sharedPref.getString("email", "")
+            val name = sharedPref.getString("name", "")
+            val loginData = LoginData(socialNetworkType.toString(), name, email)
+            return loginData
+        }
+        return null
     }
 
     companion object {

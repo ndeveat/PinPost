@@ -16,6 +16,7 @@ import com.facebook.GraphRequest
 import com.koushikdutta.ion.Ion
 import com.ndeveat.pinpost.Activity.MainActivity
 import com.ndeveat.pinpost.Manager
+import com.ndeveat.pinpost.Ui.Categories.SocialNetworkType
 import org.jetbrains.anko.intentFor
 
 
@@ -33,17 +34,14 @@ class FacebookLogin(activity: Activity) : LoginBase {
 
     override fun init() {
         callbackManager = CallbackManager.Factory.create()
-        // 회원가입
-        login()
     }
 
     // TODO : 콜백 등록하기
     override fun getData(callback: (LoginData?) -> Unit) {
         val accessToken = AccessToken.getCurrentAccessToken()
         if (accessToken != null) {
+            Log.d("안녕 시발", "왜이럴까?")
             val request = GraphRequest.newMeRequest(accessToken) { `object`, response ->
-                Log.v("LoginActivity", response.toString())
-
                 // Application code
                 val name = `object`.getString("name")
                 val email = `object`.getString("email")
@@ -66,36 +64,10 @@ class FacebookLogin(activity: Activity) : LoginBase {
     override fun login() {
         LoginManager.getInstance().registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(result: LoginResult?) {
-                // TODO : 있던 유저인지 체크한다
-                // 유저를 등록한다.
                 getData { value ->
-                    if (value != null) {
-                        Ion.with(activity).load(Manager.baseUrl + "/user/signup")
-                                .setBodyParameter("sns_name", value.snsName)
-                                .setBodyParameter("name", value.userName)
-                                .setBodyParameter("email", value.userEmail)
-                                .asJsonObject()
-                                .setCallback { e, result ->
-                                    if (result == null)
-                                        e.printStackTrace()
-                                    else {
-                                        Log.d("User Result", result.toString())
-                                        Log.d("Facebook Login callback", result.toString())
-                                        // result : boolean
-                                        // signup : boolean
-                                        val res = result["result"].asBoolean
-                                        val signup = result["signup"].asBoolean
-                                        if (res && signup) {
-                                            Toast.makeText(activity, "회원가입을 축하드립니다.", Toast.LENGTH_SHORT).show()
-                                            mainActivity()
-                                        } else if (res) {
-                                            mainActivity()
-                                        } else {
-                                            Toast.makeText(activity, "오류가 발생하였습니다", Toast.LENGTH_LONG).show()
-                                        }
-                                    }
-                                }
-                    }
+                    Log.d("Facebook", value.toString())
+                    if (value != null)
+                        Manager.instance.setSNSData(activity, SocialNetworkType.Facebook, value)
                 }
             }
 
@@ -111,12 +83,6 @@ class FacebookLogin(activity: Activity) : LoginBase {
 
     override fun logout() {
         LoginManager.getInstance().logOut()
-    }
-
-    fun mainActivity() {
-        val intent = activity.intentFor<MainActivity>()
-        activity.startActivity(intent)
-        activity.finish()
     }
 
     fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

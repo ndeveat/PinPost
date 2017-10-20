@@ -35,36 +35,12 @@ class PostviewFragment : Fragment() {
         mPostViewAdapter = PostPreviewAdapter()
         mLayoutManager = LinearLayoutManager(context)
         mRecyclerView = rootView.post_preview_list
+        mRecyclerView!!.setItemViewCacheSize(10)
         mRecyclerView!!.layoutManager = mLayoutManager
         mRecyclerView!!.adapter = mPostViewAdapter
         mRecyclerView!!.addItemDecoration(PostPreviewAdapter.PostPreviewDecoration())
 
         loadPost(0)
-
-        //var pushSocialDatas = arrayListOf<SocialNetworkType>(SocialNetworkType.Facebook, SocialNetworkType.Tstory, SocialNetworkType.Tumblr)
-        //var images = arrayListOf<String>("http://junsueg5737.dothome.co.kr/images/013.jpg", "http://junsueg5737.dothome.co.kr/images/02.jpg")
-
-        //mPostViewAdapter!!.mPosts.add(PostPreviewModel(null, null, null, null))
-        //mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트1", null, null, null))
-        //mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트2", "테스트2 내용", null, null))
-        //mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트3", "테스트3 내용", images, null))
-        //mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트4", "테스트4 내용", null, pushSocialDatas))
-        //mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트5", "테스트5 내용", images, pushSocialDatas))
-        //mPostViewAdapter!!.mPosts.add(PostPreviewModel(null, "테스트6 내용", images, pushSocialDatas))
-        //mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트7", null, images, pushSocialDatas))
-        //mPostViewAdapter!!.mPosts.add(PostPreviewModel(null, null, images, pushSocialDatas))
-
-        //pushSocialDatas = arrayListOf<SocialNetworkType>(SocialNetworkType.Facebook, SocialNetworkType.Tstory, SocialNetworkType.Tumblr)
-        //images = arrayListOf<String>("http://junsueg5737.dothome.co.kr/images/013.jpg", "http://junsueg5737.dothome.co.kr/images/02.jpg")
-        //mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트8", "테스트8 내용", images, pushSocialDatas))
-
-        //pushSocialDatas = arrayListOf<SocialNetworkType>(SocialNetworkType.Tstory, SocialNetworkType.Twitter, SocialNetworkType.NaverBlog)
-        //images = arrayListOf<String>("http://junsueg5737.dothome.co.kr/images/010.jpg", "http://junsueg5737.dothome.co.kr/images/08.jpg")
-        //mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트9", "테스트9 내용", images, pushSocialDatas))
-
-        //pushSocialDatas = arrayListOf<SocialNetworkType>(SocialNetworkType.NaverBlog, SocialNetworkType.Tumblr, SocialNetworkType.Twitter)
-        //images = arrayListOf<String>("http://junsueg5737.dothome.co.kr/images/016.jpg", "http://junsueg5737.dothome.co.kr/images/07.jpg")
-        //mPostViewAdapter!!.mPosts.add(PostPreviewModel("테스트10", "테스트10 내용", images, pushSocialDatas))
 
         return rootView
     }
@@ -78,7 +54,7 @@ class PostviewFragment : Fragment() {
                 .setCallback { e, result ->
                     if (result != null) {
                         val posts = result["posts"].asJsonArray
-                        posts.forEach {
+                        posts.forEachIndexed { index, it ->
                             val post = it.asJsonObject
 
                             val images = ArrayList<String>()
@@ -107,8 +83,9 @@ class PostviewFragment : Fragment() {
                                     images,
                                     sns
                             ));
+
+                            mPostViewAdapter!!.notifyItemChanged(index)
                         }
-                        mPostViewAdapter!!.notifyDataSetChanged()
                     } else {
                         e.printStackTrace()
                     }
