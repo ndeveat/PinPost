@@ -11,8 +11,6 @@ import com.ndeveat.pinpost.R
 import com.ndeveat.pinpost.Ui.Categories.SocialNetworkType
 import org.jetbrains.anko.intentFor
 import android.util.Log
-import com.koushikdutta.ion.Ion
-import com.ndeveat.pinpost.Login.LoginData
 import com.ndeveat.pinpost.Login.LoginModule
 
 
@@ -113,7 +111,14 @@ class SplashActivity : Activity() {
     fun loginSocialNetworkData() {
         // 서버에서 로그인된 데이터를 가져옴
         loginModule = LoginModule(this)
-        loginModule.facebookLogin.login()
+
+        SocialNetworkType.values().forEach { sns ->
+            val data = Manager.instance.getSnsData(this@SplashActivity, sns)
+            if (data != null) {
+                val snsData = Manager.instance.snsList.find { it.snsType == sns }
+                snsData!!.email = data.userEmail
+            }
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

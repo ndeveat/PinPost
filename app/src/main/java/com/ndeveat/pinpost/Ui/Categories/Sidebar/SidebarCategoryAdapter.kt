@@ -1,8 +1,10 @@
 package com.ndeveat.pinpost.Ui.Categories.Sidebar
 
+import android.content.Context
 import android.content.DialogInterface
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.ndeveat.pinpost.Ui.Categories.SocialNetworkModel
@@ -34,41 +36,43 @@ class SidebarCategoryAdapter : RecyclerView.Adapter<SidebarCategoryHolder>() {
 
         holder.setEmail(if (sns.isLogin) sns.email else null)
         holder.setSnsIcon(sns.snsPlusImage)
-
-        // TODO : 로그인, 로그아웃 처리 만들기
         holder.login?.setOnClickListener {
             if (sns.isLogin) {
-                val logoutAlert = AlertDialog.Builder(it.context)
-                logoutAlert.setTitle("로그아웃 하시겠습니까?")
-                // 로그아웃 처리
-                logoutAlert.setPositiveButton("예",
-                        DialogInterface.OnClickListener { dialogInterface, i ->
-                            sidebarEvent?.logout(sns.snsType)
-                            sns.isLogin = false
-                            this.notifyDataSetChanged()
-                        })
-                logoutAlert.setNegativeButton("아니요",
-                        DialogInterface.OnClickListener { dialogInterface, i ->
-                            dialogInterface.cancel()
-                        })
-                logoutAlert.show()
+                logout(it.context, sns)
             } else {
-                val loginAlert = AlertDialog.Builder(it.context)
-                loginAlert.setTitle("로그인 하시겠습니까?")
-                // 로그인 처리
-                loginAlert.setPositiveButton("예",
-                        DialogInterface.OnClickListener { dialogInterface, i ->
-                            sidebarEvent?.login(sns.snsType)
-                            sns.isLogin = true
-                            this.notifyDataSetChanged()
-                        })
-                loginAlert.setNegativeButton("아니요",
-                        DialogInterface.OnClickListener { dialogInterface, i ->
-                            dialogInterface.cancel()
-                        })
-                loginAlert.show()
+                login(it.context, sns)
             }
         }
+    }
+
+    fun login(context: Context, sns: SocialNetworkModel) {
+        val loginAlert = AlertDialog.Builder(context)
+        loginAlert.setTitle("로그인 하시겠습니까?")
+        loginAlert.setPositiveButton("예",
+                DialogInterface.OnClickListener { dialogInterface, i ->
+                    sidebarEvent?.login(sns.snsType)
+                    notifyDataSetChanged()
+                })
+        loginAlert.setNegativeButton("아니요",
+                DialogInterface.OnClickListener { dialogInterface, i ->
+                    dialogInterface.cancel()
+                })
+        loginAlert.show()
+    }
+
+    fun logout(context: Context, sns: SocialNetworkModel) {
+        val logoutAlert = AlertDialog.Builder(context)
+        logoutAlert.setTitle("로그아웃 하시겠습니까?")
+        logoutAlert.setPositiveButton("예",
+                DialogInterface.OnClickListener { dialogInterface, i ->
+                    sidebarEvent?.logout(sns.snsType)
+                    this.notifyDataSetChanged()
+                })
+        logoutAlert.setNegativeButton("아니요",
+                DialogInterface.OnClickListener { dialogInterface, i ->
+                    dialogInterface.cancel()
+                })
+        logoutAlert.show()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): SidebarCategoryHolder {

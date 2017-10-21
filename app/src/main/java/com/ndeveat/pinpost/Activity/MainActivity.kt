@@ -154,11 +154,11 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
         loginModule.facebookLogin.onActivityResult(requestCode, resultCode, data)
     }
 

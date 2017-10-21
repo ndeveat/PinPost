@@ -1,11 +1,8 @@
 package com.ndeveat.pinpost
 
 import com.ndeveat.pinpost.Ui.Categories.SocialNetworkModel
-import android.R.id.edit
 import android.app.Activity
 import android.content.Context
-import android.content.SharedPreferences
-import android.content.Context.MODE_PRIVATE
 import android.util.Log
 import com.koushikdutta.ion.Ion
 import com.ndeveat.pinpost.Login.LoginData
@@ -127,7 +124,9 @@ class Manager private constructor() {
         getUserData(activity)
     }
 
-    fun setSNSData(activity: Activity, socialNetworkType: SocialNetworkType, loginData: LoginData) {
+    fun setSnsData(activity: Activity, socialNetworkType: SocialNetworkType, loginData: LoginData) {
+        Log.d("SNS Data" + socialNetworkType.toString(), loginData.toString())
+
         val sharedPref = activity.getSharedPreferences(socialNetworkType.toString(), Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
         editor.putString("email", loginData.userEmail)
@@ -136,16 +135,21 @@ class Manager private constructor() {
         editor.apply()
         editor.commit()
 
-        getSNSData(activity, socialNetworkType)
+        getSnsData(activity, socialNetworkType)
     }
 
-    fun getSNSData(activity: Activity, socialNetworkType: SocialNetworkType): LoginData? {
+    fun getSnsData(activity: Activity, socialNetworkType: SocialNetworkType): LoginData? {
         val sharedPref = activity.getSharedPreferences(socialNetworkType.toString(), Context.MODE_PRIVATE)
         val isLogin = sharedPref.getBoolean("isLogin", false)
         if (isLogin) {
             val email = sharedPref.getString("email", "")
             val name = sharedPref.getString("name", "")
             val loginData = LoginData(socialNetworkType.toString(), name, email)
+
+            val sns = Manager.instance.snsList.find { it.snsType == socialNetworkType }
+            sns!!.isLogin = isLogin
+            sns.email = email
+
             return loginData
         }
         return null
