@@ -77,6 +77,8 @@ class Manager private constructor() {
                                 ));
                             }
                         }
+
+                        this.posts.sortBy { -it.id }
                     } else {
                         e.printStackTrace()
                     }

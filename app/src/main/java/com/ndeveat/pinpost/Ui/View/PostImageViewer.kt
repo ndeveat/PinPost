@@ -96,13 +96,13 @@ class PostImageViewer : FrameLayout {
                             val imageUrl = Manager.baseUrl + "/images/" + imageData["id"].asString + "." + imageData["type"].asString
                             when (index) {
                                 0 -> {
-                                    Picasso.with(context).load(imageUrl).transform(CompressionBitmap(1280, 720)).into(mainImage)
+                                    Picasso.with(context).load(imageUrl).placeholder(R.drawable.image_placeholder).transform(CompressionBitmap(1280, 720)).into(mainImage)
                                 }
                                 1 -> {
-                                    Picasso.with(context).load(imageUrl).transform(CompressionBitmap(1280, 720)).into(subImage)
+                                    Picasso.with(context).load(imageUrl).placeholder(R.drawable.image_placeholder).transform(CompressionBitmap(1280, 720)).into(subImage)
                                 }
                                 2 -> {
-                                    Picasso.with(context).load(imageUrl).transform(CompressionBitmap(1280, 720)).into(plusImage)
+                                    Picasso.with(context).load(imageUrl).placeholder(R.drawable.image_placeholder).transform(CompressionBitmap(1280, 720)).into(plusImage)
                                 }
                             }
                         } else {

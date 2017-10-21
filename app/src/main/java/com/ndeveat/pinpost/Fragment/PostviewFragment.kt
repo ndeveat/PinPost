@@ -35,7 +35,7 @@ class PostviewFragment : Fragment() {
         mPostViewAdapter = PostPreviewAdapter()
         mLayoutManager = LinearLayoutManager(context)
         mRecyclerView = rootView.post_preview_list
-        mRecyclerView!!.setItemViewCacheSize(10)
+        mRecyclerView!!.setItemViewCacheSize(30)
         mRecyclerView!!.layoutManager = mLayoutManager
         mRecyclerView!!.adapter = mPostViewAdapter
         mRecyclerView!!.addItemDecoration(PostPreviewAdapter.PostPreviewDecoration())
