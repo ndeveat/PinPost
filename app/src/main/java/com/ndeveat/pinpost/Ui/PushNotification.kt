@@ -80,6 +80,9 @@ class PushNotification : Service() {
                 val success = result["result"].asBoolean
                 if (success) {
                     Log.d("Result", result.toString())
+
+                    Manager.instance.getPostCount(applicationContext)
+                    Manager.instance.getPost(applicationContext, 0)
                 } else {
 
                 }
@@ -95,6 +98,7 @@ class PushNotification : Service() {
 
     override fun onDestroy() {
         super.onDestroy()
+
         notifyManager.cancel(1234)
     }
 }

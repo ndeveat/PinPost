@@ -7,4 +7,5 @@
     <dimen name="nav_header_vertical_spacing">16dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="pick_image">200dp</dimen>
+    <dimen name="pick_image_margin_right">8dp</dimen>
 </resources>

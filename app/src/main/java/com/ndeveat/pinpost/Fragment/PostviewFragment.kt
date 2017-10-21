@@ -46,50 +46,10 @@ class PostviewFragment : Fragment() {
     }
 
     fun loadPost(page: Int) {
-        Ion.with(context)
-                .load(Manager.baseUrl + Manager.postlist)
-                .setBodyParameter("user_id", Manager.instance.user.userId)
-                .setBodyParameter("page", page.toString())
-                .asJsonObject()
-                .setCallback { e, result ->
-                    if (result != null) {
-                        val posts = result["posts"].asJsonArray
-                        posts.forEachIndexed { index, it ->
-                            val post = it.asJsonObject
-
-                            val images = ArrayList<String>()
-                            val imageData = post["images"].asString
-                            val imageList = imageData.split(',')
-                            imageList.forEach {
-                                images.add(it)
-                            }
-
-                            val sns = ArrayList<SocialNetworkType>()
-                            val snsData = post["sns"].asString
-                            val snsList = snsData.split(',')
-                            val socialNetworkList = SocialNetworkType.values()
-
-                            snsList.forEach { value ->
-                                if (value != "") {
-                                    val n = socialNetworkList.find { it.name == value }
-                                    Log.d("N", n.toString())
-                                    sns.add(n!!)
-                                }
-                            }
-
-                            mPostViewAdapter!!.mPosts.add(PostPreviewModel(
-                                    post["title"].asString,
-                                    post["contents"].asString,
-                                    images,
-                                    sns
-                            ));
-
-                            mPostViewAdapter!!.notifyItemChanged(index)
-                        }
-                    } else {
-                        e.printStackTrace()
-                    }
-                }
+        Handler().postDelayed({
+            mPostViewAdapter!!.updatePost()
+            loadPost(page)
+        }, 1500)
     }
 
     companion object {

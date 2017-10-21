@@ -54,6 +54,7 @@ class SplashActivity : Activity() {
             return
 
         Manager.instance.getPostCount(this)
+        Manager.instance.getPost(this, 0)
 
         Manager.instance.snsList.add(
                 SocialNetworkModel(

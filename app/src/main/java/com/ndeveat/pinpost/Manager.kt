@@ -6,9 +6,11 @@ import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.Context.MODE_PRIVATE
+import android.util.Log
 import com.koushikdutta.ion.Ion
 import com.ndeveat.pinpost.Login.LoginData
 import com.ndeveat.pinpost.Ui.Categories.SocialNetworkType
+import com.ndeveat.pinpost.Ui.Post.PostPreviewModel
 
 
 /**
@@ -26,9 +28,59 @@ class Manager private constructor() {
 
     val snsList = ArrayList<SocialNetworkModel>()
     val user = User()
+    val posts = ArrayList<PostPreviewModel>()
 
     private object Holder {
         val instance = Manager()
+    }
+
+    fun getPost(context: Context, page: Int) {
+        Ion.with(context)
+                .load(Manager.baseUrl + Manager.postlist)
+                .setBodyParameter("user_id", Manager.instance.user.userId)
+                .setBodyParameter("page", page.toString())
+                .asJsonObject()
+                .setCallback { e, result ->
+                    if (result != null) {
+                        val posts = result["posts"].asJsonArray
+                        posts.forEachIndexed { index, it ->
+                            val post = it.asJsonObject
+                            val postId = post["id"].asInt
+
+                            if (this.posts.find { it.id == postId } == null) {
+                                val images = ArrayList<String>()
+                                val imageData = post["images"].asString
+                                val imageList = imageData.split(',')
+                                imageList.forEach {
+                                    images.add(it)
+                                }
+
+                                val sns = ArrayList<SocialNetworkType>()
+                                val snsData = post["sns"].asString
+                                val snsList = snsData.split(',')
+                                val socialNetworkList = SocialNetworkType.values()
+
+                                snsList.forEach { value ->
+                                    if (value != "") {
+                                        val n = socialNetworkList.find { it.name == value }
+                                        Log.d("N", n.toString())
+                                        sns.add(n!!)
+                                    }
+                                }
+
+                                this.posts.add(PostPreviewModel(
+                                        postId,
+                                        post["title"].asString,
+                                        post["contents"].asString,
+                                        images,
+                                        sns
+                                ));
+                            }
+                        }
+                    } else {
+                        e.printStackTrace()
+                    }
+                }
     }
 
     fun getPostCount(context: Context) {

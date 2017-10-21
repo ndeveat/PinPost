@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.ndeveat.pinpost.Manager
 import com.ndeveat.pinpost.R
 
 class PostPreviewAdapter : RecyclerView.Adapter<PostPreviewHolder>() {
@@ -20,7 +21,13 @@ class PostPreviewAdapter : RecyclerView.Adapter<PostPreviewHolder>() {
     var mPosts: ArrayList<PostPreviewModel>
 
     init {
-        mPosts = ArrayList<PostPreviewModel>()
+        mPosts = Manager.instance.posts
+        updatePost()
+    }
+
+    fun updatePost() {
+        mPosts = Manager.instance.posts
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int = mPosts.size

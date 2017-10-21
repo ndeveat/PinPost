@@ -26,6 +26,7 @@ import com.bumptech.glide.Glide
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import com.ndeveat.pinpost.Ui.View.PickImageContents
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.editor_bottom_layer.*
 
 
@@ -131,8 +132,8 @@ class EditorActivity : AppCompatActivity() {
 
     fun addImages(uris: ArrayList<Uri>) {
         removeImages()
-
         mImages.clear()
+        image_container_parent.visibility = View.VISIBLE
 
         for (uri in uris) {
             val view = LayoutInflater.from(this@EditorActivity).inflate(R.layout.editor_image_contents, null)
@@ -144,6 +145,7 @@ class EditorActivity : AppCompatActivity() {
                     .load(uri)
                     .centerCrop()
                     .into(image.image)
+            // image remove callback
             image.delete?.setOnClickListener {
                 removeImage(view)
             }
@@ -161,5 +163,8 @@ class EditorActivity : AppCompatActivity() {
         mEditorImageContents!!.removeView(view)
         if (mImages.contains(view.tag))
             mImages.remove(view.tag)
+        if (mImages.size == 0) {
+            image_container_parent.visibility = View.GONE
+        }
     }
 }

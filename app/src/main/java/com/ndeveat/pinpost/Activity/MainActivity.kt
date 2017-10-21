@@ -12,7 +12,6 @@ import android.support.design.widget.TabLayout
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -155,6 +154,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -193,5 +193,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun getCount(): Int = 2
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 }

@@ -1,5 +1,6 @@
 package com.ndeveat.pinpost.Ui.Categories.Category
 
+import android.content.Context
 import android.graphics.Rect
 import android.os.Handler
 import android.support.v7.widget.RecyclerView
@@ -39,7 +40,8 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryHolder>() {
         }
     }
 
-    lateinit var mSocialNetwork: List<SocialNetworkModel>
+    var mSocialNetwork: List<SocialNetworkModel>
+    var context: Context? = null
 
     init {
         mSocialNetwork = Manager.instance.snsList.filter { it.isLogin }
@@ -60,16 +62,14 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): CategoryHolder {
-        val view = LayoutInflater.from(parent!!.context).inflate(R.layout.category_view, parent, false)
+        this.context = parent!!.context
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.category_view, parent, false)
         val holder = CategoryHolder(view)
         return holder
     }
 
     fun updateCategoryCount() {
         mSocialNetwork = Manager.instance.snsList.filter { it.count > 0 }
-        Handler().postDelayed({
-            notifyDataSetChanged()
-            updateCategoryCount()
-        }, 1500)
+        notifyDataSetChanged()
     }
 }

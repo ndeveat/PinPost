@@ -9,6 +9,7 @@ import com.ndeveat.pinpost.Ui.Categories.SocialNetworkType
 // 데이터
 // 발행한 SNS
 data class PostPreviewModel(
+        var id : Int,
         var title: String?,
         var text: String?,
         var images: ArrayList<String>?,
