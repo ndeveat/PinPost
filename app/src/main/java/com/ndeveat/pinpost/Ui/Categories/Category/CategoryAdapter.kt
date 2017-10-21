@@ -39,11 +39,10 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryHolder>() {
         }
     }
 
-    var mSocialNetwork: ArrayList<SocialNetworkModel>
+    lateinit var mSocialNetwork: List<SocialNetworkModel>
 
     init {
-        mSocialNetwork = Manager.instance.snsList
-
+        mSocialNetwork = Manager.instance.snsList.filter { it.isLogin }
         // update
         updateCategoryCount()
     }
@@ -54,7 +53,8 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryHolder>() {
         val category = mSocialNetwork[position]
         val dataCenter = Manager.instance
 
-        holder!!.setCategoryBackground(category.snsMainColor)
+        holder!!.itemView.visibility = if (category.count > 0) View.VISIBLE else View.GONE
+        holder.setCategoryBackground(category.snsMainColor)
         holder.setCategoryIcon(category.snsPlusImage)
         holder.setCategoryCount(dataCenter.snsList.filter { it.snsType == category.snsType }[0].count)
     }
@@ -66,6 +66,7 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryHolder>() {
     }
 
     fun updateCategoryCount() {
+        mSocialNetwork = Manager.instance.snsList.filter { it.count > 0 }
         Handler().postDelayed({
             notifyDataSetChanged()
             updateCategoryCount()
