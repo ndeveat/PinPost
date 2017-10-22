@@ -7,6 +7,6 @@ import android.content.Context
  */
 
 class RequestModule(val context: Context) {
-    val facebook = RequestFacebook()
+    val facebook = RequestFacebook(context)
     val twitter = RequestTwitter(context)
 }

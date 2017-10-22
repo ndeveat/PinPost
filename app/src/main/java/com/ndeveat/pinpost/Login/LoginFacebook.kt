@@ -12,6 +12,7 @@ import android.os.Bundle
 import com.facebook.GraphRequest
 import com.ndeveat.pinpost.Manager
 import com.ndeveat.pinpost.Ui.Categories.SocialNetworkType
+import kotlin.collections.ArrayList
 
 
 /**
@@ -74,6 +75,7 @@ class LoginFacebook(activity: Activity) : LoginBase {
 
     override fun login() {
         LoginManager.getInstance().logInWithReadPermissions(activity, Arrays.asList("public_profile", "email"))
+        LoginManager.getInstance().logInWithPublishPermissions(activity, Arrays.asList("publish_actions"))
     }
 
     override fun logout() {

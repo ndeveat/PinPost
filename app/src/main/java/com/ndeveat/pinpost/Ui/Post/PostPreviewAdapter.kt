@@ -25,13 +25,15 @@ class PostPreviewAdapter : RecyclerView.Adapter<PostPreviewHolder>() {
     }
 
     fun lastPost(): Boolean {
-        val post = Manager.instance.posts[0]
-        val nextPost = mPosts.find { it.id == post.id }
-        if (nextPost == null) {
-            Log.d("LastPost", post.toString())
-            mPosts.add(0, post)
-            notifyItemInserted(0)
-            return true
+        if (Manager.instance.posts.size > 0) {
+            val post = Manager.instance.posts[0]
+            val nextPost = mPosts.find { it.id == post.id }
+            if (nextPost == null) {
+                Log.d("LastPost", post.toString())
+                mPosts.add(0, post)
+                notifyItemInserted(0)
+                return true
+            }
         }
         return false
     }
