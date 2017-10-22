@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
+import com.facebook.FacebookSdk
 import com.koushikdutta.ion.Ion
 import com.ndeveat.pinpost.Activity.MainActivity
 import com.ndeveat.pinpost.Manager
@@ -60,6 +61,8 @@ class PushNotification : Service() {
         snsString.dropLast(1)
         snsData.put("sns", snsString)
 
+        Log.d("SNS", snsString)
+
         val ion = Ion.with(this@PushNotification).load(Manager.baseUrl + Manager.posting).setTimeout(1000 * 6)
         ion.setMultipartParameter("title", title)
                 .setMultipartParameter("contents", contents)
@@ -81,8 +84,11 @@ class PushNotification : Service() {
                 if (success) {
                     Log.d("Result", result.toString())
 
-                    Manager.instance.getPostCount(applicationContext)
                     Manager.instance.getPost(applicationContext, 0)
+                    Manager.instance.getPostCount(applicationContext)
+
+                    // Facebook posting
+
                 } else {
 
                 }

@@ -48,13 +48,11 @@ class Manager private constructor() {
                                 var images: ArrayList<String>? = ArrayList<String>()
                                 val imageData = post["images"].asString
                                 val imageList = imageData.split(',')
-
                                 imageList.forEach {
                                     if (it != "")
                                         images?.add(it)
                                 }
-                                Log.d("Image", images!!.size.toString())
-                                if (images.size == 0)
+                                if (images!!.size == 0)
                                     images = null
 
                                 val sns = ArrayList<SocialNetworkType>()
@@ -74,6 +72,7 @@ class Manager private constructor() {
                                 var postContents: String? = if (post["contents"].asString != "") post["contents"].asString else null
 
                                 Log.d("Post", "${postId}, ${postTitle}, ${postContents}, ${images}, ${sns}")
+
                                 this.posts.add(PostPreviewModel(
                                         postId,
                                         postTitle,

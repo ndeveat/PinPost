@@ -29,6 +29,8 @@ class PostviewFragment : Fragment() {
     var mRecyclerView: RecyclerView? = null
     var mPostViewAdapter: PostPreviewAdapter? = null
 
+    val postHandler = Handler()
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val rootView = inflater!!.inflate(R.layout.fragment_postlist, container, false)
 
@@ -39,7 +41,6 @@ class PostviewFragment : Fragment() {
         mRecyclerView!!.adapter = mPostViewAdapter
         mRecyclerView!!.addItemDecoration(PostPreviewAdapter.PostPreviewDecoration())
 
-        mPostViewAdapter!!.updatePost()
         loadPost(0)
 
         return rootView
@@ -47,8 +48,10 @@ class PostviewFragment : Fragment() {
 
     // 최근에 올린 포스트를 검색한다
     fun loadPost(page: Int) {
-        Handler().postDelayed({
-            mPostViewAdapter!!.lastPost()
+        postHandler.postDelayed({
+            if (mPostViewAdapter!!.lastPost()) {
+                mRecyclerView!!.scrollToPosition(0)
+            }
             loadPost(page)
         }, 1500)
     }
@@ -58,5 +61,11 @@ class PostviewFragment : Fragment() {
             val fragment = PostviewFragment()
             return fragment
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        Log.d("Destroy", "PostViewDestroy")
     }
 }

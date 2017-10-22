@@ -21,21 +21,19 @@ class PostPreviewAdapter : RecyclerView.Adapter<PostPreviewHolder>() {
     var mPosts: ArrayList<PostPreviewModel>
 
     init {
-        mPosts = Manager.instance.posts
-        updatePost()
+        mPosts = ArrayList<PostPreviewModel>(Manager.instance.posts)
     }
 
-    fun updatePost() {
-        mPosts = Manager.instance.posts
-        notifyDataSetChanged()
-    }
-
-    fun lastPost() {
-        var post = Manager.instance.posts[0]
-        if (mPosts.find { it.id == post.id } == null) {
-            mPosts.add(0, Manager.instance.posts[0])
-            notifyItemChanged(0)
+    fun lastPost(): Boolean {
+        val post = Manager.instance.posts[0]
+        val nextPost = mPosts.find { it.id == post.id }
+        if (nextPost == null) {
+            Log.d("LastPost", post.toString())
+            mPosts.add(0, post)
+            notifyItemInserted(0)
+            return true
         }
+        return false
     }
 
     override fun getItemCount(): Int = mPosts.size

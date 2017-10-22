@@ -41,7 +41,6 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryHolder>() {
     }
 
     var mSocialNetwork: List<SocialNetworkModel>
-    var context: Context? = null
 
     init {
         mSocialNetwork = Manager.instance.snsList.filter { it.isLogin }
@@ -53,17 +52,15 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryHolder>() {
 
     override fun onBindViewHolder(holder: CategoryHolder?, position: Int) {
         val category = mSocialNetwork[position]
-        val dataCenter = Manager.instance
 
         holder!!.itemView.visibility = if (category.count > 0) View.VISIBLE else View.GONE
         holder.setCategoryBackground(category.snsMainColor)
         holder.setCategoryIcon(category.snsPlusImage)
-        holder.setCategoryCount(dataCenter.snsList.filter { it.snsType == category.snsType }[0].count)
+        holder.setCategoryCount(Manager.instance.snsList.find { it.snsType == category.snsType }!!.count)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): CategoryHolder {
-        this.context = parent!!.context
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.category_view, parent, false)
+        val view = LayoutInflater.from(parent!!.context).inflate(R.layout.category_view, parent, false)
         val holder = CategoryHolder(view)
         return holder
     }
