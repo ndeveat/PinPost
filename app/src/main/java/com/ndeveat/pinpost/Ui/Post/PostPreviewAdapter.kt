@@ -30,6 +30,14 @@ class PostPreviewAdapter : RecyclerView.Adapter<PostPreviewHolder>() {
         notifyDataSetChanged()
     }
 
+    fun lastPost() {
+        var post = Manager.instance.posts[0]
+        if (mPosts.find { it.id == post.id } == null) {
+            mPosts.add(0, Manager.instance.posts[0])
+            notifyItemChanged(0)
+        }
+    }
+
     override fun getItemCount(): Int = mPosts.size
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): PostPreviewHolder {

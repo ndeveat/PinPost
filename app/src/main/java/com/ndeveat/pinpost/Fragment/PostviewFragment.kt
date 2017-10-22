@@ -35,19 +35,20 @@ class PostviewFragment : Fragment() {
         mPostViewAdapter = PostPreviewAdapter()
         mLayoutManager = LinearLayoutManager(context)
         mRecyclerView = rootView.post_preview_list
-        mRecyclerView!!.setItemViewCacheSize(30)
         mRecyclerView!!.layoutManager = mLayoutManager
         mRecyclerView!!.adapter = mPostViewAdapter
         mRecyclerView!!.addItemDecoration(PostPreviewAdapter.PostPreviewDecoration())
 
+        mPostViewAdapter!!.updatePost()
         loadPost(0)
 
         return rootView
     }
 
+    // 최근에 올린 포스트를 검색한다
     fun loadPost(page: Int) {
         Handler().postDelayed({
-            mPostViewAdapter!!.updatePost()
+            mPostViewAdapter!!.lastPost()
             loadPost(page)
         }, 1500)
     }

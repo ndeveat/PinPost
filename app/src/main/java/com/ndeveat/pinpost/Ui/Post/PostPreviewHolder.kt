@@ -2,6 +2,7 @@ package com.ndeveat.pinpost.Ui.Post
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
@@ -72,7 +73,8 @@ class PostPreviewHolder : RecyclerView.ViewHolder {
         if (imageList != null) {
             imageContent!!.addImage(imageList)
             imageContent!!.visibility = View.VISIBLE
-        } else
+        } else {
             imageContent!!.visibility = View.GONE
+        }
     }
 }

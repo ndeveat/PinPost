@@ -45,12 +45,17 @@ class Manager private constructor() {
                             val postId = post["id"].asInt
 
                             if (this.posts.find { it.id == postId } == null) {
-                                val images = ArrayList<String>()
+                                var images: ArrayList<String>? = ArrayList<String>()
                                 val imageData = post["images"].asString
                                 val imageList = imageData.split(',')
+
                                 imageList.forEach {
-                                    images.add(it)
+                                    if (it != "")
+                                        images?.add(it)
                                 }
+                                Log.d("Image", images!!.size.toString())
+                                if (images.size == 0)
+                                    images = null
 
                                 val sns = ArrayList<SocialNetworkType>()
                                 val snsData = post["sns"].asString
@@ -65,10 +70,14 @@ class Manager private constructor() {
                                     }
                                 }
 
+                                var postTitle: String? = if (post["title"].asString != "") post["title"].asString else null
+                                var postContents: String? = if (post["contents"].asString != "") post["contents"].asString else null
+
+                                Log.d("Post", "${postId}, ${postTitle}, ${postContents}, ${images}, ${sns}")
                                 this.posts.add(PostPreviewModel(
                                         postId,
-                                        post["title"].asString,
-                                        post["contents"].asString,
+                                        postTitle,
+                                        postContents,
                                         images,
                                         sns
                                 ));
