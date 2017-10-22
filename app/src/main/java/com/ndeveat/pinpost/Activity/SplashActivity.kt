@@ -10,7 +10,6 @@ import com.ndeveat.pinpost.Manager
 import com.ndeveat.pinpost.R
 import com.ndeveat.pinpost.Ui.Categories.SocialNetworkType
 import org.jetbrains.anko.intentFor
-import android.util.Log
 import com.ndeveat.pinpost.Login.LoginModule
 
 
@@ -123,6 +122,6 @@ class SplashActivity : Activity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        loginModule.facebookLogin.onActivityResult(requestCode, resultCode, data)
+        loginModule.loginFacebook.onActivityResult(requestCode, resultCode, data)
     }
 }

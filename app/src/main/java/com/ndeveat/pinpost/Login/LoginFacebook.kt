@@ -18,7 +18,7 @@ import com.ndeveat.pinpost.Ui.Categories.SocialNetworkType
  * Created by ndeveat on 2017. 10. 11..
  */
 
-class FacebookLogin(activity: Activity) : LoginBase {
+class LoginFacebook(activity: Activity) : LoginBase {
     lateinit var callbackManager: CallbackManager
     val activity = activity
 

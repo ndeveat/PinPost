@@ -16,6 +16,7 @@ import com.ndeveat.pinpost.Request.RequestData
 import com.ndeveat.pinpost.Request.RequestModule
 import com.ndeveat.pinpost.Ui.Categories.SocialNetworkType
 import com.ndeveat.pinpost.Utils.RealPathUtil
+import org.jetbrains.anko.activityManager
 import org.jetbrains.anko.intentFor
 import org.json.JSONObject
 import java.io.File
@@ -29,7 +30,7 @@ class PushNotification : Service() {
     lateinit var notifyManager: NotificationManager
     lateinit var notification: Notification.Builder
 
-    val requestModule = RequestModule()
+    lateinit var requestModule : RequestModule
 
     override fun onBind(p0: Intent?): IBinder? = null
     override fun onCreate() {
@@ -38,6 +39,8 @@ class PushNotification : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+
+        requestModule = RequestModule(applicationContext)
 
         notification(intent!!)
         uploadServer(intent)
@@ -126,6 +129,9 @@ class PushNotification : Service() {
                 SocialNetworkType.Facebook -> {
                     // Facebook posting
                     requestModule.facebook.request(requestData)
+                }
+                SocialNetworkType.Twitter -> {
+                    requestModule.twitter.request(requestData)
                 }
             }
         }

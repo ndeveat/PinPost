@@ -134,10 +134,10 @@ class MainActivity : AppCompatActivity() {
             override fun login(snsType: SocialNetworkType) {
                 when (snsType) {
                     Facebook -> {
-                        loginModule.facebookLogin.login()
+                        loginModule.loginFacebook.login()
                     }
                     Twitter -> {
-                        loginModule.twitterLogin.login()
+                        loginModule.loginTwitter.login()
                     }
                     Tstory -> TODO()
                     Tumblr -> TODO()
@@ -148,10 +148,10 @@ class MainActivity : AppCompatActivity() {
             override fun logout(snsType: SocialNetworkType) {
                 when (snsType) {
                     Facebook -> {
-                        loginModule.facebookLogin.logout()
+                        loginModule.loginFacebook.logout()
                     }
                     Twitter -> {
-                        loginModule.twitterLogin.logout()
+                        loginModule.loginTwitter.logout()
                     }
                     Tstory -> TODO()
                     Tumblr -> TODO()

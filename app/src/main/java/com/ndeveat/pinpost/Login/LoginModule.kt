@@ -8,16 +8,16 @@ import android.content.Intent
  */
 
 class LoginModule(activity: Activity) {
-    val facebookLogin: FacebookLogin
-    val twitterLogin: TwitterLogin
+    val loginFacebook: LoginFacebook
+    val loginTwitter: LoginTwitter
 
     init {
-        facebookLogin = FacebookLogin(activity)
-        twitterLogin = TwitterLogin(activity)
+        loginFacebook = LoginFacebook(activity)
+        loginTwitter = LoginTwitter(activity)
     }
 
     fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        facebookLogin.onActivityResult(requestCode, resultCode, data)
-        twitterLogin.onActivityResult(requestCode, resultCode, data)
+        loginFacebook.onActivityResult(requestCode, resultCode, data)
+        loginTwitter.onActivityResult(requestCode, resultCode, data)
     }
 }

@@ -1,9 +1,12 @@
 package com.ndeveat.pinpost.Request
 
+import android.content.Context
+
 /**
  * Created by ndeveat on 2017. 10. 22..
  */
 
-class RequestModule {
+class RequestModule(val context: Context) {
     val facebook = RequestFacebook()
+    val twitter = RequestTwitter(context)
 }

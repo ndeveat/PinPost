@@ -21,7 +21,7 @@ import com.twitter.sdk.android.core.Twitter
  * Created by ndeveat on 2017. 10. 22..
  */
 
-class TwitterLogin(val activity: Activity) : LoginBase {
+class LoginTwitter(val activity: Activity) : LoginBase {
     lateinit var twitter: Twitter
     lateinit var authClient: TwitterAuthClient
 
