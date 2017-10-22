@@ -124,6 +124,8 @@ class Manager private constructor() {
         editor.putBoolean("isLogin", isLogin)
         editor.apply()
         editor.commit()
+
+        Manager.instance.snsList.find { it.snsType == socialNetworkType }!!.isLogin = isLogin
     }
 
     fun setUserData(activity: Activity, user: User) {

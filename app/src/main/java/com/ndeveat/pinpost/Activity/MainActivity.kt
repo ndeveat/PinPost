@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
 import android.os.Bundle
+import android.os.Handler
 import android.support.design.widget.TabLayout
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
@@ -135,7 +136,9 @@ class MainActivity : AppCompatActivity() {
                     Facebook -> {
                         loginModule.facebookLogin.login()
                     }
-                    Twitter -> TODO()
+                    Twitter -> {
+                        loginModule.twitterLogin.login()
+                    }
                     Tstory -> TODO()
                     Tumblr -> TODO()
                     NaverBlog -> TODO()
@@ -147,19 +150,30 @@ class MainActivity : AppCompatActivity() {
                     Facebook -> {
                         loginModule.facebookLogin.logout()
                     }
-                    Twitter -> TODO()
+                    Twitter -> {
+                        loginModule.twitterLogin.logout()
+                    }
                     Tstory -> TODO()
                     Tumblr -> TODO()
                     NaverBlog -> TODO()
                 }
             }
         }
+
+        updateModule()
+    }
+
+    fun updateModule() {
+        Handler().postDelayed({
+            mSidebarSnsAdapter!!.notifyDataSetChanged()
+            updateModule()
+        }, 1000)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        loginModule.facebookLogin.onActivityResult(requestCode, resultCode, data)
+        loginModule.onActivityResult(requestCode, resultCode, data)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

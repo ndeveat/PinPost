@@ -40,4 +40,9 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.facebook.android:facebook-android-sdk:4.27.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    // Include all the Twitter APIs
+    compile 'com.twitter.sdk.android:twitter:3.1.1'
+    // (Optional) Monetize using mopub
+    compile 'com.twitter.sdk.android:twitter-mopub:3.1.1'
+    compile 'com.twitter.sdk.android:twitter-core:3.1.1'
 }

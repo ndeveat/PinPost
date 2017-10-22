@@ -6,8 +6,12 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="facebook_app_id">501475223548882</string>
+
+    <!-- Secret Key -->
     <string name="fb_login_protocol_scheme">fb501475223548882</string>
     <string name="title_activity_signin">Sign in</string>
+    <string name="com.twitter.sdk.android.CONSUMER_KEY">Y3LUgmNvR1YawByqnoanQC9eA</string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET">6kMZyosVN5mXGgutSguznmXnUaGnSy4zazEzEdrKi0ZPT949ep</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -18,8 +22,7 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."
     </string>
     <string name="title_activity_signup">Sign in</string>
 </resources>

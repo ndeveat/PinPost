@@ -32,7 +32,7 @@ class FacebookLogin(activity: Activity) : LoginBase {
         LoginManager.getInstance().registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(result: LoginResult?) {
                 getData { value ->
-                    Log.d("Facebook", value.toString())
+                    Log.d("Login SNS Facebook", value.toString())
                     if (value != null)
                         Manager.instance.setSnsData(activity, SocialNetworkType.Facebook, value)
                 }
@@ -73,7 +73,7 @@ class FacebookLogin(activity: Activity) : LoginBase {
     fun isLogin(): Boolean = if (AccessToken.getCurrentAccessToken() == null) false else true
 
     override fun login() {
-        LoginManager.getInstance().logInWithReadPermissions(activity, Arrays.asList("public_profile", "email", "publish_actions"))
+        LoginManager.getInstance().logInWithReadPermissions(activity, Arrays.asList("public_profile", "email"))
     }
 
     override fun logout() {

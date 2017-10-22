@@ -61,9 +61,6 @@
         <service
             android:name=".Ui.PushNotification"
             android:enabled="true" />
-        <service
-            android:name=".ManagerService"
-            android:enabled="true" />
     </application>
 
 </manifest>
