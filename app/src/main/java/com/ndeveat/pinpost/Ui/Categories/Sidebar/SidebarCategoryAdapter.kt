@@ -66,7 +66,7 @@ class SidebarCategoryAdapter : RecyclerView.Adapter<SidebarCategoryHolder>() {
         logoutAlert.setPositiveButton("예",
                 DialogInterface.OnClickListener { dialogInterface, i ->
                     sidebarEvent?.logout(sns.snsType)
-                    this.notifyDataSetChanged()
+                    notifyDataSetChanged()
                 })
         logoutAlert.setNegativeButton("아니요",
                 DialogInterface.OnClickListener { dialogInterface, i ->

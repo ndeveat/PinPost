@@ -73,11 +73,12 @@ class FacebookLogin(activity: Activity) : LoginBase {
     fun isLogin(): Boolean = if (AccessToken.getCurrentAccessToken() == null) false else true
 
     override fun login() {
-        LoginManager.getInstance().logInWithReadPermissions(activity, Arrays.asList("public_profile", "email"))
+        LoginManager.getInstance().logInWithReadPermissions(activity, Arrays.asList("public_profile", "email", "publish_actions"))
     }
 
     override fun logout() {
         LoginManager.getInstance().logOut()
+        Manager.instance.setSnsLogin(activity, SocialNetworkType.Facebook, false)
     }
 
     fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
