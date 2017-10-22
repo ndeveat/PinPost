@@ -17,19 +17,17 @@ class PushCateogryAdapter : RecyclerView.Adapter<PushCategoryHolder>() {
         fun remove(snsName: String)
     }
 
-    val mSocialNetwork: ArrayList<SocialNetworkModel>
+    val mSocialNetwork: List<SocialNetworkModel>
     var mPushCategoryEvent: PushCategoryEvent? = null
 
     init {
-        mSocialNetwork = Manager.instance.snsList
+        mSocialNetwork = Manager.instance.snsList.filter { it.isLogin }
     }
 
     override fun getItemCount(): Int = mSocialNetwork.size
 
     override fun onBindViewHolder(holder: PushCategoryHolder?, position: Int) {
         val category = mSocialNetwork[position]
-        val dataCenter = Manager.instance
-
         holder!!.setCategoryBackground(category.snsMainColor)
         holder.mIconLayer?.setOnClickListener {
             if (holder.check()) {
