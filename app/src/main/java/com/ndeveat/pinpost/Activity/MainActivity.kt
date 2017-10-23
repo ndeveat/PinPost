@@ -109,6 +109,7 @@ class MainActivity : AppCompatActivity() {
             //         .setAction("Action", null).show()
 
             val intent = intentFor<EditorActivity>()
+            intent.putExtra("Type", "Create")
             startActivity(intent)
         }
 
@@ -119,12 +120,14 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
 
+
         mDrawerToggle?.syncState()
         mSidebarLayoutManager = LinearLayoutManager(this@MainActivity)
         mSidebarSnsAdapter = SidebarCategoryAdapter()
         sidebar_snslist.adapter = mSidebarSnsAdapter
         sidebar_snslist.overScrollMode = View.OVER_SCROLL_NEVER
         sidebar_snslist.layoutManager = mSidebarLayoutManager
+
 
         sidebar_user_email.text = Manager.instance.user.userEmail
         sidebar_user_name.text = Manager.instance.user.userName

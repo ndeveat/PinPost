@@ -1,13 +1,10 @@
 package com.ndeveat.pinpost.Activity
 
-import android.app.Notification
-import android.app.PendingIntent
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.MenuItem
 import com.ndeveat.pinpost.Ui.Categories.Category.CategoryAdapter
 import com.ndeveat.pinpost.Ui.Categories.Push.PushCateogryAdapter
@@ -15,16 +12,9 @@ import com.ndeveat.pinpost.R
 import kotlinx.android.synthetic.main.activity_push.*
 import kotlinx.android.synthetic.main.toolbar.view.*
 import android.net.Uri
-import com.koushikdutta.ion.Ion
-import com.ndeveat.pinpost.Manager
+import com.ndeveat.pinpost.Ui.Categories.SocialNetworkType
 import com.ndeveat.pinpost.Ui.PushNotification
-import com.ndeveat.pinpost.Utils.RealPathUtil
 import org.jetbrains.anko.intentFor
-import org.json.JSONObject
-import java.io.File
-import android.content.Context.NOTIFICATION_SERVICE
-import android.app.NotificationManager
-import android.content.Context
 
 
 class PushActivity : AppCompatActivity() {
@@ -57,7 +47,7 @@ class PushActivity : AppCompatActivity() {
         mRecyclerView!!.addItemDecoration(CategoryAdapter.CategoriesDecoration(3, 50))
 
         // Add Push Category Event
-        mCategoryAdapter!!.mPushCategoryEvent = object : PushCateogryAdapter.PushCategoryEvent {
+        mCategoryAdapter!!.pushCategoryEvent = object : PushCateogryAdapter.PushCategoryEvent {
             override fun add(snsName: String) {
                 sns.add(snsName)
             }
@@ -71,6 +61,17 @@ class PushActivity : AppCompatActivity() {
         contents = intent.extras.getString("Contents")
         images = intent.extras.getParcelableArrayList("Images")
         tag = intent.extras.getString("Tag")
+
+        val type = intent.extras.getString("Type")
+        if (type == "Edit") {
+            val sns = intent.extras.getString("Sns")
+            val snsList = sns.split(',')
+            snsList.forEach { sit ->
+                if (sit != "")
+                    mCategoryAdapter!!.
+                            checkList.add(SocialNetworkType.values().find { it == SocialNetworkType.valueOf(sit) }!!)
+            }
+        }
 
         push_button.setOnClickListener {
             postingNotification()

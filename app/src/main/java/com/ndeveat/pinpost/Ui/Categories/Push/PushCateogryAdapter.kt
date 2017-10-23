@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import com.ndeveat.pinpost.Ui.Categories.SocialNetworkModel
 import com.ndeveat.pinpost.Manager
 import com.ndeveat.pinpost.R
+import com.ndeveat.pinpost.Ui.Categories.SocialNetworkType
 
 /**
  * Created by ndeveat on 2017. 9. 24..
@@ -17,23 +18,34 @@ class PushCateogryAdapter : RecyclerView.Adapter<PushCategoryHolder>() {
         fun remove(snsName: String)
     }
 
-    val mSocialNetwork: List<SocialNetworkModel>
-    var mPushCategoryEvent: PushCategoryEvent? = null
+    val socialNetworkList: List<SocialNetworkModel>
+    var pushCategoryEvent: PushCategoryEvent? = null
+
+    val checkList = ArrayList<SocialNetworkType>()
 
     init {
-        mSocialNetwork = Manager.instance.snsList.filter { it.isLogin }
+        socialNetworkList = Manager.instance.snsList.filter { it.isLogin }
     }
 
-    override fun getItemCount(): Int = mSocialNetwork.size
+    override fun getItemCount(): Int = socialNetworkList.size
 
     override fun onBindViewHolder(holder: PushCategoryHolder?, position: Int) {
-        val category = mSocialNetwork[position]
+        val category = socialNetworkList[position]
         holder!!.setCategoryBackground(category.snsMainColor)
+
+        checkList.forEach {
+            if (category.snsType == it) {
+                if (!holder.isCheck) {
+                    holder.check()
+                }
+            }
+        }
+
         holder.mIconLayer?.setOnClickListener {
             if (holder.check()) {
-                mPushCategoryEvent?.add(category.snsType.toString())
+                pushCategoryEvent?.add(category.snsType.toString())
             } else {
-                mPushCategoryEvent?.remove(category.snsType.toString())
+                pushCategoryEvent?.remove(category.snsType.toString())
             }
         }
         holder.setCategoryIcon(category.snsPlusImage)

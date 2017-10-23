@@ -34,7 +34,6 @@ import kotlinx.android.synthetic.main.editor_bottom_layer.*
 class EditorActivity : AppCompatActivity() {
 
     lateinit var editorTitle: TextView
-    lateinit var editorEmptyView: View
     lateinit var editorContents: TextView
     lateinit var editorImageContents: LinearLayout
     val mImages = ArrayList<Uri>()
@@ -43,10 +42,17 @@ class EditorActivity : AppCompatActivity() {
     var bottomSheetDialogFragment: TedBottomPicker? = null
     var inputManager: InputMethodManager? = null
 
+    lateinit var editorEmptyView: View
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editor)
 
+        init()
+        viewSetting()
+    }
+
+    fun init() {
         inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
         // Set home button
@@ -66,11 +72,10 @@ class EditorActivity : AppCompatActivity() {
         editorTag = editor_tag
         editorEmptyView = editor_empty_view
         editorEmptyView.setOnClickListener {
-            Log.d("EditorEmptyView", "Click")
             editorContents.requestFocus()
-            // When user click the emptyView call this function
             inputManager!!.toggleSoftInput(0, InputMethodManager.SHOW_IMPLICIT)
         }
+
         // 권한 체크하기
         val permissionlistener = object : PermissionListener {
             override fun onPermissionGranted() {
@@ -126,6 +131,28 @@ class EditorActivity : AppCompatActivity() {
 
         editor_add_component_title.setOnClickListener {
             editor_title_parent.visibility = if (editor_title_parent.visibility == View.VISIBLE) View.GONE else View.VISIBLE
+        }
+    }
+
+    // Edit 모드 인지 Create 모드인지
+    fun viewSetting() {
+        val type = intent.extras.getString("Type")
+        if (type == "Edit") {
+            val title = intent.extras.getString("title")
+            val contents = intent.extras.getString("contents")
+            val tag = intent.extras.getString("tag")
+            val sns = intent.extras.getString("sns")
+
+            // title
+            if (title.length > 0) {
+                editorTitle.visibility = View.VISIBLE
+                editorTitle.text = title
+            }
+            // contents
+            editorContents.text = contents
+
+            // tag
+            editorTag.text = tag
         }
     }
 

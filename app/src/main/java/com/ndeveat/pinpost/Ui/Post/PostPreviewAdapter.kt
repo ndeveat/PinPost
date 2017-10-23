@@ -4,12 +4,14 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Rect
+import android.support.annotation.Nullable
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.ndeveat.pinpost.Activity.EditorActivity
 import com.ndeveat.pinpost.Activity.LoginActivity
 import com.ndeveat.pinpost.Manager
 import com.ndeveat.pinpost.R
@@ -70,7 +72,9 @@ class PostPreviewAdapter : RecyclerView.Adapter<PostPreviewHolder>() {
                     DialogInterface.OnClickListener { dialogInterface, i ->
                         // 수정
                         if (i == 0) {
-
+                            val intent = holder.context!!.intentFor<EditorActivity>()
+                            intent.putExtra("Type", "Edit")
+                            holder.context!!.startActivity(intent)
                         }
                         // 삭제
                         else {
