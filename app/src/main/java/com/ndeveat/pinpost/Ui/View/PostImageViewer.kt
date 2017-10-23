@@ -92,17 +92,19 @@ class PostImageViewer : FrameLayout {
                     .asJsonObject()
                     .setCallback { e, result ->
                         if (result != null) {
-                            val imageData = result["media"].asJsonObject
-                            val imageUrl = Manager.baseUrl + "/images/" + imageData["id"].asString + "." + imageData["type"].asString
-                            when (index) {
-                                0 -> {
-                                    Picasso.with(context).load(imageUrl).placeholder(R.drawable.image_placeholder).transform(CompressionBitmap(1280, 720)).into(mainImage)
-                                }
-                                1 -> {
-                                    Picasso.with(context).load(imageUrl).placeholder(R.drawable.image_placeholder).transform(CompressionBitmap(1280, 720)).into(subImage)
-                                }
-                                2 -> {
-                                    Picasso.with(context).load(imageUrl).placeholder(R.drawable.image_placeholder).transform(CompressionBitmap(1280, 720)).into(plusImage)
+                            if (result["media"] != null) {
+                                val imageData = result["media"].asJsonObject
+                                val imageUrl = Manager.baseUrl + "/images/" + imageData["id"].asString + "." + imageData["type"].asString
+                                when (index) {
+                                    0 -> {
+                                        Picasso.with(context).load(imageUrl).placeholder(R.drawable.image_placeholder).transform(CompressionBitmap(1280, 720)).into(mainImage)
+                                    }
+                                    1 -> {
+                                        Picasso.with(context).load(imageUrl).placeholder(R.drawable.image_placeholder).transform(CompressionBitmap(1280, 720)).into(subImage)
+                                    }
+                                    2 -> {
+                                        Picasso.with(context).load(imageUrl).placeholder(R.drawable.image_placeholder).transform(CompressionBitmap(1280, 720)).into(plusImage)
+                                    }
                                 }
                             }
                         } else {

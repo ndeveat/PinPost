@@ -9,6 +9,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
 import android.view.inputmethod.InputMethodManager
 import android.widget.FrameLayout
 import android.widget.LinearLayout
@@ -26,17 +28,17 @@ import com.bumptech.glide.Glide
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import com.ndeveat.pinpost.Ui.View.PickImageContents
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.editor_bottom_layer.*
 
 
 class EditorActivity : AppCompatActivity() {
 
-    var mEditorTitle: TextView? = null
-    var mEditorEmptyView: View? = null
-    var mEditorContents: TextView? = null
-    var mEditorImageContents: LinearLayout? = null
+    lateinit var editorTitle: TextView
+    lateinit var editorEmptyView: View
+    lateinit var editorContents: TextView
+    lateinit var editorImageContents: LinearLayout
     val mImages = ArrayList<Uri>()
+    lateinit var editorTag: TextView
 
     var bottomSheetDialogFragment: TedBottomPicker? = null
     var inputManager: InputMethodManager? = null
@@ -55,16 +57,17 @@ class EditorActivity : AppCompatActivity() {
         supportActionBar?.setHomeButtonEnabled(true);
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
 
-        mEditorContents = editor_contents_text
-        mEditorContents?.isFocusableInTouchMode = true
+        editorContents = editor_contents_text
+        editorContents.isFocusableInTouchMode = true
 
         // Set Editor variable
-        mEditorImageContents = editor_contents_images
-        mEditorTitle = editor_title
-        mEditorEmptyView = editor_empty_view
-        mEditorEmptyView?.setOnClickListener {
+        editorImageContents = editor_contents_images
+        editorTitle = editor_title
+        editorTag = editor_tag
+        editorEmptyView = editor_empty_view
+        editorEmptyView.setOnClickListener {
             Log.d("EditorEmptyView", "Click")
-            mEditorContents!!.requestFocus()
+            editorContents.requestFocus()
             // When user click the emptyView call this function
             inputManager!!.toggleSoftInput(0, InputMethodManager.SHOW_IMPLICIT)
         }
@@ -101,11 +104,11 @@ class EditorActivity : AppCompatActivity() {
         // Update Post
         // Set push button
         editor_push_button.setOnClickListener {
-            Log.d("push", "push")
             val intent = intentFor<PushActivity>()
-            intent.putExtra("Title", mEditorTitle!!.text.toString())
-            intent.putExtra("Contents", mEditorContents!!.text.toString())
+            intent.putExtra("Title", editorTitle.text.toString())
+            intent.putExtra("Contents", editorContents.text.toString())
             intent.putExtra("Images", mImages)
+            intent.putExtra("Tag", editorTag.text.toString())
 
             startActivity(intent)
         }
@@ -116,8 +119,13 @@ class EditorActivity : AppCompatActivity() {
         editor_add_component_image.setOnClickListener {
             bottomSheetDialogFragment?.show(supportFragmentManager)
         }
-        editor_add_component_location.setOnClickListener {
 
+        editor_add_component_tag.setOnClickListener {
+            editor_tag_parent.visibility = if (editor_tag_parent.visibility == View.VISIBLE) View.GONE else View.VISIBLE
+        }
+
+        editor_add_component_title.setOnClickListener {
+            editor_title_parent.visibility = if (editor_title_parent.visibility == View.VISIBLE) View.GONE else View.VISIBLE
         }
     }
 
@@ -134,6 +142,9 @@ class EditorActivity : AppCompatActivity() {
         removeImages()
         mImages.clear()
         image_container_parent.visibility = View.VISIBLE
+        if (uris.size == 0) {
+            image_container_parent.visibility = View.GONE
+        }
 
         for (uri in uris) {
             val view = LayoutInflater.from(this@EditorActivity).inflate(R.layout.editor_image_contents, null)
@@ -151,16 +162,16 @@ class EditorActivity : AppCompatActivity() {
             }
             view.tag = uri
             mImages.add(uri)
-            mEditorImageContents!!.addView(view)
+            editorImageContents.addView(view)
         }
     }
 
     fun removeImages() {
-        mEditorImageContents!!.removeAllViews()
+        editorImageContents.removeAllViews()
     }
 
     fun removeImage(view: View) {
-        mEditorImageContents!!.removeView(view)
+        editorImageContents.removeView(view)
         if (mImages.contains(view.tag))
             mImages.remove(view.tag)
         if (mImages.size == 0) {

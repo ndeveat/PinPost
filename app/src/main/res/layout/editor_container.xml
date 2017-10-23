@@ -28,40 +28,4 @@
             android:clickable="true" />
 
     </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/image_container_parent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/stroke_outline"
-        android:orientation="vertical"
-        android:paddingBottom="8dp"
-        android:paddingTop="8dp"
-        android:visibility="gone">
-
-        <com.ndeveat.pinpost.Ui.View.TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:layout_marginLeft="16dp"
-            android:text="이미지" />
-
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@null"
-            android:scrollbars="none">
-
-            <LinearLayout
-                android:id="@+id/editor_contents_images"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:animateLayoutChanges="true"
-                android:background="@null"
-                android:orientation="horizontal">
-
-            </LinearLayout>
-        </HorizontalScrollView>
-    </LinearLayout>
 </LinearLayout>

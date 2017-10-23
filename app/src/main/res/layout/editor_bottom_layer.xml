@@ -8,6 +8,15 @@
     android:paddingRight="16dp">
 
     <com.ndeveat.pinpost.Ui.View.TextView
+        android:id="@+id/editor_add_component_title"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_marginRight="16dp"
+        android:gravity="center"
+        android:text="제목"
+        android:textSize="16dp" />
+
+    <com.ndeveat.pinpost.Ui.View.TextView
         android:id="@+id/editor_add_component_image"
         android:layout_width="wrap_content"
         android:layout_height="36dp"
@@ -17,21 +26,12 @@
         android:textSize="16dp" />
 
     <com.ndeveat.pinpost.Ui.View.TextView
-        android:id="@+id/editor_add_component_location"
+        android:id="@+id/editor_add_component_tag"
         android:layout_width="wrap_content"
         android:layout_height="36dp"
         android:layout_marginRight="16dp"
         android:gravity="center"
-        android:text="텍스트"
-        android:textSize="16dp" />
-
-    <com.ndeveat.pinpost.Ui.View.TextView
-        android:id="@+id/editor_add_component_align"
-        android:layout_width="wrap_content"
-        android:layout_height="36dp"
-        android:layout_marginRight="16dp"
-        android:gravity="center"
-        android:text="정렬"
+        android:text="태그"
         android:textSize="16dp" />
 
     <LinearLayout
