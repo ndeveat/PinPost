@@ -119,7 +119,7 @@ class Manager private constructor() {
     }
 
     fun setSnsLogin(activity: Activity, socialNetworkType: SocialNetworkType, isLogin: Boolean) {
-        val sharedPref = activity.getSharedPreferences(socialNetworkType.toString(), Context.MODE_PRIVATE)
+        val sharedPref = activity.getSharedPreferences(socialNetworkType.toString() + Manager.instance.user.userId, Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
         editor.putBoolean("isLogin", isLogin)
         editor.apply()
@@ -153,9 +153,7 @@ class Manager private constructor() {
     }
 
     fun setSnsData(activity: Activity, socialNetworkType: SocialNetworkType, loginData: LoginData) {
-        Log.d("SNS Data" + socialNetworkType.toString(), loginData.toString())
-
-        val sharedPref = activity.getSharedPreferences(socialNetworkType.toString(), Context.MODE_PRIVATE)
+        val sharedPref = activity.getSharedPreferences(socialNetworkType.toString() + Manager.instance.user.userId, Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
         editor.putString("email", loginData.userEmail)
         editor.putString("name", loginData.userName)
@@ -167,7 +165,7 @@ class Manager private constructor() {
     }
 
     fun getSnsData(activity: Activity, socialNetworkType: SocialNetworkType): LoginData? {
-        val sharedPref = activity.getSharedPreferences(socialNetworkType.toString(), Context.MODE_PRIVATE)
+        val sharedPref = activity.getSharedPreferences(socialNetworkType.toString() + Manager.instance.user.userId, Context.MODE_PRIVATE)
         val isLogin = sharedPref.getBoolean("isLogin", false)
         if (isLogin) {
             val email = sharedPref.getString("email", "")

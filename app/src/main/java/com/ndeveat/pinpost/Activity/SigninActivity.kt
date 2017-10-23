@@ -22,11 +22,6 @@ import android.view.KeyEvent
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.inputmethod.EditorInfo
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 
 import java.util.ArrayList
 
@@ -36,6 +31,7 @@ import android.Manifest.permission.READ_CONTACTS
 import android.content.Intent
 import android.util.Log
 import android.util.Patterns
+import android.widget.*
 import com.koushikdutta.ion.Ion
 import com.ndeveat.pinpost.Manager
 import kotlinx.android.synthetic.main.activity_signin.*
@@ -69,20 +65,25 @@ class SigninActivity : AppCompatActivity() {
                         .asJsonObject()
                         .setCallback { e, result ->
                             if (result != null) {
-                                Log.d("Signin Result", result.toString())
+                                val loginResult = result["result"].asBoolean
+                                if (loginResult) {
+                                    val user = result["user"].asJsonObject
+                                    val mUser = Manager.User()
+                                    mUser.isLogin = true
+                                    mUser.userEmail = user["email"].asString
+                                    mUser.userId = user["id"].asString
+                                    mUser.userName = user["name"].asString
 
-                                val user = result["user"].asJsonObject
-                                val mUser = Manager.User()
-                                mUser.isLogin = true
-                                mUser.userEmail = user["email"].asString
-                                mUser.userId = user["id"].asString
-                                mUser.userName = user["name"].asString
+                                    Manager.instance.setUserData(this@SigninActivity, mUser)
 
-                                Manager.instance.setUserData(this@SigninActivity, mUser)
+                                    val intent = intentFor<MainActivity>()
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                    startActivity(intent)
 
-                                val intent = intentFor<MainActivity>()
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                                startActivity(intent)
+                                    finish()
+                                } else {
+                                    Toast.makeText(this@SigninActivity, "이메일 혹은 비밀번호가 잘못되었습니다", Toast.LENGTH_SHORT).show()
+                                }
                             } else {
                                 e.printStackTrace()
                             }

@@ -1,5 +1,6 @@
 package com.ndeveat.pinpost.Activity
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 
@@ -12,6 +13,7 @@ import android.os.Handler
 import android.support.design.widget.TabLayout
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.Menu
@@ -118,21 +120,30 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setHomeButtonEnabled(true)
 
         mDrawerToggle?.syncState()
-        // set Sidebar
-
         mSidebarLayoutManager = LinearLayoutManager(this@MainActivity)
         mSidebarSnsAdapter = SidebarCategoryAdapter()
         sidebar_snslist.adapter = mSidebarSnsAdapter
+        sidebar_snslist.overScrollMode = View.OVER_SCROLL_NEVER
         sidebar_snslist.layoutManager = mSidebarLayoutManager
 
         sidebar_user_email.text = Manager.instance.user.userEmail
         sidebar_user_name.text = Manager.instance.user.userName
         sidebar_user_logout.setOnClickListener {
-            Manager.instance.setUserLogin(this@MainActivity, false)
-            // 로그인 화면으로 돌아가기
-            val intent = intentFor<LoginActivity>()
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
+            val loginAlert = AlertDialog.Builder(this@MainActivity)
+            loginAlert.setTitle("로그아웃 하시겠습니까?")
+            loginAlert.setPositiveButton("예",
+                    DialogInterface.OnClickListener { dialogInterface, i ->
+                        Manager.instance.setUserLogin(this@MainActivity, false)
+                        // 로그인 화면으로 돌아가기
+                        val intent = intentFor<LoginActivity>()
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        startActivity(intent)
+                    })
+            loginAlert.setNegativeButton("아니요",
+                    DialogInterface.OnClickListener { dialogInterface, i ->
+                        dialogInterface.cancel()
+                    })
+            loginAlert.show()
         }
 
         loginModule = LoginModule(this@MainActivity)

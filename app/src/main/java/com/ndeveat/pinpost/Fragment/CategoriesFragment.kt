@@ -28,6 +28,8 @@ class CategoriesFragment : Fragment() {
 
         mCategoryAdapter = CategoryAdapter()
         mRecyclerView = rootView.categories_list
+        mRecyclerView!!.overScrollMode = View.OVER_SCROLL_NEVER
+
         mLayoutManager = GridLayoutManager(context, 3)
         mRecyclerView!!.layoutManager = mLayoutManager
         mRecyclerView!!.adapter = mCategoryAdapter
