@@ -72,6 +72,7 @@ class PushNotification : Service() {
         val contents = intent.extras.getString("contents")
         val images = intent.extras.getParcelableArrayList<Uri>("images")
         val sns = intent.extras.getStringArrayList("sns")
+        val tag = intent.extras.getString("tag")
 
         val requestData = RequestData(title, contents, images, sns)
 
@@ -86,6 +87,7 @@ class PushNotification : Service() {
                 .setMultipartParameter("contents", contents)
                 .setMultipartParameter("user_id", Manager.instance.user.userId)
                 .setMultipartParameter("sns", snsData.toString())
+                .setMultipartParameter("tag", tag)
 
         images!!.forEachIndexed { index, uri ->
             val imagePath = RealPathUtil.getRealPath(this@PushNotification, uri)

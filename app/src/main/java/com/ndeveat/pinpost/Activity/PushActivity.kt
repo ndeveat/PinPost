@@ -36,6 +36,7 @@ class PushActivity : AppCompatActivity() {
     var contents = ""
     var images: ArrayList<Uri>? = null
     var sns = ArrayList<String>()
+    var tag = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,6 +70,7 @@ class PushActivity : AppCompatActivity() {
         title = intent.extras.getString("Title")
         contents = intent.extras.getString("Contents")
         images = intent.extras.getParcelableArrayList("Images")
+        tag = intent.extras.getString("Tag")
 
         push_button.setOnClickListener {
             postingNotification()
@@ -87,6 +89,7 @@ class PushActivity : AppCompatActivity() {
         intent.putExtra("contents", contents)
         intent.putExtra("images", images)
         intent.putExtra("sns", sns)
+        intent.putExtra("tag", tag)
 
         startService(intent)
     }
