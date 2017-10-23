@@ -142,6 +142,16 @@ class Manager private constructor() {
         getUserData(activity)
     }
 
+    fun setUserLogin(activity: Activity, isLogin: Boolean) {
+        val sharedPref = activity.getSharedPreferences("User", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+
+        editor.putBoolean("isLogin", isLogin)
+
+        editor.apply()
+        editor.commit()
+    }
+
     fun setSnsData(activity: Activity, socialNetworkType: SocialNetworkType, loginData: LoginData) {
         Log.d("SNS Data" + socialNetworkType.toString(), loginData.toString())
 

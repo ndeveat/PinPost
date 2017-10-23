@@ -127,6 +127,13 @@ class MainActivity : AppCompatActivity() {
 
         sidebar_user_email.text = Manager.instance.user.userEmail
         sidebar_user_name.text = Manager.instance.user.userName
+        sidebar_user_logout.setOnClickListener {
+            Manager.instance.setUserLogin(this@MainActivity, false)
+            // 로그인 화면으로 돌아가기
+            val intent = intentFor<LoginActivity>()
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+        }
 
         loginModule = LoginModule(this@MainActivity)
 

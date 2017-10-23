@@ -30,6 +30,8 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    compile files('src/main/lib/twitter4j-core-4.0.4.jar')
+    compile files('src/main/lib/twitter4j-media-support-4.0.4.jar')
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'org.jetbrains.anko:anko:0.10.1'
@@ -37,12 +39,10 @@ dependencies {
     compile 'gun0912.ted:tedbottompicker:1.0.12'
     compile 'gun0912.ted:tedpermission:2.0.0'
     compile 'com.koushikdutta.ion:ion:2.2.1'
-    testCompile 'junit:junit:4.12'
     compile 'com.facebook.android:facebook-android-sdk:4.27.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.twitter.sdk.android:twitter:3.1.1'
     compile 'com.twitter.sdk.android:twitter-mopub:3.1.1'
     compile 'com.twitter.sdk.android:twitter-core:3.1.1'
-    compile files('src/main/lib/twitter4j-core-4.0.4.jar')
-    compile files('src/main/lib/twitter4j-media-support-4.0.4.jar')
+    testCompile 'junit:junit:4.12'
 }

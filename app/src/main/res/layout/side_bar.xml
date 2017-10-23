@@ -58,43 +58,49 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="16dp">
 
-                <FrameLayout
-                    android:layout_width="58dp"
-                    android:layout_height="58dp"
-                    android:background="@drawable/circle"
-                    android:backgroundTint="@android:color/darker_gray">
-
-                    <ImageView
-                        android:id="@+id/sidebar_user_image"
-                        android:layout_width="38dp"
-                        android:layout_height="38dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/icon_human_00004" />
-                </FrameLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
-                    <com.ndeveat.pinpost.Ui.View.TextView
-                        android:id="@+id/sidebar_user_name"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="26dp"
-                        android:layout_marginLeft="16dp"
-                        android:gravity="center_vertical"
-                        android:text="Root"
-                        android:textSize="18dp" />
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                    <com.ndeveat.pinpost.Ui.View.TextView
-                        android:id="@+id/sidebar_user_email"
+                        <com.ndeveat.pinpost.Ui.View.TextView
+                            android:id="@+id/sidebar_user_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="26dp"
+                            android:layout_marginLeft="16dp"
+                            android:gravity="center_vertical"
+                            android:text="Root"
+                            android:textSize="18dp" />
+
+                        <com.ndeveat.pinpost.Ui.View.TextView
+                            android:id="@+id/sidebar_user_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="26dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center_vertical"
+                            android:text="email@email.com"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="26dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="8dp"
-                        android:gravity="center_vertical"
-                        android:text="email@email.com"
-                        android:textSize="14dp" />
+                        android:layout_height="match_parent"
+                        android:layout_weight="3">
+
+                        <com.ndeveat.pinpost.Ui.View.TextView
+                            android:id="@+id/sidebar_user_logout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="로그아웃" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
