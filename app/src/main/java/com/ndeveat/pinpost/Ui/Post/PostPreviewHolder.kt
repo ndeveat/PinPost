@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import com.ndeveat.pinpost.Manager
 import com.ndeveat.pinpost.R
@@ -22,15 +23,17 @@ class PostPreviewHolder : RecyclerView.ViewHolder {
     var title: TextView? = null
     var text: TextView? = null
     var pushSnsContainer: LinearLayout? = null
-
     var context: Context? = null
     var imageContent: PostImageViewer? = null
+    var option: FrameLayout? = null
 
     constructor(view: View, context: Context) : super(view) {
         title = view.post_title
         text = view.post_preview_text
         pushSnsContainer = view.post_preview_push_sns_container
         imageContent = view.post_contents_image
+        option = view.post_preview_option
+
         this.context = context
     }
 

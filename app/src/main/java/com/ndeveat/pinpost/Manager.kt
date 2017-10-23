@@ -191,5 +191,6 @@ class Manager private constructor() {
         val posting = "/post/posting"
         val media = "/media/"
         val sns = "/sns/"
+        val postremove = "/post/remove"
     }
 }

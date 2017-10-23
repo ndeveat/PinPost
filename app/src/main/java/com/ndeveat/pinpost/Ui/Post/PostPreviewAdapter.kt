@@ -1,13 +1,22 @@
 package com.ndeveat.pinpost.Ui.Post
 
+import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
 import android.graphics.Rect
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.ndeveat.pinpost.Activity.LoginActivity
 import com.ndeveat.pinpost.Manager
 import com.ndeveat.pinpost.R
+import com.ndeveat.pinpost.R.id.contents
+import com.ndeveat.pinpost.Ui.PushNotification
+import com.ndeveat.pinpost.Ui.RemoveNotification
+import org.jetbrains.anko.intentFor
 
 class PostPreviewAdapter : RecyclerView.Adapter<PostPreviewHolder>() {
     class PostPreviewDecoration : RecyclerView.ItemDecoration() {
@@ -29,7 +38,6 @@ class PostPreviewAdapter : RecyclerView.Adapter<PostPreviewHolder>() {
             val post = Manager.instance.posts[0]
             val nextPost = mPosts.find { it.id == post.id }
             if (nextPost == null) {
-                Log.d("LastPost", post.toString())
                 mPosts.add(0, post)
                 notifyItemInserted(0)
                 return true
@@ -54,5 +62,38 @@ class PostPreviewAdapter : RecyclerView.Adapter<PostPreviewHolder>() {
         holder.setText(post.text)
         holder.setPushSns(post.pushSns)
         holder.setImages(post.images)
+        // 포스트 옵션 생성
+        holder.option?.setOnClickListener {
+            val dialog = AlertDialog.Builder(holder.context!!)
+            dialog.setTitle("옵션")
+            dialog.setItems(arrayOf("수정", "삭제"),
+                    DialogInterface.OnClickListener { dialogInterface, i ->
+                        // 수정
+                        if (i == 0) {
+
+                        }
+                        // 삭제
+                        else {
+                            // 포스트 리스트에서 삭제
+                            if (mPosts.contains(post))
+                                mPosts.remove(post)
+                            if (Manager.instance.posts.contains(post))
+                                Manager.instance.posts.remove(post)
+                            // 아이템 변경 콜백
+                            this.notifyItemRemoved(position)
+                            // 데이터 베이스에서 제거하기
+                            removeNotification(holder.context!!, post)
+                        }
+                    })
+            dialog.show()
+        }
+    }
+
+    fun removeNotification(context: Context, post: PostPreviewModel) {
+        val intent = context.intentFor<RemoveNotification>()
+        intent.putExtra("post_id", post.id)
+        intent.putExtra("user_id", Manager.instance.user.userId)
+
+        context.startService(intent)
     }
 }

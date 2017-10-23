@@ -36,6 +36,7 @@
                         android:orientation="horizontal">
 
                         <FrameLayout
+                            android:id="@+id/post_preview_option"
                             android:layout_width="16dp"
                             android:layout_height="16dp"
                             android:background="@drawable/icon_option_00001"
