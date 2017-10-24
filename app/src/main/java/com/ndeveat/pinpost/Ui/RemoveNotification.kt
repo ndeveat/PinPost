@@ -7,6 +7,7 @@ import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.os.IBinder
+import android.util.Log
 import com.koushikdutta.ion.Ion
 import com.ndeveat.pinpost.Manager
 import com.ndeveat.pinpost.R
@@ -59,14 +60,20 @@ class RemoveNotification : Service() {
 
     fun removeServer(intent: Intent) {
         val postId = intent.extras.getInt("post_id", -1)
+        val userId = intent.extras.getString("user_id", "")
+
+        Log.d("Remove", "ID : ${postId}, USER_ID : ${userId}")
 
         Ion.with(applicationContext).load(Manager.baseUrl + Manager.postremove)
-                .setBodyParameter("user_id", Manager.instance.user.userId)
+                .setBodyParameter("user_id", userId)
                 .setBodyParameter("post_id", postId.toString())
                 .asJsonObject()
                 .setCallback { e, result ->
                     if (result == null)
                         e.printStackTrace()
+                    else {
+                        Log.d("Remove Result", result.toString())
+                    }
 
                     updateManagerData()
                     stopService(intent)

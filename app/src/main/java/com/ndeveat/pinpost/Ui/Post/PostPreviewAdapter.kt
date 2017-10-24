@@ -73,6 +73,11 @@ class PostPreviewAdapter : RecyclerView.Adapter<PostPreviewHolder>() {
                         // 수정
                         if (i == 0) {
                             val intent = holder.context!!.intentFor<EditorActivity>()
+                            intent.putExtra("title", post.title)
+                            intent.putExtra("contents", post.text)
+                            intent.putExtra("images", post.images)
+                            intent.putExtra("tag", post.tag)
+                            intent.putExtra("sns", post.pushSns)
                             intent.putExtra("Type", "Edit")
                             holder.context!!.startActivity(intent)
                         }

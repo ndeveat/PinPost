@@ -57,11 +57,17 @@
             android:label="@string/title_activity_signup"
             android:theme="@style/MainTheme" />
 
+        <activity android:name=".Activity.NotificationActivity"></activity>
+
         <service
             android:name=".Ui.PushNotification"
             android:enabled="true" />
-
-        <activity android:name=".Activity.NotificationActivity"></activity>
+        <service
+            android:name=".Ui.EditNotification"
+            android:enabled="true" />
+        <service
+            android:name=".Ui.RemoveNotification"
+            android:enabled="true" />
     </application>
 
 </manifest>

@@ -42,44 +42,56 @@ class Manager private constructor() {
                         val posts = result["posts"].asJsonArray
                         posts.forEachIndexed { index, it ->
                             val post = it.asJsonObject
-                            val postId = post["id"].asInt
+                            if (post != null) {
+                                val postId = post["id"].asInt
 
-                            if (this.posts.find { it.id == postId } == null) {
-                                var images: ArrayList<String>? = ArrayList<String>()
-                                val imageData = post["images"].asString
-                                val imageList = imageData.split(',')
-                                imageList.forEach {
-                                    if (it != "")
-                                        images?.add(it)
-                                }
-                                if (images!!.size == 0)
-                                    images = null
-
-                                val sns = ArrayList<SocialNetworkType>()
-                                val snsData = post["sns"].asString
-                                val snsList = snsData.split(',')
-                                val socialNetworkList = SocialNetworkType.values()
-
-                                snsList.forEach { value ->
-                                    if (value != "") {
-                                        val n = socialNetworkList.find { it.name == value }
-                                        Log.d("N", n.toString())
-                                        sns.add(n!!)
+                                if (this.posts.find { it.id == postId } == null) {
+                                    var images: ArrayList<String>? = ArrayList<String>()
+                                    val imageData = post["images"].asString
+                                    val imageList = imageData.split(',')
+                                    imageList.forEach {
+                                        if (it != "")
+                                            images?.add(it)
                                     }
+                                    if (images!!.size == 0)
+                                        images = null
+
+                                    val sns = ArrayList<SocialNetworkType>()
+                                    val snsData = post["sns"].asString
+                                    val snsList = snsData.split(',')
+                                    val socialNetworkList = SocialNetworkType.values()
+
+                                    val tag = ArrayList<String>()
+                                    val tagData = post["tag"].asString
+                                    val tagList = tagData.split(',')
+
+                                    snsList.forEach { value ->
+                                        if (value != "") {
+                                            val n = socialNetworkList.find { it.name == value }
+                                            sns.add(n!!)
+                                        }
+                                    }
+
+                                    tagList.forEach { value ->
+                                        if (value != "") {
+                                            tag.add(value)
+                                        }
+                                    }
+
+                                    val postTitle: String? = if (post["title"].asString != "") post["title"].asString else null
+                                    val postContents: String? = if (post["contents"].asString != "") post["contents"].asString else null
+
+                                    Log.d("Post", "${postId}, ${postTitle}, ${postContents}, ${images}, ${sns}")
+
+                                    this.posts.add(PostPreviewModel(
+                                            postId,
+                                            postTitle,
+                                            postContents,
+                                            tag,
+                                            images,
+                                            sns
+                                    ));
                                 }
-
-                                var postTitle: String? = if (post["title"].asString != "") post["title"].asString else null
-                                var postContents: String? = if (post["contents"].asString != "") post["contents"].asString else null
-
-                                Log.d("Post", "${postId}, ${postTitle}, ${postContents}, ${images}, ${sns}")
-
-                                this.posts.add(PostPreviewModel(
-                                        postId,
-                                        postTitle,
-                                        postContents,
-                                        images,
-                                        sns
-                                ));
                             }
                         }
 

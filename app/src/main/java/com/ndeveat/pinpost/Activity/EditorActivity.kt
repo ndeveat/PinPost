@@ -5,6 +5,7 @@ import android.content.Context
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -140,19 +141,27 @@ class EditorActivity : AppCompatActivity() {
         if (type == "Edit") {
             val title = intent.extras.getString("title")
             val contents = intent.extras.getString("contents")
-            val tag = intent.extras.getString("tag")
+            val tag = intent.extras.getStringArrayList("tag")
             val sns = intent.extras.getString("sns")
 
             // title
-            if (title.length > 0) {
-                editorTitle.visibility = View.VISIBLE
+            if (title != null && title.length > 0) {
+                editor_title_parent.visibility = View.VISIBLE
                 editorTitle.text = title
             }
             // contents
             editorContents.text = contents
 
-            // tag
-            editorTag.text = tag
+            if (tag.size > 0) {
+                var tagString = ""
+                tag.forEach { value ->
+                    tagString += value + ","
+                }
+                editor_tag_parent.visibility = View.VISIBLE
+                editorTag.text = tagString
+            }
+
+            // 이미지 처리 방법은?
         }
     }
 
