@@ -56,7 +56,6 @@ class SplashActivity : Activity() {
         Manager.instance.snsList.add(
                 SocialNetworkModel(
                         SocialNetworkType.Facebook,
-                        ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_facebook_00001),
                         ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_facebook_00007),
                         ContextCompat.getColor(this@SplashActivity, R.color.snsFacebook),
                         false,
@@ -66,7 +65,6 @@ class SplashActivity : Activity() {
         Manager.instance.snsList.add(
                 SocialNetworkModel(
                         SocialNetworkType.Tstory,
-                        ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_tstory_00001),
                         ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_tstory_00007),
                         ContextCompat.getColor(this@SplashActivity, R.color.snsTstory),
                         false,
@@ -76,7 +74,6 @@ class SplashActivity : Activity() {
         Manager.instance.snsList.add(
                 SocialNetworkModel(
                         SocialNetworkType.Twitter,
-                        ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_twitter_00001),
                         ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_twitter_00007),
                         ContextCompat.getColor(this@SplashActivity, R.color.snsTwitter),
                         false,
@@ -86,7 +83,6 @@ class SplashActivity : Activity() {
         Manager.instance.snsList.add(
                 SocialNetworkModel(
                         SocialNetworkType.Tumblr,
-                        ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_tumblr_00001),
                         ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_tumblr_00008),
                         ContextCompat.getColor(this@SplashActivity, R.color.snsTwitter),
                         false,
@@ -96,7 +92,6 @@ class SplashActivity : Activity() {
         Manager.instance.snsList.add(
                 SocialNetworkModel(
                         SocialNetworkType.NaverBlog,
-                        ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_naverblog_00001),
                         ContextCompat.getDrawable(this@SplashActivity, R.drawable.sns_naverblog_00007),
                         ContextCompat.getColor(this@SplashActivity, R.color.snsTwitter),
                         false,

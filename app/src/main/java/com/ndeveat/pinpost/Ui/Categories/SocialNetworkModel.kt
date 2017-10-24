@@ -8,7 +8,6 @@ import android.graphics.drawable.Drawable
 
 data class SocialNetworkModel(
         var snsType: SocialNetworkType,
-        var snsMainImage: Drawable,
         var snsPlusImage: Drawable,
         var snsMainColor: Int,
         var isLogin: Boolean,

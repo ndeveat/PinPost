@@ -53,7 +53,7 @@ class PushNotification : Service() {
         notification = Notification.Builder(this@PushNotification)
         notification.setContentTitle("제목")
                 .setContentText("내용")
-                .setSmallIcon(R.drawable.icon_pencil_00001)
+                .setSmallIcon(R.drawable.ic_pinpost)
                 .setContentIntent(contentIntent)
                 .setWhen(System.currentTimeMillis())
                 .setProgress(100, 0, true)

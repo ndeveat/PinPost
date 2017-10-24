@@ -42,7 +42,7 @@ class RemoveNotification : Service() {
         val contentIntent = PendingIntent.getActivity(this@RemoveNotification, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         notification = Notification.Builder(this@RemoveNotification)
         notification.setContentTitle("포스트 삭제")
-                .setSmallIcon(R.drawable.icon_pencil_00001)
+                .setSmallIcon(R.drawable.ic_pinpost)
                 .setContentIntent(contentIntent)
                 .setWhen(System.currentTimeMillis())
 

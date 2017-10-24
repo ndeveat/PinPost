@@ -13,8 +13,7 @@
         android:id="@+id/icon"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:layout_marginRight="16dp"
-        android:src="@drawable/sns_facebook_00005" />
+        android:layout_marginRight="16dp" />
 
     <com.ndeveat.pinpost.Ui.View.TextView
         android:id="@+id/email"
