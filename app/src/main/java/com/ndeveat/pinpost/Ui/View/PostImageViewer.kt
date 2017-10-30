@@ -60,35 +60,31 @@ class PostImageViewer : LinearLayout {
     var subImage: ImageView? = null
 
     var plusImage: ImageView? = null
-    var plusImageParent : FrameLayout? = null
+    var plusImageParent: FrameLayout? = null
     var plusImageOver: FrameLayout? = null
     var plusImageText: TextView? = null
 
     fun addImage(images: ArrayList<String>) {
         imageCount = 0
-
         plusImageOver!!.visibility = View.GONE
 
         // 이미지 개수
         if (images.size == 1) {
             // Weight Sum
-            container!!.weightSum = 1f
             // View visible
             subContainer!!.visibility = View.GONE
             subImage!!.visibility = View.GONE
             plusImageParent!!.visibility = View.GONE
         } else if (images.size == 2) {
             // Weight Sum
-            container!!.weightSum = 2f
-            subContainer!!.layoutParams = LinearLayout.LayoutParams(subContainer!!.layoutParams.width, subContainer!!.layoutParams.height, 1f)
+            //subContainer!!.layoutParams = LinearLayout.LayoutParams(subContainer!!.layoutParams.width, subContainer!!.layoutParams.height, 1f)
             // View visible
             subContainer!!.visibility = View.VISIBLE
             subImage!!.visibility = View.VISIBLE
             plusImageParent!!.visibility = View.GONE
         } else if (images.size >= 3) {
             // Weight Sum
-            container!!.weightSum = 3f
-            subContainer!!.layoutParams = LinearLayout.LayoutParams(subContainer!!.layoutParams.width, subContainer!!.layoutParams.height, 2f)
+            //subContainer!!.layoutParams = LinearLayout.LayoutParams(subContainer!!.layoutParams.width, subContainer!!.layoutParams.height, 2f)
             // View visible
             subContainer!!.visibility = View.VISIBLE
             subImage!!.visibility = View.VISIBLE
@@ -106,18 +102,30 @@ class PostImageViewer : LinearLayout {
                                 val imageUrl = Manager.baseUrl + "/images/" + imageData["id"].asString + "." + imageData["type"].asString
                                 when (index) {
                                     0 -> {
-                                        Picasso.with(context).load(imageUrl).placeholder(R.drawable.image_placeholder).transform(CompressionBitmap(1280, 720)).into(mainImage)
+                                        Picasso.with(context)
+                                                .load(imageUrl)
+                                                .placeholder(R.drawable.image_placeholder)
+                                                .transform(CompressionBitmap(1280, 720))
+                                                .into(mainImage)
                                     }
                                     1 -> {
-                                        Picasso.with(context).load(imageUrl).placeholder(R.drawable.image_placeholder).transform(CompressionBitmap(1280, 720)).into(subImage)
+                                        Picasso.with(context)
+                                                .load(imageUrl)
+                                                .placeholder(R.drawable.image_placeholder)
+                                                .transform(CompressionBitmap(1280, 720))
+                                                .into(subImage)
                                     }
                                     2 -> {
-                                        Picasso.with(context).load(imageUrl).placeholder(R.drawable.image_placeholder).transform(CompressionBitmap(1280, 720)).into(plusImage)
+                                        Picasso.with(context)
+                                                .load(imageUrl)
+                                                .placeholder(R.drawable.image_placeholder)
+                                                .transform(CompressionBitmap(1280, 720))
+                                                .into(plusImage)
                                     }
                                 // 이상일 시
                                     else -> {
                                         plusImageOver!!.visibility = View.VISIBLE
-                                        plusImageText!!.text = (index - 2).toString()
+                                        plusImageText!!.text = "+${(index - 2)}"
                                     }
                                 }
                             }
