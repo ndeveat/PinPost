@@ -92,7 +92,7 @@ class PostImageViewer : FrameLayout {
                     .asJsonObject()
                     .setCallback { e, result ->
                         if (result != null) {
-                            if (result["media"] != null) {
+                            if (!result["media"].isJsonNull) {
                                 val imageData = result["media"].asJsonObject
                                 val imageUrl = Manager.baseUrl + "/images/" + imageData["id"].asString + "." + imageData["type"].asString
                                 when (index) {
