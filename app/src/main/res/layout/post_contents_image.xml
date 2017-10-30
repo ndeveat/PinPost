@@ -1,58 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/image_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="horizontal"
+    android:weightSum="3">
 
-    <!-- 이미지가 3개 이상일 때 활성화 -->
-    <LinearLayout
-        android:id="@+id/image_container"
+    <ImageView
+        android:id="@+id/main_image"
         android:layout_width="match_parent"
-        android:layout_height="254dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:visibility="visible">
+        android:layout_height="256dp"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@color/cardview_dark_background" />
+
+    <LinearLayout
+        android:id="@+id/sub_image_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:paddingLeft="4dp"
+        android:visibility="visible"
+        android:weightSum="2">
 
         <ImageView
-            android:id="@+id/main_image"
+            android:id="@+id/sub_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="2dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            android:src="@color/cardview_dark_background" />
+            android:visibility="gone" />
 
-        <LinearLayout
-            android:id="@+id/sub_image_container"
+        <FrameLayout
+            android:id="@+id/plus_image_parent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:orientation="vertical"
-            android:paddingLeft="4dp"
-            android:visibility="gone"
-            android:weightSum="2">
-
-            <ImageView
-                android:id="@+id/sub_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="2dp"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                android:visibility="gone" />
+            android:layout_weight="1"
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/plus_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="2dp"
-                android:layout_weight="1"
                 android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                android:visibility="gone" />
-        </LinearLayout>
+                android:scaleType="centerCrop" />
+
+            <FrameLayout
+                android:id="@+id/plus_image_over"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#bb3b3b3b">
+
+                <com.ndeveat.pinpost.Ui.View.TextView
+                    android:id="@+id/plus_image_over_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="+TEST"
+                    android:textColor="@android:color/white"
+                    android:textSize="18dp" />
+            </FrameLayout>
+        </FrameLayout>
     </LinearLayout>
-</FrameLayout>
+</LinearLayout>

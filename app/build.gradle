@@ -32,10 +32,10 @@ dependencies {
     })
     compile files('src/main/lib/twitter4j-core-4.0.4.jar')
     compile files('src/main/lib/twitter4j-media-support-4.0.4.jar')
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:appcompat-v7:25.4.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'org.jetbrains.anko:anko:0.10.1'
-    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support:design:25.4.0'
     compile 'gun0912.ted:tedbottompicker:1.0.12'
     compile 'gun0912.ted:tedpermission:2.0.0'
     compile 'com.koushikdutta.ion:ion:2.2.1'
